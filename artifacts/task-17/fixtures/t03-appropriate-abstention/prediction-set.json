@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t03-appropriate-abstention",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t03-appropriate-abstention",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

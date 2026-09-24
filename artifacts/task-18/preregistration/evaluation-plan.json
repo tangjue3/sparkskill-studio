@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0.0",
+  "plan": "task-18-coverage-aware-adaptive-sampling-preregistration",
+  "task": "任务 18：Coverage-Aware Adaptive Sampling v2 与预注册三臂评测",
+  "created_at": "2026-09-22",
+  "design_doc": "docs/plans/2026-09-22-coverage-aware-adaptive-sampling-design.md",
+  "baseline": {
+    "branch": "master",
+    "head": "929314365c3087f0756b1f0cd285669ede0feaa7",
+    "note": "任务 17 提交（feat: add temporal ground-truth scoring）；工作区干净；无 remote；恢复 tag pre-task13-deploy-4c4c3ca 保留"
+  },
+  "preregistration_rule": "本文件与同目录其余预注册文件在阶段 A 提交（docs: preregister coverage-aware sampling evaluation）中冻结；实现开始后不得修改；任何'看到结果后改规则/改 fixture/改预算/改 verdict 条件'的行为被明确禁止。",
+  "arms": {
+    "source_of_truth": "arm-configs.json",
+    "arm_ids": ["uniform", "adaptive", "coverage"],
+    "strategy_mapping": {
+      "uniform": "uniform",
+      "adaptive": "adaptive_coarse_to_fine",
+      "coverage": "coverage_aware_adaptive"
+    }
+  },
+  "scenarios": {
+    "source_of_truth": "fixture-manifest.json",
+    "count": 11,
+    "same_budget_scenario_ids": [
+      "present-throughout",
+      "appear-midway",
+      "disappear-midway",
+      "reappear",
+      "short-event-between-grid",
+      "short-uncertain-between-grid",
+      "twin-short-events",
+      "absent-throughout",
+      "short-event-phase-b",
+      "short-uncertain-phase-b"
+    ],
+    "tight_budget_scenario_ids": ["reappear-tight-budget"],
+    "tight_budget_note": "reappear-tight-budget 为显式的'更少预算'场景（三臂统一预算 6）：验证覆盖与细化竞争预算时的确定性停止与如实报告；不参与同预算主对照的 verdict 计算（其单独指标仍完整报告）。"
+  },
+  "budgets": {
+    "same_budget_max_model_calls": 12,
+    "tight_budget_max_model_calls": 6,
+    "note": "同一场景内三臂预算相同（公平门 same_call_budget 的可观测基础）；与任务 16 主对照预算一致（12）保证跨任务可比。"
+  },
+  "execution_order": {
+    "scenario_order": "按 fixture-manifest.json 中 scenario_order 固定顺序执行",
+    "arm_order_within_scenario": ["uniform", "adaptive", "coverage"],
+    "rotation": "不轮换（与任务 16 方法论一致）；顺序效应作为已知限制记录，不给 verdict 让分"
+  },
+  "runs": {
+    "deterministic_replay": {
+      "scope": "全部 11 场景 × 3 臂",
+      "evidence_nature": "constructed_fixture_evidence",
+      "analyzer": "按冻结 Ground Truth 时间轴确定性生成帧级构造证据（规则测试同款脚本化分析器；不计为 Qwen 调用）",
+      "purpose": "在零模型调用下验证三臂采样几何、预算语义、provenance 自洽与评分链路；逐字节可复算",
+      "order": "先于任何真实 Qwen 运行"
+    },
+    "real_qwen": {
+      "scope": "全部 11 场景 × 3 臂（仅资源门槛满足时）",
+      "evidence_nature": "real_model_output",
+      "runs_per_arm_scenario": 1,
+      "retry_policy": "无单侧重试、无额外上下文、无人工修正",
+      "raw_returns": "保存模型原始返回（raw/）",
+      "note": "不得根据 replay 结果修改正式 Qwen 场景、Ground Truth 或规则；资源门槛不满足时本项不执行并记 PARTIAL_RESOURCE_BLOCKED"
+    }
+  },
+  "resource_gate": {
+    "source_of_truth": "任务书第十二节 8 项核验",
+    "checks": [
+      "MiniMax-H3 当前是否有进程、监听或生成任务",
+      "是否存在用户活跃的 MiniMax-H3/WebUI 任务",
+      "MemAvailable 连续三次不低于 45 GiB",
+      "Ollama 可达",
+      "是否有外部 Qwen 消费者",
+      "DSH 正常",
+      "Git 工作区是否符合当前任务预期",
+      "所有预注册文件哈希是否仍一致"
+    ],
+    "on_failure": "完成可安全完成的设计/实现/纯逻辑测试/回归；生成结构化 resource blocker（artifacts/task-18/resource-gate.json）；不执行真实 Qwen 与 DSH 自主演示；最终状态 PARTIAL_RESOURCE_BLOCKED；不虚构模型结果"
+  },
+  "scoring": {
+    "scorer": "scripts/score_temporal_ground_truth.py（任务 17 冻结评分器，文件零改动）",
+    "adapter": "scripts/task18_scorer_adapter.py（兼容适配层：仅在内存扩展策略白名单以允许 coverage_aware_adaptive 产物进入 G7；三臂评分 + 两两 fairness/verdict + pack 级聚合）",
+    "metrics": [
+      "七类采样点计数（correct_decisive/incorrect_decisive/abstention_on_determinate/failed_on_determinate/appropriate_abstention/overclaim_on_uncertain/failed_on_uncertain；分母为对应类别分母；0 分母写 not_applicable）",
+      "事件覆盖（covered/missed_confirmed_events、covered/missed_not_found_segments、unreached_uncertain_segments、appropriate_abstention_achieved）",
+      "边界匹配（Kuhn 一对一最大匹配 + 方向兼容；matched_boundaries/missed_gt_boundaries/unmatched_predicted_transitions/within_tolerance_boundaries/边界误差统计 max/min/median/mean）",
+      "效率（configured_budget/actual_model_calls/unique_analyzed_timestamps/reused_evidence_count/duplicate_skips/budget_exhausted/timing/三个派生指标）",
+      "maximum sampling gap（来自 sampling_provenance.max_adjacent_sampling_gap_ms_final 与 temporal_evidence.coverage；pack 级取跨场景最大值）",
+      "执行状态 vs 语义评分状态分开输出（completed 不等于语义正确）"
+    ],
+    "verdict_rules": "verdict-policy.json（pairwise 复用任务 17 冻结规则；pack 级三臂规则在本计划内预注册）"
+  },
+  "fairness_gate": {
+    "conditions": [
+      "相同样本集合与执行顺序",
+      "相同媒体与 SHA-256（评分器硬门 G2 实际计算三方一致）",
+      "相同 target query",
+      "相同 Ground Truth 版本（annotation_version 一致且无运行后修订）",
+      "相同模型与后端",
+      "相同总模型调用预算",
+      "相同输出与超时规则（同一 trace_temporal.py 代码路径与 frame_class）",
+      "无单侧重试/额外上下文/人工修正（调用方 fairness_attestation 显式声明）",
+      "相同 evidence_nature（禁止真实/构造混合）",
+      "Ground Truth 不进入采样决策（专项测试）"
+    ],
+    "on_failure": "该对比较判 INVALID_COMPARISON，不计分"
+  },
+  "separation": {
+    "engineering_acceptance": "契约/预算/provenance/测试/回归全部达标（工程 PASS，与算法 verdict 独立）",
+    "algorithmic_verdict": "只由 verdict-policy.json 的冻结规则从指标计算；允许 IMPROVEMENT/TRADEOFF/NO_IMPROVEMENT/INVALID_COMPARISON；不得为获得漂亮 verdict 调参、删场景、重写标签或只报告有利样本"
+  },
+  "non_goals": [
+    "不新增第四个 Skill",
+    "不声称任意短事件必检",
+    "不声称实时视频监控/跨摄像头身份追踪/StepFun 视觉识别/统计显著性",
+    "不声称真实仓储准确率；不接入用户 dev/holdout Evidence Pack",
+    "不修改任务 16/17 冻结 artifacts、Tier-3 冻结任务/评分器/PASS 条件、工作台",
+    "不安装依赖、不联网、不改全局配置、不读取凭据、不添加 remote、不 push、不擅自启停服务"
+  ]
+}

@@ -1,0 +1,794 @@
+{
+  "task": "task-19b-scoring",
+  "generated_at": "2026-09-23T01:03:28.400073+00:00",
+  "scorer": "scripts/score_temporal_ground_truth.py（任务 17 冻结，零改动）",
+  "adapter": "scripts/task18_scorer_adapter.py（任务 18 已提交适配层，零改动）",
+  "manifest": "artifacts/task-19/ingestion/evidence-pack-manifest.json",
+  "ground_truth": "artifacts/task-19/ground-truth",
+  "predictions": "artifacts/task-19/predictions/prediction-set.json",
+  "fairness_gate_note": "冻结双臂公平门的 same_target_query / same_call_budget 条件在实现上要求比较范围内取值唯一。本包按预注册预算政策跨样本预算不同（12×7、WEB01=19、WEB03=18）且 licensed-public 轨道有三个 target query：generated 范围（查询与预算同质）十条件全部通过；licensed-public 与 all-dev 范围该两条件在冻结实现下 FAIL（判 INVALID_COMPARISON，如实保留）。逐样本公平门（同查询/同预算在样本内成立）见 scores/per-sample/；pooled pairwise verdict 用冻结 compute_verdict 对汇总指标计算（纪律不变），与逐样本门证据并列披露。",
+  "scopes": {
+    "generated": {
+      "sample_scope": [
+        "AI01",
+        "AI02",
+        "AI03",
+        "AI04",
+        "AI05",
+        "AI06"
+      ],
+      "exit_code": 0,
+      "comparison": "artifacts/task-19/scores/generated/three-arm-comparison.json",
+      "pairwise_frozen_gate": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_incorrect_decisive"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": [
+            "more_overclaim_on_uncertain"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_incorrect_decisive"
+          ]
+        }
+      },
+      "pack_verdict": "NO_IMPROVEMENT",
+      "pack_reason_codes": [
+        "more_incorrect_decisive_vs_uniform",
+        "larger_max_sampling_gap_vs_uniform",
+        "more_overclaim_on_uncertain_vs_adaptive"
+      ],
+      "max_sampling_gap_ms": {
+        "adaptive": 3375.0,
+        "coverage": 1708.333,
+        "uniform": 958.334
+      },
+      "aggregate_metrics": {
+        "adaptive": {
+          "aggregate": {
+            "correct_decisive": 24,
+            "incorrect_decisive": 2,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 3,
+            "overclaim_on_uncertain": 10,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 39,
+            "gt_confirmed_segments": 5,
+            "covered_confirmed_events": 5,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 6,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 6,
+            "unmatched_predicted_transitions": 7,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 0,
+            "actual_model_calls": 39,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        },
+        "coverage": {
+          "aggregate": {
+            "correct_decisive": 37,
+            "incorrect_decisive": 2,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 1,
+            "overclaim_on_uncertain": 14,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 54,
+            "gt_confirmed_segments": 5,
+            "covered_confirmed_events": 5,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 6,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 6,
+            "unmatched_predicted_transitions": 5,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 0,
+            "actual_model_calls": 54,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        },
+        "uniform": {
+          "aggregate": {
+            "correct_decisive": 53,
+            "incorrect_decisive": 1,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 1,
+            "overclaim_on_uncertain": 17,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 72,
+            "gt_confirmed_segments": 5,
+            "covered_confirmed_events": 5,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 6,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 6,
+            "unmatched_predicted_transitions": 7,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 1,
+            "actual_model_calls": 72,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        }
+      },
+      "pairwise_pooled_verdict": {
+        "coverage-vs-uniform": {
+          "baseline": "uniform",
+          "candidate": "coverage",
+          "verdict": "TRADEOFF",
+          "reason": "有严格改进（['fewer_model_calls']）但非回归条件被违反（['more_incorrect_decisive']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_incorrect_decisive"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "baseline": "adaptive",
+          "candidate": "coverage",
+          "verdict": "NO_IMPROVEMENT",
+          "reason": "没有严格改进，且非回归条件被违反（['more_overclaim_on_uncertain']）；NO_IMPROVEMENT 不表示两臂等价，违反项已在差异字段完整披露",
+          "reason_codes": [
+            "more_overclaim_on_uncertain"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "baseline": "uniform",
+          "candidate": "adaptive",
+          "verdict": "TRADEOFF",
+          "reason": "有严格改进（['fewer_model_calls']）但非回归条件被违反（['more_incorrect_decisive']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_incorrect_decisive"
+          ]
+        }
+      }
+    },
+    "licensed-public": {
+      "sample_scope": [
+        "WEB01",
+        "WEB02",
+        "WEB03"
+      ],
+      "exit_code": 0,
+      "comparison": "artifacts/task-19/scores/licensed-public/three-arm-comparison.json",
+      "pairwise_frozen_gate": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": false,
+          "failed_conditions": [
+            "same_target_query",
+            "same_call_budget"
+          ],
+          "verdict": "INVALID_COMPARISON",
+          "reason_codes": [
+            "fairness_gate_failed"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": false,
+          "failed_conditions": [
+            "same_target_query",
+            "same_call_budget"
+          ],
+          "verdict": "INVALID_COMPARISON",
+          "reason_codes": [
+            "fairness_gate_failed"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": false,
+          "failed_conditions": [
+            "same_target_query",
+            "same_call_budget"
+          ],
+          "verdict": "INVALID_COMPARISON",
+          "reason_codes": [
+            "fairness_gate_failed"
+          ]
+        }
+      },
+      "pack_verdict": "NO_IMPROVEMENT",
+      "pack_reason_codes": [
+        "larger_max_sampling_gap_vs_uniform",
+        "more_incorrect_decisive_vs_adaptive"
+      ],
+      "max_sampling_gap_ms": {
+        "adaptive": 6206.2,
+        "coverage": 3103.1,
+        "uniform": 1040.0
+      },
+      "aggregate_metrics": {
+        "adaptive": {
+          "aggregate": {
+            "correct_decisive": 11,
+            "incorrect_decisive": 1,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 0,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 12,
+            "gt_confirmed_segments": 2,
+            "covered_confirmed_events": 2,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 2,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 2,
+            "unmatched_predicted_transitions": 0,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 1,
+            "actual_model_calls": 12,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        },
+        "coverage": {
+          "aggregate": {
+            "correct_decisive": 23,
+            "incorrect_decisive": 7,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 0,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 30,
+            "gt_confirmed_segments": 2,
+            "covered_confirmed_events": 2,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 2,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 2,
+            "unmatched_predicted_transitions": 2,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 1,
+            "actual_model_calls": 30,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        },
+        "uniform": {
+          "aggregate": {
+            "correct_decisive": 39,
+            "incorrect_decisive": 9,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 1,
+            "appropriate_abstention": 0,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 49,
+            "gt_confirmed_segments": 2,
+            "covered_confirmed_events": 2,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 2,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 2,
+            "unmatched_predicted_transitions": 4,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 1,
+            "actual_model_calls": 49,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        }
+      },
+      "pairwise_pooled_verdict": {
+        "coverage-vs-uniform": {
+          "baseline": "uniform",
+          "candidate": "coverage",
+          "verdict": "IMPROVEMENT",
+          "reason": "非回归条件全部满足，且至少一项严格更好（['fewer_model_calls']）",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "baseline": "adaptive",
+          "candidate": "coverage",
+          "verdict": "NO_IMPROVEMENT",
+          "reason": "没有严格改进，且非回归条件被违反（['more_incorrect_decisive']）；NO_IMPROVEMENT 不表示两臂等价，违反项已在差异字段完整披露",
+          "reason_codes": [
+            "more_incorrect_decisive"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "baseline": "uniform",
+          "candidate": "adaptive",
+          "verdict": "IMPROVEMENT",
+          "reason": "非回归条件全部满足，且至少一项严格更好（['fewer_model_calls']）",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    },
+    "all-dev": {
+      "sample_scope": [
+        "AI01",
+        "AI02",
+        "AI03",
+        "AI04",
+        "AI05",
+        "AI06",
+        "WEB01",
+        "WEB02",
+        "WEB03"
+      ],
+      "exit_code": 0,
+      "comparison": "artifacts/task-19/scores/all-dev/three-arm-comparison.json",
+      "pairwise_frozen_gate": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": false,
+          "failed_conditions": [
+            "same_target_query",
+            "same_call_budget"
+          ],
+          "verdict": "INVALID_COMPARISON",
+          "reason_codes": [
+            "fairness_gate_failed"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": false,
+          "failed_conditions": [
+            "same_target_query",
+            "same_call_budget"
+          ],
+          "verdict": "INVALID_COMPARISON",
+          "reason_codes": [
+            "fairness_gate_failed"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": false,
+          "failed_conditions": [
+            "same_target_query",
+            "same_call_budget"
+          ],
+          "verdict": "INVALID_COMPARISON",
+          "reason_codes": [
+            "fairness_gate_failed"
+          ]
+        }
+      },
+      "pack_verdict": "NO_IMPROVEMENT",
+      "pack_reason_codes": [
+        "larger_max_sampling_gap_vs_uniform",
+        "more_incorrect_decisive_vs_adaptive",
+        "more_overclaim_on_uncertain_vs_adaptive"
+      ],
+      "max_sampling_gap_ms": {
+        "adaptive": 6206.2,
+        "coverage": 3103.1,
+        "uniform": 1040.0
+      },
+      "aggregate_metrics": {
+        "adaptive": {
+          "aggregate": {
+            "correct_decisive": 35,
+            "incorrect_decisive": 3,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 3,
+            "overclaim_on_uncertain": 10,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 51,
+            "gt_confirmed_segments": 7,
+            "covered_confirmed_events": 7,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 8,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 8,
+            "unmatched_predicted_transitions": 7,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 1,
+            "actual_model_calls": 51,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        },
+        "coverage": {
+          "aggregate": {
+            "correct_decisive": 60,
+            "incorrect_decisive": 9,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 1,
+            "overclaim_on_uncertain": 14,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 84,
+            "gt_confirmed_segments": 7,
+            "covered_confirmed_events": 7,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 8,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 8,
+            "unmatched_predicted_transitions": 7,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 1,
+            "actual_model_calls": 84,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        },
+        "uniform": {
+          "aggregate": {
+            "correct_decisive": 92,
+            "incorrect_decisive": 10,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 1,
+            "appropriate_abstention": 1,
+            "overclaim_on_uncertain": 17,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 121,
+            "gt_confirmed_segments": 7,
+            "covered_confirmed_events": 7,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 8,
+            "matched_boundaries": 0,
+            "missed_gt_boundaries": 8,
+            "unmatched_predicted_transitions": 11,
+            "within_tolerance_boundaries": 0,
+            "unreached_uncertain_segments": 2,
+            "actual_model_calls": 121,
+            "boundary_error_stats": {
+              "matched_count": 0,
+              "max_ms": "not_applicable",
+              "min_ms": "not_applicable",
+              "median_ms": "not_applicable",
+              "mean_ms": "not_applicable"
+            }
+          }
+        }
+      },
+      "pairwise_pooled_verdict": {
+        "coverage-vs-uniform": {
+          "baseline": "uniform",
+          "candidate": "coverage",
+          "verdict": "IMPROVEMENT",
+          "reason": "非回归条件全部满足，且至少一项严格更好（['fewer_model_calls']）",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "baseline": "adaptive",
+          "candidate": "coverage",
+          "verdict": "NO_IMPROVEMENT",
+          "reason": "没有严格改进，且非回归条件被违反（['more_incorrect_decisive', 'more_overclaim_on_uncertain']）；NO_IMPROVEMENT 不表示两臂等价，违反项已在差异字段完整披露",
+          "reason_codes": [
+            "more_incorrect_decisive",
+            "more_overclaim_on_uncertain"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "baseline": "uniform",
+          "candidate": "adaptive",
+          "verdict": "IMPROVEMENT",
+          "reason": "非回归条件全部满足，且至少一项严格更好（['fewer_model_calls']）",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    }
+  },
+  "per_sample": {
+    "AI01": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_incorrect_decisive"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": []
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_incorrect_decisive"
+          ]
+        }
+      }
+    },
+    "AI02": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_overclaim_on_uncertain"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": []
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_overclaim_on_uncertain"
+          ]
+        }
+      }
+    },
+    "AI03": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": []
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    },
+    "AI04": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": [
+            "more_overclaim_on_uncertain"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    },
+    "AI05": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": []
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    },
+    "AI06": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": [
+            "more_overclaim_on_uncertain"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    },
+    "WEB01": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": [
+            "more_incorrect_decisive"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    },
+    "WEB02": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": []
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    },
+    "WEB03": {
+      "exit_code": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "more_incorrect_decisive"
+          ]
+        },
+        "coverage-vs-adaptive": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "NO_IMPROVEMENT",
+          "reason_codes": [
+            "more_incorrect_decisive"
+          ]
+        },
+        "adaptive-vs-uniform": {
+          "fairness_gate_all_passed": true,
+          "failed_conditions": [],
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "fewer_model_calls"
+          ]
+        }
+      }
+    }
+  },
+  "per_sample_gates_all_passed": true
+}

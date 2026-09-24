@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "reappear-tight-budget",
+  "arm_id": "uniform",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/reappear-tight-budget.temporal-ground-truth.json",
+      "sha256": "c62d6de0c55fc5c69dad16b22f1a7d753212c7f8481fa313a562925b405ace2a"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/reappear-tight-budget/uniform/temporal-evidence.json",
+      "sha256": "802dbe453bfaa42da1e4ecc75d625cb6393e4367cb2bf3c093d4dcb4183cd552"
+    },
+    "media": {
+      "path": "../../task-16/fixtures/videos/fixture-reappear.mp4",
+      "sha256": "a298c6e36b61f4299cd09ee46bbf0b2999c6049bb71cb8a73856a7b1e9f7d0ca"
+    }
+  }
+}

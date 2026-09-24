@@ -1,0 +1,9 @@
+{
+  "accepted": true,
+  "status": "accepted",
+  "source_media_provenance": "user_provided",
+  "source_media_candidates": [
+    "artifacts/task-18/fixtures/videos/fixture-short-event-between-grid.mp4"
+  ],
+  "tool_calls_allowed": true
+}

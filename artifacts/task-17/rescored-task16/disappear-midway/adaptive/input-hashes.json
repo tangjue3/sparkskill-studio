@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "disappear-midway",
+  "arm_id": "adaptive",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-17/contracts/task16-fixture-evidence-pack-manifest.json",
+      "sha256": "f66ab0fd8b5120c2976fa17ff93f1e10fe517c68a9b011892a661d98d325dd9e"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-17/rescored-task16/prediction-set.json",
+      "sha256": "7b28847e71f1eba018c01b2bb7143181569016ca9fff0a6cc4e6e9aac713dbb9"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-17/contracts/ground-truth/disappear-midway.temporal-ground-truth.json",
+      "sha256": "8750215243f3c4eaeaba6f73a3713cc251854a45fa252c5594a31cbe5584566b"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-16/comparison/disappear-midway/adaptive/temporal-evidence.json",
+      "sha256": "89f69ef246bf5cd485a5f600db73cd169a0490f2b21b312540b5e2c00700c1d4"
+    },
+    "media": {
+      "path": "../../task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "sha256": "59a203c0ebff95d96f9d73e3429b60fa9de32ecdef019dfc86f7afdc5e945728"
+    }
+  }
+}

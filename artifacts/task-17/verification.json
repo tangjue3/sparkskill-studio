@@ -1,0 +1,154 @@
+{
+  "task": "task-17-evidence-pack-ground-truth-scoring",
+  "generated_at": null,
+  "passed": 24,
+  "total": 24,
+  "all_passed": true,
+  "checks": [
+    {
+      "id": "V1-task17-new-tests-pass",
+      "name": "任务 17 新增测试全部通过",
+      "passed": true,
+      "detail": "任务 17 新测试: 38/38"
+    },
+    {
+      "id": "V2-fixtures-complete",
+      "name": "确定性 fixtures 覆盖 30+ 用例",
+      "passed": true,
+      "detail": "34 个 fixture 用例目录"
+    },
+    {
+      "id": "V3-task16-regression",
+      "name": "任务 16 时序证据测试通过",
+      "passed": true,
+      "detail": "任务 16: 27/27"
+    },
+    {
+      "id": "V4-task04-regression",
+      "name": "任务 04 视频规则回归通过",
+      "passed": true,
+      "detail": "任务 04: 16/16"
+    },
+    {
+      "id": "V5-task06-regression",
+      "name": "任务 06 多视频规则回归通过",
+      "passed": true,
+      "detail": "任务 06: 32/32"
+    },
+    {
+      "id": "V8-v2-scorer-regression",
+      "name": "v2 评分器回归通过",
+      "passed": true,
+      "detail": "v2 评分器: 17/17"
+    },
+    {
+      "id": "V8b-workbench-static",
+      "name": "工作台静态测试通过",
+      "passed": true,
+      "detail": "工作台静态: 26/26"
+    },
+    {
+      "id": "V6-media-contract-regression",
+      "name": "M1–M8 媒体来源契约回归通过（重跑）",
+      "passed": true,
+      "detail": "exit=0，输出含 10/10 通过"
+    },
+    {
+      "id": "V9-task16-contract-valid",
+      "name": "任务 16 manifest + Ground Truth 契约校验通过",
+      "passed": true,
+      "detail": "RESULT: VALID"
+    },
+    {
+      "id": "V10-competition-profile-valid",
+      "name": "8 AI + 4 真实 competition profile 示例合规",
+      "passed": true,
+      "detail": "12 样本（8 个 generated 样本/4 个 licensed_public 样本，dev 9/holdout 3）契约校验通过"
+    },
+    {
+      "id": "V11-rescore-outputs-complete",
+      "name": "重评分输出完整（5 场景 × 2 臂 × 3 文件）",
+      "passed": true,
+      "detail": "10 个臂目录各含 score.json/score.md/input-hashes.json"
+    },
+    {
+      "id": "V12-comparison-fairness-gate",
+      "name": "比较 fairness gate 全部通过",
+      "passed": true,
+      "detail": "10/10 条件通过"
+    },
+    {
+      "id": "V13-comparison-verdict-legal",
+      "name": "比较 verdict 取值合法（未预设）",
+      "passed": true,
+      "detail": "verdict=TRADEOFF（由评分器从冻结产物计算）"
+    },
+    {
+      "id": "V14-abstain-zone-conflict-exposed",
+      "name": "abstain-zone 真实冲突被暴露（Qwen 确定性负面 vs GT uncertain；adaptive 未触达；边界方向不兼容）",
+      "passed": true,
+      "detail": "uniform overclaim_on_uncertain=3；adaptive unreached_uncertain=1；uniform missed_gt_boundaries=2"
+    },
+    {
+      "id": "V15-completed-vs-semantic",
+      "name": "completed 与语义正确分离（10 臂 execution=completed 且语义逐项计分）",
+      "passed": true,
+      "detail": "execution_status 全部 completed；semantic_score_status 全部 scored"
+    },
+    {
+      "id": "V16-old-verdict-superseded",
+      "name": "旧 IMPROVEMENT 为历史口径；严格 scorer 复算 verdict=TRADEOFF",
+      "passed": true,
+      "detail": "任务 16 历史 verdict=IMPROVEMENT（未篡改）；任务 17 复算 verdict=TRADEOFF"
+    },
+    {
+      "id": "V17-frozen-assets-untouched",
+      "name": "任务 07/08/09/16、Tier-3、app/ 零改动",
+      "passed": true,
+      "detail": "全部冻结路径与 HEAD 一致"
+    },
+    {
+      "id": "V18-tier3-scorers-frozen",
+      "name": "Tier-3 v1/v2 评分器 SHA-256 与文档声明一致",
+      "passed": true,
+      "detail": "v1=一致；v2=一致"
+    },
+    {
+      "id": "V20-git-diff-check",
+      "name": "git diff --check 通过（无空白错误）",
+      "passed": true,
+      "detail": "clean"
+    },
+    {
+      "id": "V21-sensitive-scan",
+      "name": "artifacts/task-17 敏感信息扫描零命中",
+      "passed": true,
+      "detail": "0 命中（凭据/私钥/绝对用户路径）"
+    },
+    {
+      "id": "V22-holdout-gt-not-in-outputs",
+      "name": "holdout Ground Truth 不进入输出（重评分全为 dev；comparison 无 GT 明文）",
+      "passed": true,
+      "detail": "5 场景全部 dev（GT 可按设计审计）；comparison.json/md 不含 GT segments/边界明文"
+    },
+    {
+      "id": "V23-design-doc-complete",
+      "name": "设计文档存在且覆盖必需要素",
+      "passed": true,
+      "detail": "15 类必需要素齐全"
+    },
+    {
+      "id": "V24-no-model-or-network-calls",
+      "name": "新脚本无模型/网络/外部进程调用",
+      "passed": true,
+      "detail": "validate/score/test 均不调用模型、网络或子进程（测试脚本仅驱动 CLI）"
+    },
+    {
+      "id": "V25-workspace-scope",
+      "name": "工作区只包含本任务允许的新文件",
+      "passed": true,
+      "detail": "17 个变更项全部在允许范围（schemas×2、scripts×3、设计文档、artifacts/task-17/、项目文档与 Skill reference/BENCHMARK）"
+    }
+  ],
+  "notes": "确定性核验；无模型调用；generated_at 固定为 null 以保证可复算"
+}

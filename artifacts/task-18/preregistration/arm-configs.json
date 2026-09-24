@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "plan": "task-18-three-arm-configs",
+  "created_at": "2026-09-22",
+  "note": "三臂完整配置（预注册冻结）。uniform 与 adaptive 臂的参数与任务 16 同预算主对照逐项一致（保证跨任务可比）；coverage 臂为新策略首次配置。任何臂的参数在实现开始后不得修改。",
+  "shared": {
+    "target_query": "红色正方形",
+    "target_attributes": ["红色", "正方形"],
+    "task_type": "object_trace",
+    "vision_backend": "ollama",
+    "model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+    "same_budget_max_model_calls": 12,
+    "tight_budget_max_model_calls": 6,
+    "timeout_s": 300,
+    "input_nature": "technical_fixture",
+    "uniform_interval_ms": 700,
+    "uniform_max_frames": 12
+  },
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "role": "baseline",
+      "strategy": "uniform",
+      "sampling_strategy_block": {
+        "strategy": "uniform",
+        "max_model_calls": 12
+      },
+      "cli": "--strategy uniform --max-model-calls 12 --interval-ms 700 --max-frames 12",
+      "note": "正式 baseline：固定间隔/均匀采样（与任务 16 uniform 臂相同规划：interval 700ms × max 12 → 8s fixture 恰好 12 个采样点）；带预算时截断并如实记录"
+    },
+    {
+      "arm_id": "adaptive",
+      "role": "baseline",
+      "strategy": "adaptive_coarse_to_fine",
+      "sampling_strategy_block": {
+        "strategy": "adaptive_coarse_to_fine",
+        "max_model_calls": 12,
+        "initial_coverage_samples": 4,
+        "target_boundary_precision_ms": 500,
+        "max_refinement_rounds": 6
+      },
+      "cli": "--strategy adaptive_coarse_to_fine --max-model-calls 12 --initial-coverage-samples 4 --target-boundary-precision-ms 500 --max-refinement-rounds 6",
+      "note": "任务 16 策略（初始覆盖 + 触发器二分细化）；参数与任务 16 adaptive 臂逐项一致"
+    },
+    {
+      "arm_id": "coverage",
+      "role": "candidate",
+      "strategy": "coverage_aware_adaptive",
+      "sampling_strategy_block": {
+        "strategy": "coverage_aware_adaptive",
+        "max_model_calls": 12,
+        "initial_coverage_samples": 4,
+        "coverage_gap_target_ms": 1500,
+        "coverage_call_reserve": 4,
+        "target_boundary_precision_ms": 500,
+        "max_refinement_rounds": 6
+      },
+      "cli": "--strategy coverage_aware_adaptive --max-model-calls 12 --initial-coverage-samples 4 --coverage-gap-target-ms 1500 --coverage-call-reserve 4 --target-boundary-precision-ms 500 --max-refinement-rounds 6",
+      "note": "任务 18 新策略：初始覆盖（4）+ 覆盖探索（≤coverage_call_reserve=4 次，largest-gap-first 二分，目标最大相邻间隔 ≤1500ms）+ 边界细化（剩余预算，任务 16 同款触发器逻辑）。配置不变量：initial_coverage_samples(4) + coverage_call_reserve(4) = 8 ≤ max_model_calls(12)，细化至少可用 4 次。"
+    }
+  ],
+  "tight_budget_override": {
+    "applies_to_scenarios": ["reappear-tight-budget"],
+    "max_model_calls": 6,
+    "note": "三臂统一降为 6：uniform 截断到 6 点；adaptive/coverage 初始覆盖 4 + 仅 2 次后续调用；用于验证覆盖与细化竞争预算时的确定性停止。不参与同预算 verdict 计算。"
+  },
+  "provenance_requirements": {
+    "require_sampling_provenance": true,
+    "require_temporal_evidence": true,
+    "coverage_fields_required": [
+      "coverage_exploration_calls",
+      "max_adjacent_sampling_gap_ms_initial",
+      "max_adjacent_sampling_gap_ms_final",
+      "underobserved_intervals",
+      "arbitrary_short_event_detection_guaranteed",
+      "events_shorter_than_max_sampling_gap_may_be_missed"
+    ]
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "schema_version": "1.0.0",
+  "scorer": "score_temporal_ground_truth.py",
+  "scorer_version": "1.0.0",
+  "pack_id": "task18-technical-fixtures",
+  "sample_id": "twin-short-events",
+  "arm_id": "uniform",
+  "split": "dev",
+  "source_type": "technical_fixture",
+  "execution_status": "completed",
+  "semantic_score_status": "scored",
+  "validation": {
+    "hard_gates": [
+      {
+        "id": "G1-sample-identity",
+        "passed": true,
+        "detail": "evidence.target_query 存在且非空"
+      },
+      {
+        "id": "G2-media-hash-freeze",
+        "passed": true,
+        "detail": "媒体 SHA-256 三方一致（manifest/GT/实际文件）: 27a44ff7ac55f5d3…"
+      },
+      {
+        "id": "G3-target-query",
+        "passed": true,
+        "detail": "target_query 三方一致（manifest/GT/evidence）"
+      },
+      {
+        "id": "G4-media-duration",
+        "passed": true,
+        "detail": "媒体时长一致（manifest/GT/evidence）: 8000.0 ms"
+      },
+      {
+        "id": "G5-ground-truth-timeline",
+        "passed": true,
+        "detail": "GT 时间线合法（排序/覆盖/不重叠/不留隙/正长度/相邻合并）"
+      },
+      {
+        "id": "G6-prediction-timestamps-in-range",
+        "passed": true,
+        "detail": "全部 12 个采样时间戳位于 [0, 8000.0] ms"
+      },
+      {
+        "id": "G7-provenance-self-consistency",
+        "passed": true,
+        "detail": "provenance 自洽（调用数=新鲜调用=时间线条目；预算未超；时间戳集合一致；五类计数复算一致）"
+      },
+      {
+        "id": "G8-prediction-shape",
+        "passed": true,
+        "detail": "单来源时序证据文档（顶层 timeline）"
+      }
+    ],
+    "all_passed": true,
+    "errors": []
+  },
+  "prediction_summary": {
+    "strategy": "uniform",
+    "evidence_nature": "constructed_fixture_evidence",
+    "input_nature": "technical_fixture",
+    "sampled_frames": 12,
+    "duration_ms": 8000.0,
+    "target_query": "红色正方形",
+    "backend_model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+    "vision_backend": "ollama"
+  },
+  "known_limitations": [
+    "completed（execution_status）不等于语义正确；语义正确只由七类计数定义",
+    "时序结论是采样证据支持的结论，不是连续跟踪真值；采样点之间不断言连续存在",
+    "单次运行 + 小样本：不构成统计显著性，不得外推",
+    "technical_fixture 为合成技术测试输入；不得外推为真实仓储/园区准确率",
+    "构造证据（非模型输出）：调用数为分析调用计数，不是真实视觉调用"
+  ],
+  "input_hashes": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/twin-short-events.temporal-ground-truth.json",
+      "sha256": "d2140e55b33fea170887e4d67106f34f975f790f1d7ebea487d71df686ca4455"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/twin-short-events/uniform/temporal-evidence.json",
+      "sha256": "ed3d1b6ef5c0928f72a1a889b98da7f0e515844cd780115665927af70c297c6b"
+    },
+    "media": {
+      "path": "../fixtures/videos/fixture-twin-short-events.mp4",
+      "sha256": "27a44ff7ac55f5d304eeaf0dc4ee6f9c51b541b55d1ae13303e807047ea68b7b"
+    }
+  },
+  "sample_point_scores": {
+    "denominator_analyzed_samples": 12,
+    "denominator_determinate_samples": 12,
+    "denominator_uncertain_samples": 0,
+    "metrics": {
+      "correct_decisive": {
+        "passed": 12,
+        "total": 12,
+        "ratio": 1.0
+      },
+      "incorrect_decisive": {
+        "passed": 0,
+        "total": 12,
+        "ratio": 0.0
+      },
+      "abstention_on_determinate": {
+        "passed": 0,
+        "total": 12,
+        "ratio": 0.0
+      },
+      "failed_on_determinate": {
+        "passed": 0,
+        "total": 12,
+        "ratio": 0.0
+      },
+      "appropriate_abstention": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      },
+      "overclaim_on_uncertain": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      },
+      "failed_on_uncertain": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      }
+    },
+    "per_sample_rows": [
+      {
+        "timestamp_ms": 0.0,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 708.333,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 1416.667,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 2083.333,
+        "prediction_class": "confirmed",
+        "ground_truth_state": "confirmed",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 2791.667,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 3500.0,
+        "prediction_class": "confirmed",
+        "ground_truth_state": "confirmed",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 4208.333,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 4916.667,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 5583.333,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 6291.667,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 7000.0,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 7708.333,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      }
+    ]
+  },
+  "event_scores": {
+    "gt_confirmed_segments": 2,
+    "covered_confirmed_events": 2,
+    "missed_confirmed_events": 0,
+    "gt_not_found_segments": 3,
+    "covered_not_found_segments": 3,
+    "missed_not_found_segments": 0,
+    "gt_uncertain_segments": 0,
+    "uncertain_segments": [],
+    "unreached_uncertain_segments": 0
+  },
+  "boundary_scores": {
+    "gt_boundaries_total": 4,
+    "matched_boundaries": 4,
+    "missed_gt_boundaries": 0,
+    "unmatched_predicted_transitions": 0,
+    "within_tolerance_boundaries": 3,
+    "boundary_tolerance_ms": 250.0,
+    "boundary_error_stats": {
+      "matched_count": 4,
+      "max_ms": 254.166,
+      "min_ms": 145.833,
+      "median_ms": 193.75,
+      "mean_ms": 196.875
+    },
+    "matched_boundary_details": [
+      {
+        "gt_boundary_at_ms": 1600.0,
+        "gt_from_state": "not_found",
+        "gt_to_state": "confirmed",
+        "predicted_transition_index": 0,
+        "bracket_left_ms": 1416.667,
+        "bracket_right_ms": 2083.333,
+        "bracket_width_ms": 666.666,
+        "bracket_midpoint_ms": 1750.0,
+        "midpoint_abs_error_ms": 150.0,
+        "within_tolerance": true
+      },
+      {
+        "gt_boundary_at_ms": 2200.0,
+        "gt_from_state": "confirmed",
+        "gt_to_state": "not_found",
+        "predicted_transition_index": 1,
+        "bracket_left_ms": 2083.333,
+        "bracket_right_ms": 2791.667,
+        "bracket_width_ms": 708.334,
+        "bracket_midpoint_ms": 2437.5,
+        "midpoint_abs_error_ms": 237.5,
+        "within_tolerance": true
+      },
+      {
+        "gt_boundary_at_ms": 3000.0,
+        "gt_from_state": "not_found",
+        "gt_to_state": "confirmed",
+        "predicted_transition_index": 2,
+        "bracket_left_ms": 2791.667,
+        "bracket_right_ms": 3500.0,
+        "bracket_width_ms": 708.333,
+        "bracket_midpoint_ms": 3145.833,
+        "midpoint_abs_error_ms": 145.833,
+        "within_tolerance": true
+      },
+      {
+        "gt_boundary_at_ms": 3600.0,
+        "gt_from_state": "confirmed",
+        "gt_to_state": "not_found",
+        "predicted_transition_index": 3,
+        "bracket_left_ms": 3500.0,
+        "bracket_right_ms": 4208.333,
+        "bracket_width_ms": 708.333,
+        "bracket_midpoint_ms": 3854.166,
+        "midpoint_abs_error_ms": 254.166,
+        "within_tolerance": false
+      }
+    ],
+    "gt_boundaries": [
+      {
+        "at_ms": 1600.0,
+        "from_state": "not_found",
+        "to_state": "confirmed"
+      },
+      {
+        "at_ms": 2200.0,
+        "from_state": "confirmed",
+        "to_state": "not_found"
+      },
+      {
+        "at_ms": 3000.0,
+        "from_state": "not_found",
+        "to_state": "confirmed"
+      },
+      {
+        "at_ms": 3600.0,
+        "from_state": "confirmed",
+        "to_state": "not_found"
+      }
+    ],
+    "predicted_transitions_total": 4,
+    "matched_gt_boundary_times": [
+      1600.0,
+      2200.0,
+      3000.0,
+      3600.0
+    ],
+    "unmatched_predicted_transition_indices": []
+  },
+  "efficiency": {
+    "configured_budget": 12,
+    "actual_model_calls": 12,
+    "unique_analyzed_timestamps": 12,
+    "reused_evidence_count": 0,
+    "duplicate_skips": 0,
+    "budget_exhausted": true,
+    "stop_reasons": [],
+    "timing": {
+      "extraction_ms": 0.613,
+      "analysis_ms": 0.0,
+      "aggregation_ms": 0.102,
+      "total_ms": 84.372
+    },
+    "calls_per_correct_decisive_sample": 1.0,
+    "calls_per_covered_confirmed_event": 6.0,
+    "calls_per_matched_boundary": 3.0,
+    "caveat": "效率指标不抵消语义错误：调用少不等于效果好"
+  },
+  "ground_truth": {
+    "included": true,
+    "gt_sha256": "d2140e55b33fea170887e4d67106f34f975f790f1d7ebea487d71df686ca4455",
+    "annotation_version": "1.0.0",
+    "boundary_tolerance_ms": 250.0,
+    "segment_count": 5,
+    "states": [
+      "not_found",
+      "confirmed",
+      "not_found",
+      "confirmed",
+      "not_found"
+    ],
+    "boundary_count": 4
+  }
+}

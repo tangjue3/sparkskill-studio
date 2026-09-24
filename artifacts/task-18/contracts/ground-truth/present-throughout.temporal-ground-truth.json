@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "present-throughout",
+  "media_sha256": "f0f37098e966b337c3fb877e87d59bb4fae67d424a59b890f872dffa7a804b3a",
+  "media_duration_ms": 8000,
+  "target_query": "红色正方形",
+  "annotation_version": "1.0.0",
+  "annotated_at": "2026-09-22T08:00:27.356200+00:00",
+  "annotator_id": "task18-fixture-freeze",
+  "boundary_tolerance_ms": 250,
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 8000,
+      "state": "confirmed"
+    }
+  ],
+  "label_frozen": {
+    "frozen": true,
+    "frozen_at": "2026-09-22T08:00:27.356200+00:00",
+    "derived_from": "由 artifacts/task-16/fixtures/ground-truth.json（冻结 manifest + ground truth）按固定映射派生：present->confirmed，absent->not_found，present_low_contrast->uncertain；boundary_tolerance_ms=250（覆盖 24fps 帧量化与百毫秒标注取整，对应任务 16 目标边界精度 500ms 的一半）；未修改任何源标签",
+    "freeze_note": "任务 18 三臂评测 fixture ground truth；technical fixture，不得外推为真实素材结论"
+  },
+  "revision_history": [],
+  "notes": "目标全程存在/无状态转换；持续正向 + 无状态变化（目标全程清晰存在；adaptive 应 0 次细化）"
+}

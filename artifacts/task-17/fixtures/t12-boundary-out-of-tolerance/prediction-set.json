@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t12-boundary-out-of-tolerance",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t12-boundary-out-of-tolerance",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "mode": "compare",
+  "expect": {
+    "exit_code": 0,
+    "verdict": "IMPROVEMENT",
+    "strict_improvements": [
+      "fewer_model_calls"
+    ],
+    "regressions": []
+  }
+}

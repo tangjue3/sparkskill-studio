@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "absent-throughout",
+  "arm_id": "uniform",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/absent-throughout.temporal-ground-truth.json",
+      "sha256": "07e1eb2887950b20db26657f7577af390a9670d6d49309e466f0bacfbc6e8646"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/absent-throughout/uniform/temporal-evidence.json",
+      "sha256": "26ad7eb88f934aae6a74bda18157fd27af8aafe8ffd1c4b0cb70086096e2b5ad"
+    },
+    "media": {
+      "path": "../fixtures/videos/fixture-absent-throughout.mp4",
+      "sha256": "77729bc7755b703f4fc6fff92da55266cdb1826f2d5cc03f00468408f2b72d9a"
+    }
+  }
+}

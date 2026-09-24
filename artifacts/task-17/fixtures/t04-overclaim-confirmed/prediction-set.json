@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t04-overclaim-confirmed",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t04-overclaim-confirmed",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

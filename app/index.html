@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>SparkSkill Studio · Evidence Workbench</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+  <header id="topbar" class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#main-content" aria-label="SparkSkill Studio 首页">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>SparkSkill <strong>Studio</strong></span>
+      </a>
+      <p class="brand-sub">From visual task to verified Agent Skill</p>
+      <div class="topbar-actions">
+        <button class="truth-badge" id="truth-badge" type="button" aria-label="当前运行真实性等级">—</button>
+        <div class="run-picker" id="run-picker">
+          <span class="run-picker-label">Recorded run</span>
+          <button class="run-select" id="run-select" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="run-menu">
+            <span id="run-select-label">选择运行记录</span>
+            <span class="select-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="run-menu" id="run-menu" role="listbox" aria-label="切换运行记录" hidden></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="hero-kicker">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>READ-ONLY · RECORDED ARTIFACTS</span>
+        </div>
+        <p class="hero-overline" id="hero-overline">视觉证据运行记录</p>
+        <h1 id="hero-title">正在读取证据链…</h1>
+        <p class="hero-status" id="hero-status"></p>
+        <p class="hero-target-detail" id="hero-target-detail"></p>
+        <p class="hero-result" id="hero-result"></p>
+        <div class="hero-actions">
+          <button class="primary-button" id="hero-provenance" type="button">查看证据来源</button>
+          <button class="text-button" id="hero-json" type="button">运行数据 <span aria-hidden="true">↗</span></button>
+        </div>
+        <dl class="hero-facts" id="hero-facts"></dl>
+      </div>
+
+      <div class="hero-visual" id="hero-visual" aria-live="polite">
+        <div class="visual-frame">
+          <div class="visual-toolbar">
+            <span id="visual-source">RECORDED FRAME</span>
+            <span id="visual-time">—</span>
+          </div>
+          <div class="visual-media" id="visual-media"></div>
+          <div class="visual-caption">
+            <div>
+              <span class="visual-caption-label">EVIDENCE</span>
+              <p id="visual-caption">等待 Manifest</p>
+            </div>
+            <span class="confidence" id="visual-confidence">—</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ribbon-section section-shell" aria-labelledby="ribbon-title">
+      <div class="section-heading ribbon-heading">
+        <div>
+          <p class="eyebrow">执行证据链</p>
+          <h2 id="ribbon-title">证据链路</h2>
+        </div>
+        <p>从自然语言任务到可复核结论，九个阶段逐一留痕。</p>
+      </div>
+      <div class="ribbon-viewport" tabindex="-1">
+        <ol class="rail" id="rail" aria-label="九阶段证据链路"></ol>
+      </div>
+      <div class="ribbon-legend" id="ribbon-legend" aria-label="真实性等级图例"></div>
+    </section>
+
+    <section class="stage-section section-shell" aria-labelledby="evidence-title">
+      <div class="stage-shell">
+        <header class="stage-head">
+          <div>
+            <p class="eyebrow" id="stage-index">SELECTED STAGE</p>
+            <h2 id="evidence-title">阶段证据</h2>
+            <p class="stage-deck" id="stage-deck"></p>
+          </div>
+          <div class="evidence-controls" id="evidence-controls"></div>
+        </header>
+        <div class="evidence-body" id="evidence-body" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="verification section-shell" aria-labelledby="verification-title">
+      <div class="verification-intro">
+        <p class="eyebrow">TIER-3 VERIFICATION</p>
+        <h2 id="verification-title">Skill 的价值，不靠一句“成功”。</h2>
+        <p>相同 Agent、模型、媒体与任务文本。唯一核心变量：是否加载 SparkSkill Studio Skills。</p>
+      </div>
+      <div class="verification-result" id="verification-result"></div>
+      <div class="verification-tabs" role="tablist" aria-label="验证详情">
+        <button class="verification-tab is-active" id="tab-benchmark" type="button" role="tab" aria-selected="true" aria-controls="pane-benchmark" data-tab="benchmark">Benchmark history</button>
+        <button class="verification-tab" id="tab-governance" type="button" role="tab" aria-selected="false" aria-controls="pane-governance" data-tab="governance">Skill governance</button>
+      </div>
+      <div class="verification-panes">
+        <div class="bottom-pane is-active" id="pane-benchmark" role="tabpanel" aria-labelledby="tab-benchmark"></div>
+        <div class="bottom-pane" id="pane-governance" role="tabpanel" aria-labelledby="tab-governance" hidden></div>
+      </div>
+    </section>
+
+    <footer class="footer section-shell">
+      <div>
+        <span class="footer-brand">SparkSkill Studio</span>
+        <p>Local visual Skill compilation &amp; verification on NVIDIA DGX Spark.</p>
+      </div>
+      <p>Recorded artifacts · No live model calls · Evidence aggregation, not identity tracking</p>
+    </footer>
+  </main>
+
+  <aside class="inspector-drawer" id="provenance-drawer" aria-label="Provenance Inspector" hidden>
+    <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="关闭 Provenance Inspector"></button>
+    <section class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="inspector-title">
+      <header class="drawer-head">
+        <div>
+          <p class="eyebrow">TRACE TO SOURCE</p>
+          <h2 id="inspector-title">Provenance Inspector</h2>
+        </div>
+        <button class="icon-button" id="drawer-close" type="button" aria-label="关闭 Provenance Inspector"><span aria-hidden="true">×</span></button>
+      </header>
+      <div class="inspector-body" id="inspector-body"></div>
+    </section>
+  </aside>
+
+  <div class="json-modal" id="json-modal" hidden>
+    <button class="modal-backdrop" id="json-modal-backdrop" type="button" aria-label="关闭结构化 JSON"></button>
+    <section class="json-modal-box" role="dialog" aria-modal="true" aria-labelledby="json-modal-title">
+      <header class="json-modal-head">
+        <div>
+          <p class="eyebrow">RAW ARTIFACT</p>
+          <h2 id="json-modal-title">Structured JSON</h2>
+        </div>
+        <button class="icon-button" id="json-modal-close" type="button" aria-label="关闭结构化 JSON"><span aria-hidden="true">×</span></button>
+      </header>
+      <pre class="json-modal-body" id="json-modal-body" tabindex="0"></pre>
+    </section>
+  </div>
+
+  <div class="loading" id="loading" role="status" hidden>
+    <span class="spinner" aria-hidden="true"></span>
+    <span>正在装载真实 Manifest…</span>
+  </div>
+  <div class="error-banner" id="error-banner" role="alert" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

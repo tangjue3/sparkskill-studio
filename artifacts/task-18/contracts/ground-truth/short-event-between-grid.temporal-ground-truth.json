@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "short-event-between-grid",
+  "media_sha256": "d9f194ff7ef2b5d3f52f9e98c90d77b9de2cc907639bd7adcdbb09ffb4a4d172",
+  "media_duration_ms": 8000,
+  "target_query": "红色正方形",
+  "annotation_version": "1.0.0",
+  "annotated_at": "2026-09-22T11:27:13.916411+00:00",
+  "annotator_id": "task18-fixture-freeze",
+  "boundary_tolerance_ms": 250,
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 3500,
+      "state": "not_found"
+    },
+    {
+      "start_ms": 3500,
+      "end_ms": 4100,
+      "state": "confirmed"
+    },
+    {
+      "start_ms": 4100,
+      "end_ms": 8000,
+      "state": "not_found"
+    }
+  ],
+  "label_frozen": {
+    "frozen": true,
+    "frozen_at": "2026-09-22T11:27:13.916411+00:00",
+    "derived_from": "由 artifacts/task-18/fixtures/ground-truth.json（冻结 manifest + ground truth）按固定映射派生：present->confirmed，absent->not_found，present_low_contrast->uncertain；boundary_tolerance_ms=250（覆盖 24fps 帧量化与百毫秒标注取整，对应任务 16 目标边界精度 500ms 的一半）；未修改任何源标签",
+    "freeze_note": "任务 18 三臂评测 fixture ground truth；technical fixture，不得外推为真实素材结论"
+  },
+  "revision_history": [],
+  "notes": "coarse 初始网格之间的短 confirmed 事件；coarse 初始网格之间的短 confirmed 事件（3500–4100 ms，落在 2666.667/5333.333 两个初始采样点之间；adaptive 无触发信号必然漏检）"
+}

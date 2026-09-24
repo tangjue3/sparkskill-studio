@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0.0",
+  "suite": "task-18-three-arm-fixtures",
+  "nature": "synthetic technical fixture（合成技术测试输入；非真实行业素材；不得外推为真实仓储/园区准确率）",
+  "target_query": "红色正方形",
+  "generation_params": {
+    "width": 640,
+    "height": 360,
+    "fps": 24,
+    "duration_ms": 8000,
+    "frame_count": 192,
+    "square_size": 80,
+    "codec": "mp4v",
+    "background_bgr": [
+      200,
+      200,
+      200
+    ],
+    "square_bgr": [
+      0,
+      0,
+      220
+    ],
+    "square_low_contrast_bgr": [
+      214,
+      214,
+      214
+    ],
+    "deterministic": true,
+    "coarse_initial_grid_ms": [
+      0.0,
+      2666.667,
+      5333.333,
+      8000.0
+    ]
+  },
+  "scenario_order": [
+    "present-throughout",
+    "appear-midway",
+    "disappear-midway",
+    "reappear",
+    "short-event-between-grid",
+    "short-uncertain-between-grid",
+    "twin-short-events",
+    "absent-throughout",
+    "short-event-phase-b",
+    "short-uncertain-phase-b",
+    "reappear-tight-budget"
+  ],
+  "scenarios": {
+    "present-throughout": {
+      "category": "目标全程存在/无状态转换",
+      "origin": "task16-reused",
+      "media_file": "fixture-present-throughout.mp4",
+      "media_path": "artifacts/task-16/fixtures/videos/fixture-present-throughout.mp4",
+      "media_sha256": "f0f37098e966b337c3fb877e87d59bb4fae67d424a59b890f872dffa7a804b3a",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/present-throughout.temporal-ground-truth.json",
+      "ground_truth_sha256": "97d071f2001ad35efd0f1b9a9215a336f7b47d195d7bd95a1f9367929b3e78ed",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "appear-midway": {
+      "category": "中途出现",
+      "origin": "task16-reused",
+      "media_file": "fixture-appear-midway.mp4",
+      "media_path": "artifacts/task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "media_sha256": "37147666284b3481c9a4ea7b0236014e880fc96f74eadd168d1910ee9e94721f",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/appear-midway.temporal-ground-truth.json",
+      "ground_truth_sha256": "80eeccc1702e214ed246acc51713dcf833d4ef793bdce955b50e50b7431e6ded",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "disappear-midway": {
+      "category": "中途消失",
+      "origin": "task16-reused",
+      "media_file": "fixture-disappear-midway.mp4",
+      "media_path": "artifacts/task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "media_sha256": "59a203c0ebff95d96f9d73e3429b60fa9de32ecdef019dfc86f7afdc5e945728",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/disappear-midway.temporal-ground-truth.json",
+      "ground_truth_sha256": "374959750fa5bfd07a6d30b4322b299d11a67a5e2351f43e50bf412620dd392d",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "reappear": {
+      "category": "出现—消失—再次出现",
+      "origin": "task16-reused",
+      "media_file": "fixture-reappear.mp4",
+      "media_path": "artifacts/task-16/fixtures/videos/fixture-reappear.mp4",
+      "media_sha256": "a298c6e36b61f4299cd09ee46bbf0b2999c6049bb71cb8a73856a7b1e9f7d0ca",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/reappear.temporal-ground-truth.json",
+      "ground_truth_sha256": "6b255b1c5e4044ac1670d910c0350d562bd79fa29eb451de246d4813fe5eebe5",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "short-event-between-grid": {
+      "category": "coarse 初始网格之间的短 confirmed 事件",
+      "origin": "task18-new",
+      "media_file": "fixture-short-event-between-grid.mp4",
+      "media_path": "artifacts/task-18/fixtures/videos/fixture-short-event-between-grid.mp4",
+      "media_sha256": "d9f194ff7ef2b5d3f52f9e98c90d77b9de2cc907639bd7adcdbb09ffb4a4d172",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/short-event-between-grid.temporal-ground-truth.json",
+      "ground_truth_sha256": "ab079bde6eb1d931843bddb788891f148b573768dcae6444072615cf9736be1f",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "short-uncertain-between-grid": {
+      "category": "coarse 初始网格之间的短 uncertain 区域",
+      "origin": "task18-new",
+      "media_file": "fixture-short-uncertain-between-grid.mp4",
+      "media_path": "artifacts/task-18/fixtures/videos/fixture-short-uncertain-between-grid.mp4",
+      "media_sha256": "05b3fb405150b6fcd0c7c8191b3d09f46c524b0250d18e3e87ef57711f6f8aa3",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/short-uncertain-between-grid.temporal-ground-truth.json",
+      "ground_truth_sha256": "634d22c41ea7cd8a3f8a99b77ed8e66bee1d57025972d6f0493e975d8d7caa58",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "twin-short-events": {
+      "category": "两个间隔较短的事件",
+      "origin": "task18-new",
+      "media_file": "fixture-twin-short-events.mp4",
+      "media_path": "artifacts/task-18/fixtures/videos/fixture-twin-short-events.mp4",
+      "media_sha256": "27a44ff7ac55f5d304eeaf0dc4ee6f9c51b541b55d1ae13303e807047ea68b7b",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/twin-short-events.temporal-ground-truth.json",
+      "ground_truth_sha256": "d2140e55b33fea170887e4d67106f34f975f790f1d7ebea487d71df686ca4455",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "absent-throughout": {
+      "category": "无目标/无状态转换",
+      "origin": "task18-new",
+      "media_file": "fixture-absent-throughout.mp4",
+      "media_path": "artifacts/task-18/fixtures/videos/fixture-absent-throughout.mp4",
+      "media_sha256": "77729bc7755b703f4fc6fff92da55266cdb1826f2d5cc03f00468408f2b72d9a",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/absent-throughout.temporal-ground-truth.json",
+      "ground_truth_sha256": "07e1eb2887950b20db26657f7577af390a9670d6d49309e466f0bacfbc6e8646",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "short-event-phase-b": {
+      "category": "相位移动的短 confirmed 事件（对抗样本）",
+      "origin": "task18-new",
+      "media_file": "fixture-short-event-phase-b.mp4",
+      "media_path": "artifacts/task-18/fixtures/videos/fixture-short-event-phase-b.mp4",
+      "media_sha256": "d2bd059a75c0aa2f6bec0373c5d50fb591d2c20d56c09bbc752eb985c16aee5d",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/short-event-phase-b.temporal-ground-truth.json",
+      "ground_truth_sha256": "1892b5a84e35aeb48d927f647c97b1820b822fefa9bbb464553f99a983cc1c26",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "short-uncertain-phase-b": {
+      "category": "相位移动的短 uncertain 区域（对抗样本）",
+      "origin": "task18-new",
+      "media_file": "fixture-short-uncertain-phase-b.mp4",
+      "media_path": "artifacts/task-18/fixtures/videos/fixture-short-uncertain-phase-b.mp4",
+      "media_sha256": "ba3b9e928d4c839dcf6471f3993348906cf2df55fa7856b0bfb9f1cb84e710cb",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/short-uncertain-phase-b.temporal-ground-truth.json",
+      "ground_truth_sha256": "9f5de571278dd18162bcc90cdb524bd35072a0c60c3677cf5e2d27329c935832",
+      "max_model_calls_all_arms": 12,
+      "in_same_budget_main_comparison": true
+    },
+    "reappear-tight-budget": {
+      "category": "预算不足以同时完成覆盖与全部边界细化",
+      "origin": "task16-reused",
+      "media_file": "fixture-reappear.mp4",
+      "media_path": "artifacts/task-16/fixtures/videos/fixture-reappear.mp4",
+      "media_sha256": "a298c6e36b61f4299cd09ee46bbf0b2999c6049bb71cb8a73856a7b1e9f7d0ca",
+      "media_duration_ms": 8000,
+      "target_query": "红色正方形",
+      "ground_truth": "artifacts/task-18/contracts/ground-truth/reappear-tight-budget.temporal-ground-truth.json",
+      "ground_truth_sha256": "c62d6de0c55fc5c69dad16b22f1a7d753212c7f8481fa313a562925b405ace2a",
+      "max_model_calls_all_arms": 6,
+      "in_same_budget_main_comparison": false
+    }
+  },
+  "freeze_rule": "第一次评测前冻结；场景、媒体、SHA-256、Ground Truth 与预算在本目录冻结后不得修改；评测前核验 frozen-hashes.json"
+}

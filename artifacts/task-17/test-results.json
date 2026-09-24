@@ -1,0 +1,237 @@
+{
+  "suite": "task-17-temporal-ground-truth-scoring",
+  "all_passed": true,
+  "passed": 38,
+  "total": 38,
+  "tests": [
+    {
+      "id": "t01-all-correct",
+      "name": "t01-all-correct",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t02-incorrect-decisive",
+      "name": "t02-incorrect-decisive",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t03-appropriate-abstention",
+      "name": "t03-appropriate-abstention",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t04-overclaim-confirmed",
+      "name": "t04-overclaim-confirmed",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t05-overclaim-not-found",
+      "name": "t05-overclaim-not-found",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t06-abstention-on-determinate",
+      "name": "t06-abstention-on-determinate",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t07-failed-states",
+      "name": "t07-failed-states",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t08-confirmed-event-covered",
+      "name": "t08-confirmed-event-covered",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t09-narrow-event-missed",
+      "name": "t09-narrow-event-missed",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t10-narrow-uncertain-unreached",
+      "name": "t10-narrow-uncertain-unreached",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t11-boundary-within-tolerance",
+      "name": "t11-boundary-within-tolerance",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t12-boundary-out-of-tolerance",
+      "name": "t12-boundary-out-of-tolerance",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t13-direction-incompatible",
+      "name": "t13-direction-incompatible",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t14-extra-predicted-transition",
+      "name": "t14-extra-predicted-transition",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t15-gt-overlap",
+      "name": "t15-gt-overlap",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t16-gt-gap",
+      "name": "t16-gt-gap",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t17-gt-unmerged",
+      "name": "t17-gt-unmerged",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t18-duration-mismatch",
+      "name": "t18-duration-mismatch",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t19-media-hash-mismatch",
+      "name": "t19-media-hash-mismatch",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t20-sample-id-mismatch",
+      "name": "t20-sample-id-mismatch",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t21-missing-ground-truth-arg",
+      "name": "t21-missing-ground-truth-arg",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t22-improvement-fewer-calls",
+      "name": "t22-improvement-fewer-calls",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t23-improvement-boundary",
+      "name": "t23-improvement-boundary",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t24-tradeoff-missed-event",
+      "name": "t24-tradeoff-missed-event",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t25-tradeoff-unreached-uncertain",
+      "name": "t25-tradeoff-unreached-uncertain",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t26-no-improvement",
+      "name": "t26-no-improvement",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t27-invalid-comparison-budget",
+      "name": "t27-invalid-comparison-budget",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t28-empty-denominators",
+      "name": "t28-empty-denominators",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t28b-empty-timeline",
+      "name": "t28b-empty-timeline",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t29-holdout-gt-not-in-output",
+      "name": "t29-holdout-gt-not-in-output",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t30-competition-profile-valid",
+      "name": "t30-competition-profile-valid",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t31-competition-profile-bad-split",
+      "name": "t31-competition-profile-bad-split",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t32-competition-profile-missing-license",
+      "name": "t32-competition-profile-missing-license",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "t33-competition-profile-duplicate-id",
+      "name": "t33-competition-profile-duplicate-id",
+      "passed": true,
+      "detail": "全部断言通过"
+    },
+    {
+      "id": "X1-classifier-agreement",
+      "name": "评分器分类规则与 Task 16 classify_entry 一致",
+      "passed": true,
+      "detail": "核对 100 个冻结时间线条目，不一致 0 项"
+    },
+    {
+      "id": "X2-determinism",
+      "name": "评分器确定性（两次运行逐字节相同）",
+      "passed": true,
+      "detail": "全部输出逐字节一致"
+    },
+    {
+      "id": "X3-inputs-readonly",
+      "name": "评分器不修改输入文件",
+      "passed": true,
+      "detail": "9 个输入文件哈希全部不变"
+    },
+    {
+      "id": "X4-output-hygiene",
+      "name": "输出不含绝对路径/凭据内容",
+      "passed": true,
+      "detail": "输出卫生检查通过"
+    }
+  ],
+  "notes": "确定性 JSON fixtures（artifacts/task-17/fixtures/）；无任何模型调用；断言具体字段与具体计数"
+}

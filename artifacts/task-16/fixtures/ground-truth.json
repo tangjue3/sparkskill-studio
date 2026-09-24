@@ -1,0 +1,245 @@
+{
+  "suite": "task-16-technical-fixtures",
+  "nature": "synthetic technical fixture（合成技术测试输入；非真实行业素材；不得外推）",
+  "target_description": "红色正方形",
+  "frozen_at": "2026-09-22T08:00:27.356200+00:00",
+  "generation_params": {
+    "width": 640,
+    "height": 360,
+    "fps": 24,
+    "duration_ms": 8000,
+    "frame_count": 192,
+    "square_size": 80,
+    "codec": "mp4v",
+    "background_bgr": [
+      200,
+      200,
+      200
+    ],
+    "square_bgr": [
+      0,
+      0,
+      220
+    ],
+    "square_low_contrast_bgr": [
+      214,
+      214,
+      214
+    ],
+    "deterministic": true
+  },
+  "fixtures": {
+    "present-throughout": {
+      "file": "fixture-present-throughout.mp4",
+      "purpose": "持续正向 + 无状态变化（目标全程清晰存在；adaptive 应 0 次细化）",
+      "segments": [
+        {
+          "start_ms": 0,
+          "end_ms": 8000,
+          "state": "present"
+        }
+      ],
+      "expected": {
+        "target_present": true,
+        "transitions_ground_truth": [],
+        "note": "无状态变化：任何策略都应只有初始覆盖采样，细化轮数=0"
+      },
+      "metadata_readback": {
+        "fps": 24.0,
+        "frame_count": 192,
+        "width": 640,
+        "height": 360
+      }
+    },
+    "appear-midway": {
+      "file": "fixture-appear-midway.mp4",
+      "purpose": "中途出现（目标在 3200 ms 进入画面）",
+      "segments": [
+        {
+          "start_ms": 0,
+          "end_ms": 3200,
+          "state": "absent"
+        },
+        {
+          "start_ms": 3200,
+          "end_ms": 8000,
+          "state": "present"
+        }
+      ],
+      "expected": {
+        "target_present": true,
+        "transitions_ground_truth": [
+          {
+            "at_ms": 3200,
+            "from": "absent",
+            "to": "present"
+          }
+        ],
+        "note": "adaptive 应把出现边界细化到目标精度内；uniform 只能给出固定网格边界"
+      },
+      "metadata_readback": {
+        "fps": 24.0,
+        "frame_count": 192,
+        "width": 640,
+        "height": 360
+      }
+    },
+    "disappear-midway": {
+      "file": "fixture-disappear-midway.mp4",
+      "purpose": "中途消失（目标在 4800 ms 离开画面）",
+      "segments": [
+        {
+          "start_ms": 0,
+          "end_ms": 4800,
+          "state": "present"
+        },
+        {
+          "start_ms": 4800,
+          "end_ms": 8000,
+          "state": "absent"
+        }
+      ],
+      "expected": {
+        "target_present": true,
+        "transitions_ground_truth": [
+          {
+            "at_ms": 4800,
+            "from": "present",
+            "to": "absent"
+          }
+        ],
+        "note": "adaptive 应把消失边界细化到目标精度内"
+      },
+      "metadata_readback": {
+        "fps": 24.0,
+        "frame_count": 192,
+        "width": 640,
+        "height": 360
+      }
+    },
+    "reappear": {
+      "file": "fixture-reappear.mp4",
+      "purpose": "出现、消失、再次出现（两次进入 + 两次离开）",
+      "segments": [
+        {
+          "start_ms": 0,
+          "end_ms": 2000,
+          "state": "present"
+        },
+        {
+          "start_ms": 2000,
+          "end_ms": 4000,
+          "state": "absent"
+        },
+        {
+          "start_ms": 4000,
+          "end_ms": 6000,
+          "state": "present"
+        },
+        {
+          "start_ms": 6000,
+          "end_ms": 8000,
+          "state": "absent"
+        }
+      ],
+      "expected": {
+        "target_present": true,
+        "transitions_ground_truth": [
+          {
+            "at_ms": 2000,
+            "from": "present",
+            "to": "absent"
+          },
+          {
+            "at_ms": 4000,
+            "from": "absent",
+            "to": "present"
+          },
+          {
+            "at_ms": 6000,
+            "from": "present",
+            "to": "absent"
+          }
+        ],
+        "note": "多状态转换：考验细化轮次分配与预算控制"
+      },
+      "metadata_readback": {
+        "fps": 24.0,
+        "frame_count": 192,
+        "width": 640,
+        "height": 360
+      }
+    },
+    "abstain-zone": {
+      "file": "fixture-abstain-zone.mp4",
+      "purpose": "abstained / low-confidence 区间（3000–5000 ms 目标低对比度，难以可靠确认）",
+      "segments": [
+        {
+          "start_ms": 0,
+          "end_ms": 3000,
+          "state": "present"
+        },
+        {
+          "start_ms": 3000,
+          "end_ms": 5000,
+          "state": "present_low_contrast"
+        },
+        {
+          "start_ms": 5000,
+          "end_ms": 8000,
+          "state": "present"
+        }
+      ],
+      "expected": {
+        "target_present": true,
+        "transitions_ground_truth": [],
+        "uncertain_window_ms": [
+          3000,
+          5000
+        ],
+        "note": "ground truth 为全程存在；低对比度区间预期模型可能 abstained 或 low_confidence——如实记录，不得修改标签迁就模型输出"
+      },
+      "metadata_readback": {
+        "fps": 24.0,
+        "frame_count": 192,
+        "width": 640,
+        "height": 360
+      }
+    }
+  },
+  "multi_source_pair": {
+    "id": "multi-source-pair",
+    "sources": [
+      {
+        "source_id": "video-a",
+        "file": "fixture-appear-midway.mp4",
+        "location": "scene-a",
+        "time_offset_ms": 0
+      },
+      {
+        "source_id": "video-b",
+        "file": "fixture-disappear-midway.mp4",
+        "location": "scene-b",
+        "time_offset_ms": 5000
+      }
+    ],
+    "note": "多来源输入 fixture：两段合成视频，source_id 与原视频时间戳必须保留"
+  },
+  "rule_level_fixtures": [
+    {
+      "id": "single-frame-failed",
+      "nature": "规则级 fixture（构造结构化证据，非模型输出）",
+      "purpose": "单帧 failed：时间线中一帧 frame_status=failed，不得折算为 not_found"
+    },
+    {
+      "id": "budget-exhaustion",
+      "nature": "规则级 fixture（构造结构化证据 + 极小预算）",
+      "purpose": "预算耗尽：max_model_calls 不足以覆盖全部细化候选时停止细化并如实报告"
+    }
+  ],
+  "red_lines": [
+    "fixture 结果不得外推为真实仓储准确率",
+    "Qwen 不能可靠理解某个 fixture 时如实记录，不得修改标签",
+    "fixture 不进入用户 holdout 集"
+  ]
+}

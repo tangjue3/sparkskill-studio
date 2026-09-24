@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "red-backpack-trace-001",
+  "task_type": "object_trace",
+  "backend": "ollama",
+  "model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+  "source_media": "<内部测试媒体目录>/test_first.png",
+  "target_query": "红色背包",
+  "object_found": false,
+  "description": "深蓝色背景上有一个黄色圆形和一个绿色矩形，底部有一条深蓝色横条",
+  "bounding_box": null,
+  "confidence": 1.0,
+  "evidence_text": "画面中仅包含一个黄色圆形和一个绿色矩形，没有任何红色物体，也没有背包的形状或特征",
+  "abstention_reason": null,
+  "evidence_sufficient": false,
+  "gaps": [
+    "目标未被确认存在"
+  ],
+  "generated_at": "2026-09-21T04:35:44.460072+00:00"
+}

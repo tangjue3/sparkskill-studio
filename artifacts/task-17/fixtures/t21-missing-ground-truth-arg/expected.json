@@ -1,0 +1,9 @@
+{
+  "mode": "cli_missing_gt",
+  "expect": {
+    "exit_code": 2,
+    "stderr_contains": [
+      "--ground-truth"
+    ]
+  }
+}

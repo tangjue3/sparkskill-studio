@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "comparison_id": "t23-improvement-boundary-cmp",
+  "sample_ids": [
+    "t23-improvement-boundary"
+  ],
+  "arm_a": {
+    "arm_id": "uniform",
+    "role": "baseline"
+  },
+  "arm_b": {
+    "arm_id": "adaptive",
+    "role": "candidate"
+  },
+  "fairness_attestation": {
+    "no_single_side_retry": true,
+    "no_extra_context": true,
+    "attested_by": "build_fixtures.py",
+    "attestation_basis": "任务 17 规则 fixture（构造双臂，同模型/同预算/无重试）"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-09-22T13:19:26.516336+00:00",
+  "scope": "real_qwen_run",
+  "checks": {
+    "minimax_h3_no_generation_task": {
+      "passed": true,
+      "evidence": ":8000 无监听；:8010（h3-lite 实验 API）无监听；生成类进程 0 个"
+    },
+    "no_user_active_h3_webui_task": {
+      "passed": true,
+      "evidence": "用户 MiniMax-H3/WebUI 相关进程 0 个"
+    },
+    "mem_available_3x_ge_45gib": {
+      "passed": true,
+      "samples_gib": [
+        115.84,
+        115.84,
+        115.84
+      ],
+      "threshold_gib": 45.0
+    },
+    "ollama_reachable": {
+      "passed": true,
+      "evidence": "GET /api/tags 200"
+    },
+    "no_external_qwen_consumer": {
+      "passed": true,
+      "evidence": "ollama /api/ps 无已加载模型（或不可读）"
+    },
+    "dsh_normal": {
+      "passed": true,
+      "evidence": "0.1.5-rc.2"
+    },
+    "git_workspace_expected": {
+      "passed": true,
+      "evidence": "Git 锁: 无；非预期改动: 无（4 个变更项）"
+    },
+    "preregistration_hashes_consistent": {
+      "passed": true,
+      "evidence": "frozen-hashes.json 全部条目重算一致；4 份声明文件与阶段 A 提交 dcaf324 逐字节一致；fixture 冻结复核 FROZEN_OK"
+    }
+  },
+  "all_passed": true
+}

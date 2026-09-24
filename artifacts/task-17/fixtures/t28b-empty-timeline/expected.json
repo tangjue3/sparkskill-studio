@@ -1,0 +1,13 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "semantic_score_status": "not_applicable",
+    "execution_status": "completed",
+    "metrics_all_zero": true,
+    "not_applicable_fields": [
+      "sample_point_scores.metrics.correct_decisive.ratio",
+      "efficiency.calls_per_correct_decisive_sample"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "twin-short-events",
+  "arm_id": "adaptive",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/twin-short-events.temporal-ground-truth.json",
+      "sha256": "d2140e55b33fea170887e4d67106f34f975f790f1d7ebea487d71df686ca4455"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/twin-short-events/adaptive/temporal-evidence.json",
+      "sha256": "a866d12a9481a9df320b30326e5356ad3be996261a98a63dcdba04cefbf7c9cb"
+    },
+    "media": {
+      "path": "../fixtures/videos/fixture-twin-short-events.mp4",
+      "sha256": "27a44ff7ac55f5d304eeaf0dc4ee6f9c51b541b55d1ae13303e807047ea68b7b"
+    }
+  }
+}

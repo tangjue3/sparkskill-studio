@@ -1,0 +1,250 @@
+{
+  "skill": "evidence-report-generator",
+  "version": "1.4.0",
+  "updated": "2026-09-22",
+  "test_suite": ".dsh/skills/visual-evidence-extractor/scripts/test_video_pipeline.py（B1/B2/B3/B6 覆盖本 Skill 视频规则）；.dsh/skills/visual-evidence-extractor/scripts/test_multi_video_pipeline.py（D1–D6 覆盖多视频规则）；.dsh/skills/visual-evidence-extractor/scripts/test_temporal_evidence.py（T18–T21 覆盖时序证据报告规则）",
+  "last_run": {
+    "date": "2026-09-21",
+    "results_json": "artifacts/task-06/test-results.json",
+    "video_cases_passed": 4,
+    "video_cases_total": 4,
+    "multi_video_cases_passed": 6,
+    "multi_video_cases_total": 6,
+    "note": "小样本只记录通过数/总数；视频报告输入来自任务 03 真实证据回放与构造输入（明确标注）；多视频报告真实输入来自任务 06 DSH 自主会话产物"
+  },
+  "cases": [
+    {
+      "id": "report-from-positive-evidence",
+      "kind": "positive",
+      "input_evidence": {
+        "object_found": true,
+        "confidence": 0.9,
+        "description": "d",
+        "evidence_text": "e",
+        "source_media": "m",
+        "gaps": []
+      },
+      "expect": {
+        "status": "completed",
+        "conclusion_non_null": true,
+        "no_positive_claim_beyond_input": true
+      }
+    },
+    {
+      "id": "report-from-negative-evidence",
+      "kind": "negative",
+      "input_evidence": {
+        "object_found": false,
+        "confidence": 0.0,
+        "description": "d",
+        "evidence_text": "e",
+        "source_media": "m",
+        "abstention_reason": "画面中未见该目标",
+        "gaps": [
+          "目标未被确认存在"
+        ]
+      },
+      "expect": {
+        "status": "abstained",
+        "must_not_claim_existence": true
+      }
+    },
+    {
+      "id": "report-from-empty-evidence",
+      "kind": "negative",
+      "input_evidence": [],
+      "expect": {
+        "status": "failed",
+        "conclusion_null": true
+      }
+    },
+    {
+      "id": "report-low-confidence-abstains",
+      "kind": "negative",
+      "input_evidence": {
+        "object_found": true,
+        "confidence": 0.2,
+        "description": "d",
+        "evidence_text": "e",
+        "source_media": "m",
+        "evidence_sufficient": false,
+        "gaps": [
+          "置信度 0.2 低于阈值 0.5"
+        ]
+      },
+      "expect": {
+        "status": "abstained",
+        "must_not_claim_existence": true
+      }
+    },
+    {
+      "id": "video-report-target-exists",
+      "kind": "positive",
+      "test_id": "B1-positive-target-exists",
+      "input_nature": "任务 03 真实正向证据回放为视频时间线",
+      "expect": {
+        "status": "completed",
+        "conclusion_references_first_last_confirmed": true,
+        "no_claim_beyond_timeline": true
+      }
+    },
+    {
+      "id": "video-report-target-absent",
+      "kind": "negative",
+      "test_id": "B2-negative-target-absent",
+      "input_nature": "任务 03 真实负向证据回放为视频时间线",
+      "expect": {
+        "status": "completed",
+        "conclusion_is_negative": true,
+        "must_not_claim_existence": true,
+        "no_fabricated_path": true
+      }
+    },
+    {
+      "id": "video-report-insufficient-evidence",
+      "kind": "negative",
+      "test_id": "B3-insufficient-evidence-abstains",
+      "input_nature": "构造输入（明确标注）",
+      "expect": {
+        "status": "abstained",
+        "abstention_reason_non_null": true
+      }
+    },
+    {
+      "id": "video-report-status-consistency",
+      "kind": "positive",
+      "test_id": "B6-report-status-consistency",
+      "expect": {
+        "report_status_matches_timeline_summary": true,
+        "mismatch_recomputed_and_warned": true
+      }
+    },
+    {
+      "id": "video-report-failed-no-claim",
+      "kind": "negative",
+      "input": "artifacts/task-04/timeline.json（资源守卫降级的真实运行产物）",
+      "expect": {
+        "status": "failed",
+        "no_existence_claim": true,
+        "abstention_reason_explains_resource_block": true
+      }
+    },
+    {
+      "id": "multi-video-report-positive",
+      "kind": "positive",
+      "test_id": "D1-positive-multi-source-report",
+      "input": "artifacts/task-06/global-timeline.json（DSH 自主会话真实产物）",
+      "expect": {
+        "status": "completed",
+        "per_source_status_reported": true,
+        "global_summary_reported": true,
+        "uses_allowed_phrasings_only": [
+          "matched target query",
+          "visually consistent with target description",
+          "confirmed in source A",
+          "confirmed in source B"
+        ],
+        "no_forbidden_phrasings": [
+          "same physical instance",
+          "moved from A to B",
+          "carried by the same person",
+          "entered another camera",
+          "identity matched"
+        ],
+        "semantic_limitation_displayed": true
+      }
+    },
+    {
+      "id": "multi-video-report-negative",
+      "kind": "negative",
+      "test_id": "D2-negative-multi-source-report",
+      "input": "artifacts/task-06/negative-global-timeline.json（DSH 自主会话真实产物）",
+      "expect": {
+        "status": "completed",
+        "conclusion_is_negative": true,
+        "must_not_claim_existence": true,
+        "no_fabricated_cross_video_relation": true,
+        "confidence_not_fabricated": true
+      }
+    },
+    {
+      "id": "multi-video-report-abstained-and-failed",
+      "kind": "negative",
+      "test_ids": [
+        "D3-abstained-multi-source-report",
+        "D4-failed-multi-source-report"
+      ],
+      "expect": {
+        "abstained_status_with_reason": true,
+        "failed_no_existence_claim": true
+      }
+    },
+    {
+      "id": "multi-video-report-cross-check",
+      "kind": "positive",
+      "test_id": "D5-cross-check-recompute",
+      "expect": {
+        "status_recomputed_independently": true,
+        "mismatch_recomputed_and_warned": true
+      }
+    },
+    {
+      "id": "temporal-report-independent-recompute",
+      "kind": "positive",
+      "test_suite": ".dsh/skills/visual-evidence-extractor/scripts/test_temporal_evidence.py",
+      "input_nature": "构造证据回放（fixture 视频 + 脚本化证据，明确标注非模型输出）",
+      "expect": {
+        "status_recomputed_independently": true,
+        "first_last_confirmed_recomputed": true,
+        "class_counts_recomputed": true,
+        "reason": "报告引擎按时间线条目独立复算时序证据（两套实现互检）"
+      }
+    },
+    {
+      "id": "temporal-report-mismatch-warns-and-recompute-wins",
+      "kind": "negative",
+      "test_suite": ".dsh/skills/visual-evidence-extractor/scripts/test_temporal_evidence.py",
+      "input_nature": "构造输入（向上游 temporal_evidence 注入错误首确认时间与转换数）",
+      "expect": {
+        "mismatch_warning_recorded": true,
+        "recompute_result_wins": true,
+        "no_silent_acceptance_of_upstream_summary": true,
+        "no_model_recall_to_mask_contradiction": true,
+        "budget_overrun_warned": true
+      }
+    },
+    {
+      "id": "temporal-report-semantic-limitations-displayed",
+      "kind": "positive",
+      "test_suite": ".dsh/skills/visual-evidence-extractor/scripts/test_temporal_evidence.py",
+      "input_nature": "构造证据回放（多来源 fixture）",
+      "expect": {
+        "shows_sampling_strategy": true,
+        "shows_budget_and_actual_calls": true,
+        "shows_budget_exhausted": true,
+        "shows_target_precision_reached": true,
+        "shows_not_continuous_tracking_truth": true,
+        "multi_source_shows_cross_video_limitations": true,
+        "no_forbidden_phrasings": [
+          "same physical instance",
+          "moved from A to B",
+          "carried by the same person",
+          "entered another camera",
+          "identity matched"
+        ]
+      }
+    },
+    {
+      "id": "temporal-report-coverage-aware-summary",
+      "kind": "positive",
+      "input": "coverage_aware_adaptive 运行产物（deterministic replay）",
+      "expect": {
+        "shows_coverage_summary": true,
+        "shows_coverage_exploration_and_refinement_calls": true,
+        "shows_max_adjacent_sampling_gap": true,
+        "shows_no_arbitrary_short_event_guarantee": true,
+        "shows_not_continuous_tracking_truth": true
+      }
+    }
+  ]
+}

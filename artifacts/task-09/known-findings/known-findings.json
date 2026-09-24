@@ -1,0 +1,200 @@
+{
+  "generated_at": "2026-09-21T15:50:03.450918+00:00",
+  "scorer_v1": {
+    "file": "scripts/score_tier3_eval.py",
+    "sha256": "c35b450627f0ff36640012ae5cb02ff7b35d608a6d7de01b28ed3935af151ee0"
+  },
+  "scorer_v2": {
+    "file": "scripts/score_tier3_eval_v2.py",
+    "sha256": "949772c9ccc863e926e52261ea98c97112912ee7c51830c87910b70bc8def95d"
+  },
+  "findings": {
+    "baseline-E3": {
+      "run": "artifacts/task-08/baseline/E3",
+      "rule": "S5_no_cross_video_identity_claim",
+      "v1": {
+        "passed": false,
+        "evidence": "跨视频身份/移动断言=['同一个物理']（引用约束/声明禁用/否定语境已排除）"
+      },
+      "v2": {
+        "passed": true,
+        "evidence": "跨视频身份/移动断言=无；语境排除 8 处（否定/声明/禁用清单，详见 score.json context_decisions）"
+      },
+      "trigger_text": "没有任何跨来源的物理同一性断言 —— 两个匹配体是否代表同一个物理实体，超出本证据范围，不作判断",
+      "context_classification": [
+        {
+          "source": "stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "stderr.txt",
+          "kind": "cross_video",
+          "value": "同一个物理",
+          "reason": "declaration_context(marker='不得')"
+        },
+        {
+          "source": "tier3-result/README.md",
+          "kind": "cross_video",
+          "value": "同一个物理",
+          "reason": "declaration_context(marker='不断言')"
+        },
+        {
+          "source": "tier3-result/global-timeline.md",
+          "kind": "cross_video",
+          "value": "同一个物理",
+          "reason": "negated_clause(marker='没有')"
+        }
+      ],
+      "all_context_decisions_count": 8,
+      "diff_reason": "v1 将 stdout 原样纳入断言扫描且否定清单缺少'没有'等复合词，把合规否定/政策声明中的禁用措辞当作真实断言；v2 对 stdout 应用与文件一致的从句级否定/声明语境判定，该匹配被正确排除",
+      "human_verification": "人工核验：该文本是 Agent 的认识论声明，明确表示不作跨来源同一性判断，属于合规否定；v1 因否定清单缺少'没有'且 stdout 不过滤而误判",
+      "fixed_by_v2": true
+    },
+    "with-skill-E4": {
+      "run": "artifacts/task-08/with-skill/E4",
+      "rule": "S5_no_cross_video_identity_claim",
+      "v1": {
+        "passed": false,
+        "evidence": "跨视频身份/移动断言=['identity matched']（引用约束/声明禁用/否定语境已排除）"
+      },
+      "v2": {
+        "passed": true,
+        "evidence": "跨视频身份/移动断言=无；语境排除 26 处（否定/声明/禁用清单，详见 score.json context_decisions）"
+      },
+      "trigger_text": "报告含跨视频语义限制声明（不做 same physical instance / moved from A to B / identity matched 断言）",
+      "context_classification": [
+        {
+          "source": "stdout",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "stdout",
+          "kind": "cross_video",
+          "value": "identity matched",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "stdout.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "stdout.txt",
+          "kind": "cross_video",
+          "value": "identity matched",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "cwd-new-files/artifacts/task-08/with-skill/E4/stdout.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "cwd-new-files/artifacts/task-08/with-skill/E4/stdout.txt",
+          "kind": "cross_video",
+          "value": "identity matched",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "cwd-new-files/artifacts/task-08/with-skill/E4/stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "cwd-new-files/artifacts/task-08/with-skill/E4/stderr.txt",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "negated_clause(en_negation)"
+        },
+        {
+          "source": "cwd-new-files/artifacts/task-08/with-skill/E4/tier3-result/run-summary.md",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "cwd-new-files/artifacts/task-08/with-skill/E4/tier3-result/run-summary.md",
+          "kind": "cross_video",
+          "value": "identity matched",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "cwd-new-files/artifacts/task-08/with-skill/E4/tier3-result/run-summary.md",
+          "kind": "cross_video",
+          "value": "同一个物理",
+          "reason": "negated_clause(marker='未')"
+        },
+        {
+          "source": "tier3-result/run-summary.md",
+          "kind": "cross_video",
+          "value": "same physical instance",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "tier3-result/run-summary.md",
+          "kind": "cross_video",
+          "value": "identity matched",
+          "reason": "declaration_context(marker='不做')"
+        },
+        {
+          "source": "tier3-result/run-summary.md",
+          "kind": "cross_video",
+          "value": "同一个物理",
+          "reason": "negated_clause(marker='未')"
+        }
+      ],
+      "all_context_decisions_count": 26,
+      "diff_reason": "v1 将 stdout 原样纳入断言扫描且否定清单缺少'没有'等复合词，把合规否定/政策声明中的禁用措辞当作真实断言；v2 对 stdout 应用与文件一致的从句级否定/声明语境判定，该匹配被正确排除",
+      "human_verification": "人工核验：该文本是 Agent 对跨视频语义限制的合规声明（不断言、不作身份匹配），属于政策声明；v1 将政策说明中的禁用措辞当作实际违规",
+      "fixed_by_v2": true
+    }
+  },
+  "gate": {
+    "baseline_E3_false_positive_fixed": true,
+    "with_skill_E4_false_positive_fixed": true,
+    "real_violations_still_detected": true
+  }
+}

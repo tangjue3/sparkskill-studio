@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.3.0",
+  "task_id": "task17-t18-duration-mismatch",
+  "target_query": "红色正方形",
+  "input_nature": "technical_fixture",
+  "evidence_nature": "constructed_fixture_evidence",
+  "source_video": "media.mp4",
+  "duration_ms": 7000,
+  "sampled_frames": 1,
+  "sampling_strategy": "uniform",
+  "strategy_config": {
+    "strategy": "uniform",
+    "max_model_calls": 8
+  },
+  "timeline": [
+    {
+      "timestamp_ms": 1000.0,
+      "frame_path": "frames/frame_t00001000ms.png",
+      "object_found": true,
+      "description": "fixture entry",
+      "bounding_box": null,
+      "confidence": 1.0,
+      "evidence_text": "fixture entry",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    }
+  ],
+  "state_changes": [],
+  "summary": {
+    "overall_status": "completed",
+    "confirmed_frame_count": 1
+  },
+  "sampling_provenance": {
+    "strategy": "uniform",
+    "configured_budget": 8,
+    "actual_model_calls": 1,
+    "reused_evidence_count": 0,
+    "budget_exhausted": false,
+    "initial_samples": 1,
+    "refinement_samples": 0,
+    "refinement_rounds": 0,
+    "uniform_sampling_truncated_to_budget": false,
+    "decisions": [
+      {
+        "sample_index": 0,
+        "timestamp_ms": 1000.0,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "fixture 初始覆盖采样（构造证据，非模型输出）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 0
+        },
+        "model_call_seq": 1,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 8,
+          "actual_model_calls": 1,
+          "remaining_calls": 7,
+          "budget_exhausted": false
+        }
+      }
+    ],
+    "analyzed_timestamps": [
+      1000.0
+    ],
+    "skipped_duplicate_timestamps": [],
+    "stop_reasons": [],
+    "resource_guard": {
+      "blocked": false
+    },
+    "resource_blocked": false,
+    "timing": {
+      "extraction_ms": 1.0,
+      "analysis_ms": 2.0,
+      "aggregation_ms": 0.5,
+      "total_ms": 3.5
+    }
+  },
+  "temporal_evidence": {
+    "class_counts": {
+      "confirmed": 1,
+      "not_found": 0,
+      "abstained": 0,
+      "low_confidence": 0,
+      "failed": 0
+    },
+    "actual_model_calls": 1,
+    "state_transitions": []
+  },
+  "backend": {
+    "vision_backend": "ollama",
+    "model": "fixture-backend-model-for-contract-tests",
+    "analysis_logic": "fixture（构造证据，非模型输出）"
+  },
+  "warnings": []
+}

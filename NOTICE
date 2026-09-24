@@ -1,0 +1,96 @@
+NOTICE — SparkSkill Studio Public Candidate (Task 29)
+Released: 2026-09-24
+Repository: tangjue3/sparkskill-studio (public candidate edition)
+
+================================================================================
+This product includes third-party software and models governed by their own licenses.
+The Apache License 2.0 under which the project's own code and documentation are
+released DOES NOT extend to these third-party components. Each component retains
+its own license; reproduction rights and obligations follow each component's
+respective license and terms of service.
+================================================================================
+
+1. Third-party models and model weights (NOT bundled with this repository)
+   ----------------------------------------------------------------------
+   - StepFun step-5-preview (text planning model)
+     Provider: StepFun (https://api.stepfun.com)
+     Usage: text-task parsing and Agent planning via DSH text link.
+     License: StepFun service terms.
+     Reproduction: obtain access by configuring your StepFun credentials in
+     your local DSH provider configuration (see docs/REPRODUCTION.md §2.3).
+
+   - Qwen3.8-27B-Vision (local visual model, GGUF)
+     Source: modelscope.cn/unsloth/Qwen3.8-27B-GGUF
+     Usage: local visual understanding via Ollama at :11434.
+     License: governed by the model's publisher (Unsloth / ModelScope community
+     release; see the model's card on ModelScope for license details).
+     Reproduction: pull the model via Ollama (see docs/REPRODUCTION.md §2.2).
+     The model weights are NOT bundled with this repository.
+
+2. Third-party Datasets / Test Media (NOT bundled with this repository)
+   ----------------------------------------------------------------------
+   - User's internal MiniMax-H3 generated test videos (h3-smoke.mp4,
+     h3-t2va-8s.mp4) used in the historical Tier-3 frozen evaluation and in
+     tasks 03/04/05/06: held privately by the user; not redistributed.
+     The public candidate uses self-produced synthetic technical fixtures
+     (project scripts generate_task16_fixtures.py and
+     generate_task18_fixtures.py) under Apache-2.0.
+
+   - The dev Evidence Pack (AI01–AI06 MiniMax-H3 generated + WEB01–WEB03
+     Pexels licensed-public) used in Task 19B: held privately by the user
+     in a read-only directory; not redistributed.
+     Reproduction: obtain a comparable dev pack with transfer-safe cards;
+     place it outside the public repository; use scripts/task19_ingest.py
+     --pack <path> to ingest.
+
+   - Pexels-licensed test media referenced in docs: held by Pexels; not
+     redistributed.
+
+3. DSH (Data Self-Hosting) Agent Harness
+   ----------------------------------------------------------------------
+   - Version: 0.1.5-rc.2
+   - Source: https://github.com/deepseek-ai/dsh (the DSH project; see the
+     DSH project's own license and terms).
+   - Usage: Agent Harness for skill discovery, loading, and orchestration.
+   - Reproduction: install DSH separately per DSH's own instructions; the
+     SparkSkill Studio project does not bundle DSH.
+
+4. Python standard library and commonly available system tools
+   ----------------------------------------------------------------------
+   - Python 3.12.x standard library: used throughout scripts and tests.
+   - OpenCV: used as a frame extraction utility only (not bundled).
+   - Chrome / Chromium (Playwright-driven): for browser QA only.
+
+5. Generated / synthetic content in this repository
+   ----------------------------------------------------------------------
+   - The candidate contains 11 project-generated technical fixture videos
+     under artifacts/task-16/fixtures/videos/ and
+     artifacts/task-18/fixtures/videos/, plus their derived frame PNGs
+     (424 PNG files under artifacts/task-16/ and artifacts/task-18/)
+     and JSON metadata. These are produced by the project's own deterministic
+     scripts (generate_task16_fixtures.py, generate_task18_fixtures.py)
+     and are licensed under Apache-2.0 as part of the project's own code and
+     documentation.
+   - artifacts/task-17/fixtures/t*/media.mp4 (30 files, 31-53 bytes each)
+     are placeholder binaries for rule-level scoring fixtures: their data
+     cards state "媒体为占位二进制，不是真实视频" (placeholder binary, not a
+     real video). No real-world footage is contained in them; they are
+     project-generated and covered by the same Apache-2.0 terms.
+   - No third-party media (no MiniMax-H3 derived frames, no Pexels media,
+     no Tier-3 E7 audio, no real-person frames) is bundled anywhere in this
+     repository; see docs/PUBLIC-VERSION-NOTES.md §2 for the exclusion list.
+
+================================================================================
+Trademark / official-component notices
+- NVIDIA DGX Spark / GB10 are referenced as the development environment;
+  the project's three Agent Skills are self-developed and do NOT bear any
+  NVIDIA official signature, certification, or affiliation.
+- "NVIDIA SkillEvaluator Tier-3" is referenced as the conceptual basis for
+  the project's baseline-vs-with-skill evaluation methodology; the
+  evaluation infrastructure is a self-developed deterministic rule scorer,
+  NOT the official NVIDIA SkillEvaluator.
+================================================================================
+
+For the project's own code, three self-developed Skills, documentation,
+synthetic fixtures, and the Evidence Workbench frontend, see LICENSE
+(Apache License 2.0).

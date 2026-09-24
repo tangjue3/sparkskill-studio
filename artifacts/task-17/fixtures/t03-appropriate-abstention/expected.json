@@ -1,0 +1,32 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "semantic_score_status": "scored",
+    "metrics": {
+      "correct_decisive": {
+        "passed": 2,
+        "total": 2,
+        "ratio": 1.0
+      },
+      "appropriate_abstention": {
+        "passed": 2,
+        "total": 2,
+        "ratio": 1.0
+      },
+      "overclaim_on_uncertain": {
+        "passed": 0,
+        "total": 2
+      }
+    },
+    "events": {
+      "gt_uncertain_segments": 1,
+      "unreached_uncertain_segments": 0
+    },
+    "boundaries": {
+      "gt_boundaries_total": 2,
+      "matched_boundaries": 0,
+      "missed_gt_boundaries": 2
+    }
+  }
+}

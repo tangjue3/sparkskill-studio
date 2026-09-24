@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task18-technical-fixtures",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "present-throughout",
+          "evidence": "present-throughout/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "appear-midway",
+          "evidence": "appear-midway/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "disappear-midway",
+          "evidence": "disappear-midway/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "reappear",
+          "evidence": "reappear/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-event-between-grid",
+          "evidence": "short-event-between-grid/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-uncertain-between-grid",
+          "evidence": "short-uncertain-between-grid/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "twin-short-events",
+          "evidence": "twin-short-events/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "absent-throughout",
+          "evidence": "absent-throughout/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-event-phase-b",
+          "evidence": "short-event-phase-b/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-uncertain-phase-b",
+          "evidence": "short-uncertain-phase-b/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "reappear-tight-budget",
+          "evidence": "reappear-tight-budget/uniform/temporal-evidence.json"
+        }
+      ]
+    },
+    {
+      "arm_id": "adaptive",
+      "samples": [
+        {
+          "sample_id": "present-throughout",
+          "evidence": "present-throughout/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "appear-midway",
+          "evidence": "appear-midway/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "disappear-midway",
+          "evidence": "disappear-midway/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "reappear",
+          "evidence": "reappear/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-event-between-grid",
+          "evidence": "short-event-between-grid/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-uncertain-between-grid",
+          "evidence": "short-uncertain-between-grid/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "twin-short-events",
+          "evidence": "twin-short-events/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "absent-throughout",
+          "evidence": "absent-throughout/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-event-phase-b",
+          "evidence": "short-event-phase-b/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-uncertain-phase-b",
+          "evidence": "short-uncertain-phase-b/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "reappear-tight-budget",
+          "evidence": "reappear-tight-budget/adaptive/temporal-evidence.json"
+        }
+      ]
+    },
+    {
+      "arm_id": "coverage",
+      "samples": [
+        {
+          "sample_id": "present-throughout",
+          "evidence": "present-throughout/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "appear-midway",
+          "evidence": "appear-midway/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "disappear-midway",
+          "evidence": "disappear-midway/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "reappear",
+          "evidence": "reappear/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-event-between-grid",
+          "evidence": "short-event-between-grid/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-uncertain-between-grid",
+          "evidence": "short-uncertain-between-grid/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "twin-short-events",
+          "evidence": "twin-short-events/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "absent-throughout",
+          "evidence": "absent-throughout/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-event-phase-b",
+          "evidence": "short-event-phase-b/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "short-uncertain-phase-b",
+          "evidence": "short-uncertain-phase-b/coverage/temporal-evidence.json"
+        },
+        {
+          "sample_id": "reappear-tight-budget",
+          "evidence": "reappear-tight-budget/coverage/temporal-evidence.json"
+        }
+      ]
+    }
+  ]
+}

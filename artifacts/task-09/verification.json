@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-09-21T15:56:59.274277+00:00",
+  "task": "task-09-evaluator-v2-rescore",
+  "passed": 15,
+  "total": 15,
+  "all_passed": true,
+  "checks": {
+    "V1-v1-scorer-frozen": {
+      "passed": true,
+      "detail": "scripts/score_tier3_eval.py sha256=c35b450627f0ff36…（期望 c35b450627f0ff36…）"
+    },
+    "V2-evals-frozen": {
+      "passed": true,
+      "detail": "evals/tier3/evals.json sha256=64da5041a178ae44…（期望 64da5041a178ae44…）"
+    },
+    "V3-task07-untouched": {
+      "passed": true,
+      "detail": "git diff 25a4f11..HEAD -- artifacts/task-07/ 变更文件数=0"
+    },
+    "V4-task08-raw-untouched": {
+      "passed": true,
+      "detail": "c08a7db..HEAD 在 artifacts/task-08/ 内非快照目录的改动=无（仅新增剪枝清单）"
+    },
+    "V5-N1-N5-compliant-not-flagged": {
+      "passed": true,
+      "detail": "N1=PASS；N2=PASS；N3=PASS；N4=PASS；N5=PASS"
+    },
+    "V6-P1-P5-real-assertions-flagged": {
+      "passed": true,
+      "detail": "P1=PASS；P2=PASS；P3=PASS；P4=PASS；P5=PASS"
+    },
+    "V7-C1-C2": {
+      "passed": true,
+      "detail": "C1=PASS；C2=PASS"
+    },
+    "V8-known-findings-fixed": {
+      "passed": true,
+      "detail": "baseline E3 误报修复=True；with-skill E4 误报修复=True；真实违规仍识别=True"
+    },
+    "V9-all-18-rescored": {
+      "passed": true,
+      "detail": "v2 重评分 18/18 个任务；缺失=无"
+    },
+    "V10-no-unexpected-changes": {
+      "passed": true,
+      "detail": "规则级变化 2 项（均为允许的已知误报修复）；意外变化=0 项"
+    },
+    "V11-verdict-recomputed": {
+      "passed": true,
+      "detail": "verdict=PASS；六项 PASS 条件逐条复算全部满足=True"
+    },
+    "V12-benchmark-history-complete": {
+      "passed": true,
+      "detail": "必需章节缺失=无；历史链（25a4f11/PARTIAL/v1 哈希）在位=True"
+    },
+    "V13-git-diff-check": {
+      "passed": true,
+      "detail": "git diff --check exit=0，输出=空"
+    },
+    "V14-sensitive-scan-clean": {
+      "passed": true,
+      "detail": "扫描 task-09 29 个产物 + 新增代码；命中=无"
+    },
+    "V15-no-temp-processes": {
+      "passed": true,
+      "detail": "临时进程=无；本任务为 CPU-only（未启动 Qwen/DSH/H3/StepFun）"
+    }
+  },
+  "verdict_v2": "PASS",
+  "scorer_v2_sha256": "949772c9ccc863e926e52261ea98c97112912ee7c51830c87910b70bc8def95d"
+}

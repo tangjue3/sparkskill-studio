@@ -1,0 +1,1237 @@
+{
+  "schema_version": "1.3.0",
+  "report_type": "temporal_multi_video",
+  "task_id": "task16-cmp-multi-source-pair",
+  "target_query": "红色正方形",
+  "input_nature": "technical_fixture",
+  "evidence_nature": "real_model_output",
+  "sampling_strategy": "adaptive_coarse_to_fine",
+  "vision_call_budget": 24,
+  "actual_model_calls": 14,
+  "budget_exhausted": false,
+  "sources": [
+    {
+      "source_id": "video-a",
+      "location": "scene-video-a",
+      "time_offset_ms": 0,
+      "sampled_frames": 7,
+      "status": "completed",
+      "summary": {
+        "first_confirmed_observed_ms": 3333.333,
+        "last_confirmed_observed_ms": 7958.333,
+        "confirmed_sample_count": 4,
+        "class_counts": {
+          "confirmed": 4,
+          "not_found": 3,
+          "abstained": 0,
+          "low_confidence": 0,
+          "failed": 0
+        },
+        "analyzed_sample_count": 7,
+        "analyzed_ratio": 1.0,
+        "state_transitions": [
+          {
+            "left_ms": 3000.0,
+            "right_ms": 3333.333,
+            "from_class": "not_found",
+            "to_class": "confirmed",
+            "uncertainty_width_ms": 333.333
+          }
+        ],
+        "state_transition_count": 1,
+        "max_uncertainty_width_ms": 333.333,
+        "overall_status": "completed"
+      },
+      "sampling_provenance": {
+        "strategy": "adaptive_coarse_to_fine",
+        "configured_budget": 24,
+        "actual_model_calls": 7,
+        "reused_evidence_count": 0,
+        "budget_exhausted": false,
+        "initial_samples": 4,
+        "refinement_samples": 3,
+        "refinement_rounds": 3,
+        "uniform_sampling_truncated_to_budget": false,
+        "decisions": [
+          {
+            "sample_index": 0,
+            "timestamp_ms": 0.0,
+            "phase": "initial_coverage",
+            "refinement_round": null,
+            "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+            "trigger_interval": null,
+            "trigger_reason": null,
+            "observed_states_at_decision": {
+              "analyzed_so_far": 0
+            },
+            "model_call_seq": 1,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 1,
+              "reused_evidence_count": 0,
+              "remaining_calls": 23,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 1,
+            "timestamp_ms": 2666.667,
+            "phase": "initial_coverage",
+            "refinement_round": null,
+            "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+            "trigger_interval": null,
+            "trigger_reason": null,
+            "observed_states_at_decision": {
+              "analyzed_so_far": 1
+            },
+            "model_call_seq": 2,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 2,
+              "reused_evidence_count": 0,
+              "remaining_calls": 22,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 2,
+            "timestamp_ms": 5333.333,
+            "phase": "initial_coverage",
+            "refinement_round": null,
+            "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+            "trigger_interval": null,
+            "trigger_reason": null,
+            "observed_states_at_decision": {
+              "analyzed_so_far": 2
+            },
+            "model_call_seq": 3,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 3,
+              "reused_evidence_count": 0,
+              "remaining_calls": 21,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 3,
+            "timestamp_ms": 7958.333,
+            "phase": "initial_coverage",
+            "refinement_round": null,
+            "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+            "trigger_interval": null,
+            "trigger_reason": null,
+            "observed_states_at_decision": {
+              "analyzed_so_far": 3
+            },
+            "model_call_seq": 4,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 4,
+              "reused_evidence_count": 0,
+              "remaining_calls": 20,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 4,
+            "timestamp_ms": 4000.0,
+            "phase": "refinement",
+            "refinement_round": 1,
+            "reason": "相邻采样状态变化 not_found(2666.667ms) → confirmed(5333.333ms)，需细化定位边界",
+            "trigger_interval": {
+              "left_ms": 2666.667,
+              "right_ms": 5333.333
+            },
+            "trigger_reason": "state_change",
+            "observed_states_at_decision": {
+              "class_left": "not_found",
+              "class_right": "confirmed",
+              "analyzed_so_far": 4
+            },
+            "model_call_seq": 5,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 5,
+              "reused_evidence_count": 0,
+              "remaining_calls": 19,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 5,
+            "timestamp_ms": 3333.333,
+            "phase": "refinement",
+            "refinement_round": 2,
+            "reason": "相邻采样状态变化 not_found(2666.667ms) → confirmed(4000.0ms)，需细化定位边界",
+            "trigger_interval": {
+              "left_ms": 2666.667,
+              "right_ms": 4000.0
+            },
+            "trigger_reason": "state_change",
+            "observed_states_at_decision": {
+              "class_left": "not_found",
+              "class_right": "confirmed",
+              "analyzed_so_far": 5
+            },
+            "model_call_seq": 6,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 6,
+              "reused_evidence_count": 0,
+              "remaining_calls": 18,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 6,
+            "timestamp_ms": 3000.0,
+            "phase": "refinement",
+            "refinement_round": 3,
+            "reason": "相邻采样状态变化 not_found(2666.667ms) → confirmed(3333.333ms)，需细化定位边界",
+            "trigger_interval": {
+              "left_ms": 2666.667,
+              "right_ms": 3333.333
+            },
+            "trigger_reason": "state_change",
+            "observed_states_at_decision": {
+              "class_left": "not_found",
+              "class_right": "confirmed",
+              "analyzed_so_far": 6
+            },
+            "model_call_seq": 7,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 7,
+              "reused_evidence_count": 0,
+              "remaining_calls": 17,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          }
+        ],
+        "analyzed_timestamps": [
+          0.0,
+          2666.667,
+          3000.0,
+          3333.333,
+          4000.0,
+          5333.333,
+          7958.333
+        ],
+        "skipped_duplicate_timestamps": [],
+        "stop_reasons": [
+          "no_refinable_interval"
+        ],
+        "resource_guard": {
+          "mem_available_gib": 58.75,
+          "min_available_gib": 40.0,
+          "ollama_reachable": true,
+          "blocked": false
+        },
+        "resource_blocked": false,
+        "timing": {
+          "extraction_ms": 5.659,
+          "analysis_ms": 124572.92399999998,
+          "aggregation_ms": 0.076,
+          "total_ms": 124758.384
+        }
+      }
+    },
+    {
+      "source_id": "video-b",
+      "location": "scene-video-b",
+      "time_offset_ms": 5000,
+      "sampled_frames": 7,
+      "status": "completed",
+      "summary": {
+        "first_confirmed_observed_ms": 0.0,
+        "last_confirmed_observed_ms": 4666.667,
+        "confirmed_sample_count": 4,
+        "class_counts": {
+          "confirmed": 4,
+          "not_found": 3,
+          "abstained": 0,
+          "low_confidence": 0,
+          "failed": 0
+        },
+        "analyzed_sample_count": 7,
+        "analyzed_ratio": 1.0,
+        "state_transitions": [
+          {
+            "left_ms": 4666.667,
+            "right_ms": 5000.0,
+            "from_class": "confirmed",
+            "to_class": "not_found",
+            "uncertainty_width_ms": 333.333
+          }
+        ],
+        "state_transition_count": 1,
+        "max_uncertainty_width_ms": 333.333,
+        "overall_status": "completed"
+      },
+      "sampling_provenance": {
+        "strategy": "adaptive_coarse_to_fine",
+        "configured_budget": 24,
+        "actual_model_calls": 14,
+        "reused_evidence_count": 0,
+        "budget_exhausted": false,
+        "initial_samples": 4,
+        "refinement_samples": 3,
+        "refinement_rounds": 3,
+        "uniform_sampling_truncated_to_budget": false,
+        "decisions": [
+          {
+            "sample_index": 0,
+            "timestamp_ms": 0.0,
+            "phase": "initial_coverage",
+            "refinement_round": null,
+            "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+            "trigger_interval": null,
+            "trigger_reason": null,
+            "observed_states_at_decision": {
+              "analyzed_so_far": 0
+            },
+            "model_call_seq": 8,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 8,
+              "reused_evidence_count": 0,
+              "remaining_calls": 16,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 1,
+            "timestamp_ms": 2666.667,
+            "phase": "initial_coverage",
+            "refinement_round": null,
+            "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+            "trigger_interval": null,
+            "trigger_reason": null,
+            "observed_states_at_decision": {
+              "analyzed_so_far": 1
+            },
+            "model_call_seq": 9,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 9,
+              "reused_evidence_count": 0,
+              "remaining_calls": 15,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 2,
+            "timestamp_ms": 5333.333,
+            "phase": "initial_coverage",
+            "refinement_round": null,
+            "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+            "trigger_interval": null,
+            "trigger_reason": null,
+            "observed_states_at_decision": {
+              "analyzed_so_far": 2
+            },
+            "model_call_seq": 10,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 10,
+              "reused_evidence_count": 0,
+              "remaining_calls": 14,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 3,
+            "timestamp_ms": 7958.333,
+            "phase": "initial_coverage",
+            "refinement_round": null,
+            "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+            "trigger_interval": null,
+            "trigger_reason": null,
+            "observed_states_at_decision": {
+              "analyzed_so_far": 3
+            },
+            "model_call_seq": 11,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 11,
+              "reused_evidence_count": 0,
+              "remaining_calls": 13,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 4,
+            "timestamp_ms": 4000.0,
+            "phase": "refinement",
+            "refinement_round": 1,
+            "reason": "相邻采样状态变化 confirmed(2666.667ms) → not_found(5333.333ms)，需细化定位边界",
+            "trigger_interval": {
+              "left_ms": 2666.667,
+              "right_ms": 5333.333
+            },
+            "trigger_reason": "state_change",
+            "observed_states_at_decision": {
+              "class_left": "confirmed",
+              "class_right": "not_found",
+              "analyzed_so_far": 4
+            },
+            "model_call_seq": 12,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 12,
+              "reused_evidence_count": 0,
+              "remaining_calls": 12,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 5,
+            "timestamp_ms": 4666.667,
+            "phase": "refinement",
+            "refinement_round": 2,
+            "reason": "相邻采样状态变化 confirmed(4000.0ms) → not_found(5333.333ms)，需细化定位边界",
+            "trigger_interval": {
+              "left_ms": 4000.0,
+              "right_ms": 5333.333
+            },
+            "trigger_reason": "state_change",
+            "observed_states_at_decision": {
+              "class_left": "confirmed",
+              "class_right": "not_found",
+              "analyzed_so_far": 5
+            },
+            "model_call_seq": 13,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 13,
+              "reused_evidence_count": 0,
+              "remaining_calls": 11,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          },
+          {
+            "sample_index": 6,
+            "timestamp_ms": 5000.0,
+            "phase": "refinement",
+            "refinement_round": 3,
+            "reason": "相邻采样状态变化 confirmed(4666.667ms) → not_found(5333.333ms)，需细化定位边界",
+            "trigger_interval": {
+              "left_ms": 4666.667,
+              "right_ms": 5333.333
+            },
+            "trigger_reason": "state_change",
+            "observed_states_at_decision": {
+              "class_left": "confirmed",
+              "class_right": "not_found",
+              "analyzed_so_far": 6
+            },
+            "model_call_seq": 14,
+            "cache_status": "fresh_call",
+            "budget_state": {
+              "max_model_calls": 24,
+              "actual_model_calls": 14,
+              "reused_evidence_count": 0,
+              "remaining_calls": 10,
+              "budget_exhausted": false,
+              "skipped_duplicate_timestamps": []
+            }
+          }
+        ],
+        "analyzed_timestamps": [
+          0.0,
+          2666.667,
+          4000.0,
+          4666.667,
+          5000.0,
+          5333.333,
+          7958.333
+        ],
+        "skipped_duplicate_timestamps": [],
+        "stop_reasons": [
+          "no_refinable_interval"
+        ],
+        "resource_guard": {
+          "mem_available_gib": 58.86,
+          "min_available_gib": 40.0,
+          "ollama_reachable": true,
+          "blocked": false
+        },
+        "resource_blocked": false,
+        "timing": {
+          "extraction_ms": 0.702,
+          "analysis_ms": 126425.207,
+          "aggregation_ms": 0.131,
+          "total_ms": 126538.318
+        }
+      }
+    }
+  ],
+  "global_summary": {
+    "first_confirmed_observed_ms": 0.0,
+    "last_confirmed_observed_ms": 7958.333,
+    "confirmed_sample_count": 8,
+    "class_counts": {
+      "confirmed": 8,
+      "not_found": 6,
+      "abstained": 0,
+      "low_confidence": 0,
+      "failed": 0
+    },
+    "analyzed_sample_count": 14,
+    "analyzed_ratio": 1.0,
+    "state_transitions": [
+      {
+        "left_ms": 0.0,
+        "right_ms": 0.0,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 0.0
+      },
+      {
+        "left_ms": 0.0,
+        "right_ms": 2666.667,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 2666.667
+      },
+      {
+        "left_ms": 2666.667,
+        "right_ms": 2666.667,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 0.0
+      },
+      {
+        "left_ms": 2666.667,
+        "right_ms": 3000.0,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 333.333
+      },
+      {
+        "left_ms": 3000.0,
+        "right_ms": 3333.333,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 333.333
+      },
+      {
+        "left_ms": 4666.667,
+        "right_ms": 5000.0,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 333.333
+      },
+      {
+        "left_ms": 5000.0,
+        "right_ms": 5333.333,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 333.333
+      },
+      {
+        "left_ms": 5333.333,
+        "right_ms": 5333.333,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 0.0
+      },
+      {
+        "left_ms": 5333.333,
+        "right_ms": 7958.333,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 2625.0
+      },
+      {
+        "left_ms": 7958.333,
+        "right_ms": 7958.333,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 0.0
+      }
+    ],
+    "state_transition_count": 10,
+    "max_uncertainty_width_ms": 2666.667,
+    "overall_status": "completed"
+  },
+  "global_temporal_evidence": {
+    "first_confirmed_observed_ms": 0.0,
+    "last_confirmed_observed_ms": 7958.333,
+    "confirmed_sample_count": 8,
+    "class_counts": {
+      "confirmed": 8,
+      "not_found": 6,
+      "abstained": 0,
+      "low_confidence": 0,
+      "failed": 0
+    },
+    "analyzed_sample_count": 14,
+    "analyzed_ratio": 1.0,
+    "state_transitions": [
+      {
+        "left_ms": 0.0,
+        "right_ms": 0.0,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 0.0
+      },
+      {
+        "left_ms": 0.0,
+        "right_ms": 2666.667,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 2666.667
+      },
+      {
+        "left_ms": 2666.667,
+        "right_ms": 2666.667,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 0.0
+      },
+      {
+        "left_ms": 2666.667,
+        "right_ms": 3000.0,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 333.333
+      },
+      {
+        "left_ms": 3000.0,
+        "right_ms": 3333.333,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 333.333
+      },
+      {
+        "left_ms": 4666.667,
+        "right_ms": 5000.0,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 333.333
+      },
+      {
+        "left_ms": 5000.0,
+        "right_ms": 5333.333,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 333.333
+      },
+      {
+        "left_ms": 5333.333,
+        "right_ms": 5333.333,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 0.0
+      },
+      {
+        "left_ms": 5333.333,
+        "right_ms": 7958.333,
+        "from_class": "not_found",
+        "to_class": "confirmed",
+        "uncertainty_width_ms": 2625.0
+      },
+      {
+        "left_ms": 7958.333,
+        "right_ms": 7958.333,
+        "from_class": "confirmed",
+        "to_class": "not_found",
+        "uncertainty_width_ms": 0.0
+      }
+    ],
+    "state_transition_count": 10,
+    "boundary_uncertainty": {
+      "target_ms": 500.0,
+      "max_ms": 2666.667,
+      "min_ms": 0.0,
+      "target_precision_reached": false,
+      "residual_uncertainty_ms": 2666.667
+    },
+    "evidence_supported_segments": [
+      {
+        "start_ms": 0.0,
+        "end_ms": 0.0,
+        "state_class": "not_found",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 0.0,
+        "end_ms": 0.0,
+        "state_class": "confirmed",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 2666.667,
+        "end_ms": 2666.667,
+        "state_class": "not_found",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 2666.667,
+        "end_ms": 2666.667,
+        "state_class": "confirmed",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 3000.0,
+        "end_ms": 3000.0,
+        "state_class": "not_found",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 3333.333,
+        "end_ms": 4666.667,
+        "state_class": "confirmed",
+        "sample_count": 4,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 5000.0,
+        "end_ms": 5000.0,
+        "state_class": "not_found",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 5333.333,
+        "end_ms": 5333.333,
+        "state_class": "confirmed",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 5333.333,
+        "end_ms": 5333.333,
+        "state_class": "not_found",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 7958.333,
+        "end_ms": 7958.333,
+        "state_class": "confirmed",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      },
+      {
+        "start_ms": 7958.333,
+        "end_ms": 7958.333,
+        "state_class": "not_found",
+        "sample_count": 1,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      }
+    ],
+    "unconfirmed_intervals": [],
+    "stopped_by_budget": false,
+    "stop_reasons": [
+      "multi_source_shared_budget"
+    ],
+    "actual_model_calls": 14,
+    "semantics": {
+      "nature": "sampling_evidence_supported_temporal_conclusion",
+      "is_not_continuous_tracking_truth": true,
+      "first_confirmed_semantics": "first_confirmed_observed_ms 是首个被观察为 confirmed 的采样时间，不等于目标真实首次进入时间",
+      "last_confirmed_semantics": "last_confirmed_observed_ms 是最后一个被观察为 confirmed 的采样时间，不等于目标真实离开时间",
+      "no_continuity_assertion": "两个 confirmed 采样点之间不得自动断言目标连续存在；采样点之间的时间只有“未采样/未知”，没有连续性事实",
+      "boundary_semantics": "状态变化只能定位到左右相邻采样点形成的时间范围 [left_ms, right_ms]，uncertainty_width_ms = right_ms - left_ms，不得伪造精确瞬间",
+      "no_inference_collapse": "abstained / low_confidence / failed 独立计数，不得折算为 not_found；not_found 仅表示确定性负面结论",
+      "forbidden_capabilities": "不做跨帧身份一致性、不做跨摄像头实例关联、不输出物体运动路径；本功能不是 ReID、不是目标跟踪器、不是实时跟踪"
+    }
+  },
+  "shared_budget": {
+    "max_model_calls": 24,
+    "actual_model_calls": 14,
+    "reused_evidence_count": 0,
+    "remaining_calls": 10,
+    "budget_exhausted": false,
+    "skipped_duplicate_timestamps": []
+  },
+  "semantic_limitations": {
+    "cross_video_identity_asserted": false,
+    "statement_policy": "matched target query / visually consistent with target description / confirmed in source A / confirmed in source B",
+    "allowed_phrasings": [
+      "matched target query",
+      "visually consistent with target description",
+      "confirmed in source A",
+      "confirmed in source B"
+    ],
+    "forbidden_phrasings": [
+      "same physical instance",
+      "moved from A to B",
+      "carried by the same person",
+      "entered another camera",
+      "identity matched"
+    ],
+    "note": "同一目标查询在多段视频中分别得到视觉匹配，仅此而已；不得自动得出“同一个物理对象从视频 A 移动到视频 B”的结论。除非未来存在可靠的跨摄像头身份或实例关联证据，本流水线不输出任何跨视频身份断言。"
+  },
+  "semantic_limitation_note": "跨视频语义限制：同一目标查询在多段视频中分别得到视觉匹配（matched target query；分别 visually consistent with target description；confirmed in source A / confirmed in source B）。本报告不断言两来源中的目标是同一个物理实例（same physical instance），不断言其从来源 A 移动到来源 B（moved from A to B），不做身份匹配（identity matched）；除非未来存在可靠的跨摄像头身份或实例关联证据。全局时间线是证据聚合，不是跨摄像头身份追踪。",
+  "temporal_limitation_note": "时序结论语义限制：本报告的目标时序结论是“采样证据支持的时序结论”（temporal presence evidence / evidence-supported state transition / boundary uncertainty），不是连续跟踪真值。first/last confirmed 是采样观察时间，不等于目标真实进入/离开时间；两个 confirmed 采样点之间不得断言目标连续存在；状态变化只定位到左右相邻采样点形成的时间范围。本报告不做跨帧身份一致性、不做跨摄像头实例关联、不输出物体运动路径；不是 ReID、不是目标跟踪器、不是实时跟踪。",
+  "status": "completed",
+  "conclusion": "目标查询「红色正方形」为 matched target query：confirmed in source video-a（首次 confirmed 采样时间 3333.333 ms / 全局 3333.333 ms，最后 confirmed 采样时间 7958.333 ms，共 4 帧确认）；confirmed in source video-b（首次 confirmed 采样时间 0.0 ms / 全局 5000 ms，最后 confirmed 采样时间 4666.667 ms，共 4 帧确认）；全局检测到 10 个证据支持的状态转换，最大边界不确定宽度 2666.667 ms。（采样策略 adaptive_coarse_to_fine；全局视觉调用预算 24，实际调用 14）各来源的视觉匹配分别与目标描述 visually consistent with target description；本报告不断言上述目标是同一个物理实例（无跨摄像头身份或实例关联证据）。全局时间线是证据聚合，不是跨摄像头身份追踪；时序结论是采样证据支持的结论，不是连续跟踪真值。",
+  "abstention_reason": null,
+  "evidence": [
+    {
+      "global_timestamp_ms": 0.0,
+      "source_id": "video-a",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "source_location": "scene-video-a",
+      "source_time_offset_ms": 0,
+      "timestamp_ms": 0.0,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-a/fixture-appear-midway_f00000_t00000000ms.png",
+      "object_found": false,
+      "description": "画面为纯灰色背景，无任何可见物体或图形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 1.0,
+      "evidence_text": "整个画面呈现均匀的灰色，没有红色区域，也没有正方形形状，不存在任何可识别的物体",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 2666.667,
+      "source_id": "video-a",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "source_location": "scene-video-a",
+      "source_time_offset_ms": 0,
+      "timestamp_ms": 2666.667,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-a/fixture-appear-midway_f00064_t00002667ms.png",
+      "object_found": false,
+      "description": "画面为纯灰色背景，无任何可见物体或图形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 1.0,
+      "evidence_text": "整个画面呈现均匀的灰色，没有红色区域，也没有正方形形状，不存在目标对象",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 3000.0,
+      "source_id": "video-a",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "source_location": "scene-video-a",
+      "source_time_offset_ms": 0,
+      "timestamp_ms": 3000.0,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-a/fixture-appear-midway_f00072_t00003000ms.png",
+      "object_found": false,
+      "description": "画面为纯灰色背景，无任何可见物体或图形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 1.0,
+      "evidence_text": "整个画面呈现均匀的灰色，没有红色区域，也没有正方形轮廓或其他任何图形元素",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 3333.333,
+      "source_id": "video-a",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "source_location": "scene-video-a",
+      "source_time_offset_ms": 0,
+      "timestamp_ms": 3333.333,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-a/fixture-appear-midway_f00080_t00003333ms.png",
+      "object_found": true,
+      "description": "灰色背景中央有一个红色正方形",
+      "bounding_box": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_raw": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": 640,
+      "frame_height": 360,
+      "confidence": 1.0,
+      "evidence_text": "画面中央存在一个清晰的红色正方形，四边长度相等且四角为直角，颜色为纯红色，与灰色背景形成明显对比",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 4000.0,
+      "source_id": "video-a",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "source_location": "scene-video-a",
+      "source_time_offset_ms": 0,
+      "timestamp_ms": 4000.0,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-a/fixture-appear-midway_f00096_t00004000ms.png",
+      "object_found": true,
+      "description": "灰色背景中央有一个红色正方形",
+      "bounding_box": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_raw": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": 640,
+      "frame_height": 360,
+      "confidence": 1.0,
+      "evidence_text": "画面中央存在一个清晰的红色正方形，四边长度相等且四角为直角，颜色为纯红色，与灰色背景形成明显对比",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 5000.0,
+      "source_id": "video-b",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "source_location": "scene-video-b",
+      "source_time_offset_ms": 5000,
+      "timestamp_ms": 0.0,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-b/fixture-disappear-midway_f00000_t00000000ms.png",
+      "object_found": true,
+      "description": "灰色背景中央有一个红色正方形",
+      "bounding_box": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_raw": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": 640,
+      "frame_height": 360,
+      "confidence": 1.0,
+      "evidence_text": "画面中央可见一个填充为红色的正方形，四边长度近似相等，四个角接近直角，背景为均匀的浅灰色",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 5333.333,
+      "source_id": "video-a",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "source_location": "scene-video-a",
+      "source_time_offset_ms": 0,
+      "timestamp_ms": 5333.333,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-a/fixture-appear-midway_f00128_t00005333ms.png",
+      "object_found": true,
+      "description": "灰色背景中央有一个红色正方形",
+      "bounding_box": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_raw": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": 640,
+      "frame_height": 360,
+      "confidence": 1.0,
+      "evidence_text": "画面中央存在一个清晰的红色正方形，四边长度相等且四个角均为直角，颜色为纯红色，与灰色背景形成明显对比",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 7666.667,
+      "source_id": "video-b",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "source_location": "scene-video-b",
+      "source_time_offset_ms": 5000,
+      "timestamp_ms": 2666.667,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-b/fixture-disappear-midway_f00064_t00002667ms.png",
+      "object_found": true,
+      "description": "灰色背景中央有一个红色正方形",
+      "bounding_box": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_raw": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": 640,
+      "frame_height": 360,
+      "confidence": 1.0,
+      "evidence_text": "画面中央清晰可见一个红色正方形，其四条边长度相等、四个角为直角，颜色为纯红色，与灰色背景形成明显对比",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 7958.333,
+      "source_id": "video-a",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "source_location": "scene-video-a",
+      "source_time_offset_ms": 0,
+      "timestamp_ms": 7958.333,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-a/fixture-appear-midway_f00191_t00007958ms.png",
+      "object_found": true,
+      "description": "灰色背景中央有一个红色正方形",
+      "bounding_box": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_raw": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": 640,
+      "frame_height": 360,
+      "confidence": 1.0,
+      "evidence_text": "画面中央存在一个明显的红色正方形，其四条边长度相等、四个角为直角，颜色为纯红色，与灰色背景形成鲜明对比",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 9000.0,
+      "source_id": "video-b",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "source_location": "scene-video-b",
+      "source_time_offset_ms": 5000,
+      "timestamp_ms": 4000.0,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-b/fixture-disappear-midway_f00096_t00004000ms.png",
+      "object_found": true,
+      "description": "灰色背景中央有一个红色正方形",
+      "bounding_box": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_raw": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": 640,
+      "frame_height": 360,
+      "confidence": 1.0,
+      "evidence_text": "画面中央存在一个清晰的红色正方形，四边长度相等且四个角均为直角，颜色为纯红色，与灰色背景形成明显对比",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 9666.667,
+      "source_id": "video-b",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "source_location": "scene-video-b",
+      "source_time_offset_ms": 5000,
+      "timestamp_ms": 4666.667,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-b/fixture-disappear-midway_f00112_t00004667ms.png",
+      "object_found": true,
+      "description": "灰色背景中央有一个红色正方形",
+      "bounding_box": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_raw": [
+        0.44,
+        0.38,
+        0.56,
+        0.62
+      ],
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": 640,
+      "frame_height": 360,
+      "confidence": 1.0,
+      "evidence_text": "画面中央清晰可见一个红色正方形，四边长度相等、四角为直角，颜色为纯红色，与灰色背景形成明显对比",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 10000.0,
+      "source_id": "video-b",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "source_location": "scene-video-b",
+      "source_time_offset_ms": 5000,
+      "timestamp_ms": 5000.0,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-b/fixture-disappear-midway_f00120_t00005000ms.png",
+      "object_found": false,
+      "description": "画面为纯灰色背景，左右两侧有黑色竖条边框，无任何其他可见物体",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 1.0,
+      "evidence_text": "整个画面仅由灰色背景和两侧黑色边框组成，不存在任何红色正方形或其他形状",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 10333.333,
+      "source_id": "video-b",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "source_location": "scene-video-b",
+      "source_time_offset_ms": 5000,
+      "timestamp_ms": 5333.333,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-b/fixture-disappear-midway_f00128_t00005333ms.png",
+      "object_found": false,
+      "description": "画面为纯灰色背景，无任何可见物体或图形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 1.0,
+      "evidence_text": "整个画面呈现均匀的灰色，没有任何红色区域或正方形形状，不存在目标对象",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": []
+    },
+    {
+      "global_timestamp_ms": 12958.333,
+      "source_id": "video-b",
+      "source_path": "artifacts/task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "source_location": "scene-video-b",
+      "source_time_offset_ms": 5000,
+      "timestamp_ms": 7958.333,
+      "frame_path": "artifacts/task-16/comparison/multi-source-pair/adaptive/per-source/keyframes/video-b/fixture-disappear-midway_f00191_t00007958ms.png",
+      "object_found": false,
+      "description": "画面为纯灰色背景，左右两侧有黑色竖条边框，无任何其他物体或图形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 1.0,
+      "evidence_text": "整个画面仅由灰色填充区域和两侧黑色边框组成，不存在任何红色或正方形形状的元素",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "generated_at": "2026-09-22T08:51:31.968025+00:00"
+}

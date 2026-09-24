@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "comparison_id": "task16-uniform-vs-adaptive-rescored",
+  "sample_ids": [
+    "present-throughout",
+    "appear-midway",
+    "disappear-midway",
+    "reappear",
+    "abstain-zone"
+  ],
+  "arm_a": {
+    "arm_id": "uniform",
+    "role": "baseline"
+  },
+  "arm_b": {
+    "arm_id": "adaptive",
+    "role": "candidate"
+  },
+  "fairness_attestation": {
+    "no_single_side_retry": true,
+    "no_extra_context": true,
+    "attested_by": "task-17 rescore（依据任务 16 冻结对照产物）",
+    "attestation_basis": "artifacts/task-16/comparison.json fairness 块：same_video/same_target_query/same_model/same_max_model_calls=12/no_single_side_retry=true/no_sample_removal=true/ground_truth_not_modified_after_results=true；两臂均为真实 Qwen 模型输出（evidence_nature=real_model_output），同一资源窗口"
+  }
+}

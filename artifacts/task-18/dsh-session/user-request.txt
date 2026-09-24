@@ -1,0 +1,1 @@
+请对以下预注册技术测试视频执行一次完整的受控视觉证据抽取任务。媒体路径：artifacts/task-18/fixtures/videos/fixture-short-event-between-grid.mp4 目标：红色正方形（属性：红色、正方形）；任务类型：object_trace；使用 coverage_aware_adaptive 采样策略。

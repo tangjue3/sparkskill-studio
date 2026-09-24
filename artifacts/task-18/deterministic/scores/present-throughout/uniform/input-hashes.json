@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "present-throughout",
+  "arm_id": "uniform",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/present-throughout.temporal-ground-truth.json",
+      "sha256": "97d071f2001ad35efd0f1b9a9215a336f7b47d195d7bd95a1f9367929b3e78ed"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/present-throughout/uniform/temporal-evidence.json",
+      "sha256": "1f5c40276c9ae75273670bde8c7abd778e77dc7ac2d0dba5038d6a2d07335806"
+    },
+    "media": {
+      "path": "../../task-16/fixtures/videos/fixture-present-throughout.mp4",
+      "sha256": "f0f37098e966b337c3fb877e87d59bb4fae67d424a59b890f872dffa7a804b3a"
+    }
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "schema_version": "1.3.0",
+  "task_id": "task18-cmp-short-uncertain-between-grid-adaptive",
+  "target_query": "红色正方形",
+  "input_nature": "technical_fixture",
+  "evidence_nature": "constructed_fixture_evidence",
+  "source_video": "artifacts/task-18/fixtures/videos/fixture-short-uncertain-between-grid.mp4",
+  "duration_ms": 8000.0,
+  "sampled_frames": 4,
+  "sampling_strategy": "adaptive_coarse_to_fine",
+  "strategy_config": {
+    "strategy": "adaptive_coarse_to_fine",
+    "max_model_calls": 12,
+    "require_sampling_provenance": true,
+    "require_temporal_evidence": true,
+    "refinement_triggers": [
+      "state_change",
+      "abstained",
+      "low_confidence",
+      "failed"
+    ],
+    "initial_coverage_samples": 4,
+    "target_boundary_precision_ms": 500,
+    "max_refinement_rounds": 6
+  },
+  "timeline": [
+    {
+      "timestamp_ms": 0.0,
+      "frame_path": "artifacts/task-18/deterministic/short-uncertain-between-grid/adaptive/frames/fixture-short-uncertain-between-grid_f00000_t00000000ms.png",
+      "object_found": true,
+      "description": "构造证据：红色正方形出现",
+      "bounding_box": [
+        0.44,
+        0.39,
+        0.56,
+        0.61
+      ],
+      "bounding_box_raw": null,
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.95,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 2666.667,
+      "frame_path": "artifacts/task-18/deterministic/short-uncertain-between-grid/adaptive/frames/fixture-short-uncertain-between-grid_f00064_t00002667ms.png",
+      "object_found": true,
+      "description": "构造证据：红色正方形出现",
+      "bounding_box": [
+        0.44,
+        0.39,
+        0.56,
+        0.61
+      ],
+      "bounding_box_raw": null,
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.95,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 5333.333,
+      "frame_path": "artifacts/task-18/deterministic/short-uncertain-between-grid/adaptive/frames/fixture-short-uncertain-between-grid_f00128_t00005333ms.png",
+      "object_found": true,
+      "description": "构造证据：红色正方形出现",
+      "bounding_box": [
+        0.44,
+        0.39,
+        0.56,
+        0.61
+      ],
+      "bounding_box_raw": null,
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.95,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 7958.333,
+      "frame_path": "artifacts/task-18/deterministic/short-uncertain-between-grid/adaptive/frames/fixture-short-uncertain-between-grid_f00191_t00007958ms.png",
+      "object_found": true,
+      "description": "构造证据：红色正方形出现",
+      "bounding_box": [
+        0.44,
+        0.39,
+        0.56,
+        0.61
+      ],
+      "bounding_box_raw": null,
+      "bounding_box_source_format": "normalized",
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.95,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": true,
+      "gaps": [],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    }
+  ],
+  "state_changes": [
+    {
+      "timestamp_ms": 0.0,
+      "frame_path": "artifacts/task-18/deterministic/short-uncertain-between-grid/adaptive/frames/fixture-short-uncertain-between-grid_f00000_t00000000ms.png",
+      "object_found": true,
+      "description": "构造证据：红色正方形出现",
+      "bounding_box": [
+        0.44,
+        0.39,
+        0.56,
+        0.61
+      ],
+      "confidence": 0.95,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed"
+    }
+  ],
+  "summary": {
+    "first_confirmed_timestamp_ms": 0.0,
+    "last_confirmed_timestamp_ms": 7958.333,
+    "confirmed_frame_count": 4,
+    "not_found_frame_count": 0,
+    "abstained_frame_count": 0,
+    "low_confidence_frame_count": 0,
+    "failed_frame_count": 0,
+    "analyzed_frame_count": 4,
+    "overall_status": "completed"
+  },
+  "sampling_provenance": {
+    "strategy": "adaptive_coarse_to_fine",
+    "configured_budget": 12,
+    "actual_model_calls": 4,
+    "reused_evidence_count": 0,
+    "budget_exhausted": false,
+    "initial_samples": 4,
+    "refinement_samples": 0,
+    "refinement_rounds": 0,
+    "uniform_sampling_truncated_to_budget": false,
+    "initial_coverage_calls": 4,
+    "coverage_exploration_calls": 0,
+    "boundary_refinement_calls": 0,
+    "coverage_call_reserve": null,
+    "coverage_gap_target_ms": null,
+    "max_adjacent_sampling_gap_ms_initial": 2666.667,
+    "max_adjacent_sampling_gap_ms_final": 2666.667,
+    "underobserved_intervals": null,
+    "arbitrary_short_event_detection_guaranteed": false,
+    "events_shorter_than_max_sampling_gap_may_be_missed": true,
+    "decisions": [
+      {
+        "sample_index": 0,
+        "timestamp_ms": 0.0,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 0
+        },
+        "model_call_seq": 1,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 1,
+          "reused_evidence_count": 0,
+          "remaining_calls": 11,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "initial_coverage",
+        "candidate_interval": null
+      },
+      {
+        "sample_index": 1,
+        "timestamp_ms": 2666.667,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 1
+        },
+        "model_call_seq": 2,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 2,
+          "reused_evidence_count": 0,
+          "remaining_calls": 10,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "initial_coverage",
+        "candidate_interval": null
+      },
+      {
+        "sample_index": 2,
+        "timestamp_ms": 5333.333,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 2
+        },
+        "model_call_seq": 3,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 3,
+          "reused_evidence_count": 0,
+          "remaining_calls": 9,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "initial_coverage",
+        "candidate_interval": null
+      },
+      {
+        "sample_index": 3,
+        "timestamp_ms": 7958.333,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 3
+        },
+        "model_call_seq": 4,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 4,
+          "reused_evidence_count": 0,
+          "remaining_calls": 8,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "initial_coverage",
+        "candidate_interval": null
+      }
+    ],
+    "analyzed_timestamps": [
+      0.0,
+      2666.667,
+      5333.333,
+      7958.333
+    ],
+    "skipped_duplicate_timestamps": [],
+    "stop_reasons": [
+      "no_refinable_interval"
+    ],
+    "resource_guard": {
+      "blocked": false
+    },
+    "resource_blocked": false,
+    "timing": {
+      "extraction_ms": 1.041,
+      "analysis_ms": 0.0,
+      "aggregation_ms": 0.096,
+      "total_ms": 92.071
+    }
+  },
+  "temporal_evidence": {
+    "first_confirmed_observed_ms": 0.0,
+    "last_confirmed_observed_ms": 7958.333,
+    "confirmed_sample_count": 4,
+    "class_counts": {
+      "confirmed": 4,
+      "not_found": 0,
+      "abstained": 0,
+      "low_confidence": 0,
+      "failed": 0
+    },
+    "analyzed_sample_count": 4,
+    "analyzed_ratio": 1.0,
+    "state_transitions": [],
+    "state_transition_count": 0,
+    "boundary_uncertainty": {
+      "target_ms": 500,
+      "max_ms": null,
+      "min_ms": null,
+      "target_precision_reached": true,
+      "residual_uncertainty_ms": null
+    },
+    "evidence_supported_segments": [
+      {
+        "start_ms": 0.0,
+        "end_ms": 7958.333,
+        "state_class": "confirmed",
+        "sample_count": 4,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      }
+    ],
+    "unconfirmed_intervals": [],
+    "stopped_by_budget": false,
+    "stop_reasons": [
+      "no_refinable_interval"
+    ],
+    "actual_model_calls": 4,
+    "semantics": {
+      "nature": "sampling_evidence_supported_temporal_conclusion",
+      "is_not_continuous_tracking_truth": true,
+      "first_confirmed_semantics": "first_confirmed_observed_ms 是首个被观察为 confirmed 的采样时间，不等于目标真实首次进入时间",
+      "last_confirmed_semantics": "last_confirmed_observed_ms 是最后一个被观察为 confirmed 的采样时间，不等于目标真实离开时间",
+      "no_continuity_assertion": "两个 confirmed 采样点之间不得自动断言目标连续存在；采样点之间的时间只有“未采样/未知”，没有连续性事实",
+      "boundary_semantics": "状态变化只能定位到左右相邻采样点形成的时间范围 [left_ms, right_ms]，uncertainty_width_ms = right_ms - left_ms，不得伪造精确瞬间",
+      "no_inference_collapse": "abstained / low_confidence / failed 独立计数，不得折算为 not_found；not_found 仅表示确定性负面结论",
+      "forbidden_capabilities": "不做跨帧身份一致性、不做跨摄像头实例关联、不输出物体运动路径；本功能不是 ReID、不是目标跟踪器、不是实时跟踪"
+    },
+    "coverage": {
+      "max_adjacent_sampling_gap_ms_initial": 2666.667,
+      "max_adjacent_sampling_gap_ms_final": 2666.667,
+      "coverage_gap_target_ms": null,
+      "coverage_calls": 0,
+      "coverage_call_reserve": null,
+      "underobserved_intervals": null,
+      "arbitrary_short_event_detection_guaranteed": false,
+      "events_shorter_than_max_sampling_gap_may_be_missed": true,
+      "coverage_statement": "覆盖探索只保证不存在宽度超过最大相邻采样间隔的完全未观测时间窗口；不保证事件被视觉模型正确判定，不保证任意短事件必检，不表示采样点之间目标连续存在"
+    }
+  },
+  "video_metadata": {
+    "fps": 24.0,
+    "frame_count": 192,
+    "width": 640,
+    "height": 360,
+    "duration_ms": 8000.0
+  },
+  "backend": {
+    "vision_backend": "ollama",
+    "model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+    "analysis_logic": "scripts/analyze_image.py（任务 03 图片能力经 trace_video.analyze_frame 原样复用，未重写提示词体系）",
+    "frame_extraction": "scripts/extract_frames.py（opencv，仅作底层抽帧工具）",
+    "adaptive_sampling": "scripts/adaptive_sampler.py（任务 16 纯逻辑：规划/预算/provenance/时序证据）",
+    "resource_guard": {
+      "blocked": false
+    },
+    "resource_blocked": false
+  },
+  "warnings": [],
+  "generated_at": "2026-09-22T12:02:23.678375+00:00"
+}

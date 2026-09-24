@@ -1,0 +1,2649 @@
+{
+  "schema_version": "1.0.0",
+  "task": "task-18-three-arm-comparison",
+  "source_run": "deterministic-replay",
+  "run_status": "COMPLETED",
+  "run_status_note": "本 comparison 块为 deterministic replay 数据（构造证据回放，零模型调用，内容与首轮提交一致）。任务 18 总状态已完结：补跑轮经用户授权优雅停止 MiniMax-H3 服务族后（h3-shutdown-record.json；两轮阻塞历史保留于 resource-gate-rerun.json），真实 Qwen 三臂评测（287 次真实调用，real-qwen/comparison.json，pack verdict=TRADEOFF）与 DSH headless 自主会话（dsh-session/，离线评分 11/11）均已完成；replay 与 real 分别评分、分别给 verdict、不混合平均",
+  "resource_gate_all_passed": true,
+  "real_run_reference": {
+    "comparison": "artifacts/task-18/real-qwen/comparison.json",
+    "pack_verdict": "TRADEOFF",
+    "pairwise": {"coverage-vs-uniform": "TRADEOFF", "coverage-vs-adaptive": "TRADEOFF", "adaptive-vs-uniform": "TRADEOFF"},
+    "actual_model_calls_total": 287
+  },
+  "comparison": {
+    "task": "task-18-three-arm-comparison",
+    "mode": "replay",
+    "generated_at": "2026-09-22T12:02:21.581311+00:00",
+    "input_nature": "constructed_fixture_replay",
+    "evidence_nature": "constructed_fixture_evidence",
+    "fairness": {
+      "same_video": true,
+      "same_target_query": "红色正方形",
+      "same_model": "构造证据生成器（replay，非模型）",
+      "same_status_rules": "同一 trace_temporal.py 代码路径与 frame_class 分类规则",
+      "same_ground_truth": "artifacts/task-18/contracts/ground-truth/（冻结）",
+      "same_scorer": "scripts/score_temporal_ground_truth.py（任务 17 冻结）+ scripts/task18_scorer_adapter.py（内存扩展策略白名单）",
+      "same_timeout_s": 300,
+      "execution_order": "场景按预注册 scenario_order；场景内臂顺序 uniform→adaptive→coverage",
+      "no_single_side_retry": true,
+      "no_sample_removal": true,
+      "ground_truth_not_modified_after_results": true,
+      "tier3_untouched": true
+    },
+    "scenarios": {
+      "present-throughout": {
+        "fixture": "fixture-present-throughout.mp4",
+        "budget": 12,
+        "category": "目标全程存在/无状态转换",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/present-throughout/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 12,
+                "not_found": 0,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.1,
+              "pipeline_total_ms": 96.287
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/present-throughout/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 4,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 4,
+                "not_found": 0,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.078,
+              "pipeline_total_ms": 76.104
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/present-throughout/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 7,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 7,
+                "not_found": 0,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.092,
+              "pipeline_total_ms": 90.143
+            }
+          }
+        }
+      },
+      "appear-midway": {
+        "fixture": "fixture-appear-midway.mp4",
+        "budget": 12,
+        "category": "中途出现",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/appear-midway/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 7,
+                "not_found": 5,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 1,
+              "state_transitions": [
+                {
+                  "left_ms": 2791.667,
+                  "right_ms": 3500.0,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 708.333
+                }
+              ],
+              "max_uncertainty_width_ms": 708.333,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.09,
+              "pipeline_total_ms": 88.295
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/appear-midway/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 7,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 3,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 4,
+                "not_found": 3,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 1,
+              "state_transitions": [
+                {
+                  "left_ms": 3000.0,
+                  "right_ms": 3333.333,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 333.333
+                }
+              ],
+              "max_uncertainty_width_ms": 333.333,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.106,
+              "pipeline_total_ms": 104.294
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/appear-midway/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 9,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 2,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 5,
+                "not_found": 4,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 1,
+              "state_transitions": [
+                {
+                  "left_ms": 3000.0,
+                  "right_ms": 3333.333,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 333.333
+                }
+              ],
+              "max_uncertainty_width_ms": 333.333,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.078,
+              "pipeline_total_ms": 75.955
+            }
+          }
+        }
+      },
+      "disappear-midway": {
+        "fixture": "fixture-disappear-midway.mp4",
+        "budget": 12,
+        "category": "中途消失",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/disappear-midway/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 7,
+                "not_found": 5,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 1,
+              "state_transitions": [
+                {
+                  "left_ms": 4208.333,
+                  "right_ms": 4916.667,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 708.334
+                }
+              ],
+              "max_uncertainty_width_ms": 708.334,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.081,
+              "pipeline_total_ms": 79.459
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/disappear-midway/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 7,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 3,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 4,
+                "not_found": 3,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 1,
+              "state_transitions": [
+                {
+                  "left_ms": 4666.667,
+                  "right_ms": 5000.0,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 333.333
+                }
+              ],
+              "max_uncertainty_width_ms": 333.333,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.084,
+              "pipeline_total_ms": 82.228
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/disappear-midway/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 9,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 2,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 5,
+                "not_found": 4,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 1,
+              "state_transitions": [
+                {
+                  "left_ms": 4666.667,
+                  "right_ms": 5000.0,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 333.333
+                }
+              ],
+              "max_uncertainty_width_ms": 333.333,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.123,
+              "pipeline_total_ms": 121.217
+            }
+          }
+        }
+      },
+      "reappear": {
+        "fixture": "fixture-reappear.mp4",
+        "budget": 12,
+        "category": "出现—消失—再次出现",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/reappear/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 6,
+                "not_found": 6,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 3,
+              "state_transitions": [
+                {
+                  "left_ms": 1416.667,
+                  "right_ms": 2083.333,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 666.666
+                },
+                {
+                  "left_ms": 3500.0,
+                  "right_ms": 4208.333,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 708.333
+                },
+                {
+                  "left_ms": 5583.333,
+                  "right_ms": 6291.667,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 708.334
+                }
+              ],
+              "max_uncertainty_width_ms": 708.334,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.082,
+              "pipeline_total_ms": 79.723
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/reappear/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 8,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.333,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "budget_exhausted"
+              ],
+              "class_counts": {
+                "confirmed": 6,
+                "not_found": 6,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 3,
+              "state_transitions": [
+                {
+                  "left_ms": 1666.667,
+                  "right_ms": 2000.0,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 333.333
+                },
+                {
+                  "left_ms": 3666.667,
+                  "right_ms": 4000.0,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 333.333
+                },
+                {
+                  "left_ms": 5958.333,
+                  "right_ms": 6625.0,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 666.667
+                }
+              ],
+              "max_uncertainty_width_ms": 666.667,
+              "target_precision_reached": false,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.135,
+              "pipeline_total_ms": 132.659
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/reappear/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 5,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.333,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "budget_exhausted"
+              ],
+              "class_counts": {
+                "confirmed": 6,
+                "not_found": 6,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 3,
+              "state_transitions": [
+                {
+                  "left_ms": 1666.667,
+                  "right_ms": 2000.0,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 333.333
+                },
+                {
+                  "left_ms": 3666.667,
+                  "right_ms": 4000.0,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 333.333
+                },
+                {
+                  "left_ms": 5958.333,
+                  "right_ms": 6625.0,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 666.667
+                }
+              ],
+              "max_uncertainty_width_ms": 666.667,
+              "target_precision_reached": false,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.144,
+              "pipeline_total_ms": 141.971
+            }
+          }
+        }
+      },
+      "short-event-between-grid": {
+        "fixture": "fixture-short-event-between-grid.mp4",
+        "budget": 12,
+        "category": "coarse 初始网格之间的短 confirmed 事件",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-event-between-grid/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 1,
+                "not_found": 11,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 2,
+              "state_transitions": [
+                {
+                  "left_ms": 2791.667,
+                  "right_ms": 3500.0,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 708.333
+                },
+                {
+                  "left_ms": 3500.0,
+                  "right_ms": 4208.333,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 708.333
+                }
+              ],
+              "max_uncertainty_width_ms": 708.333,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.086,
+              "pipeline_total_ms": 83.672
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-event-between-grid/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 4,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 0,
+                "not_found": 4,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": false,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.076,
+              "pipeline_total_ms": 74.184
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-event-between-grid/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 11,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 4,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 2,
+                "not_found": 9,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 2,
+              "state_transitions": [
+                {
+                  "left_ms": 3333.333,
+                  "right_ms": 3666.667,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 333.334
+                },
+                {
+                  "left_ms": 4000.0,
+                  "right_ms": 4333.333,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 333.333
+                }
+              ],
+              "max_uncertainty_width_ms": 333.334,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.135,
+              "pipeline_total_ms": 132.413
+            }
+          }
+        }
+      },
+      "short-uncertain-between-grid": {
+        "fixture": "fixture-short-uncertain-between-grid.mp4",
+        "budget": 12,
+        "category": "coarse 初始网格之间的短 uncertain 区域",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-uncertain-between-grid/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 11,
+                "not_found": 0,
+                "abstained": 1,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 2,
+              "state_transitions": [
+                {
+                  "left_ms": 2791.667,
+                  "right_ms": 3500.0,
+                  "from_class": "confirmed",
+                  "to_class": "abstained",
+                  "uncertainty_width_ms": 708.333
+                },
+                {
+                  "left_ms": 3500.0,
+                  "right_ms": 4208.333,
+                  "from_class": "abstained",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 708.333
+                }
+              ],
+              "max_uncertainty_width_ms": 708.333,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.097,
+              "pipeline_total_ms": 94.866
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-uncertain-between-grid/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 4,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 4,
+                "not_found": 0,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.094,
+              "pipeline_total_ms": 92.071
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-uncertain-between-grid/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 11,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 4,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 9,
+                "not_found": 0,
+                "abstained": 2,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 2,
+              "state_transitions": [
+                {
+                  "left_ms": 3333.333,
+                  "right_ms": 3666.667,
+                  "from_class": "confirmed",
+                  "to_class": "abstained",
+                  "uncertainty_width_ms": 333.334
+                },
+                {
+                  "left_ms": 4000.0,
+                  "right_ms": 4333.333,
+                  "from_class": "abstained",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 333.333
+                }
+              ],
+              "max_uncertainty_width_ms": 333.334,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.137,
+              "pipeline_total_ms": 135.017
+            }
+          }
+        }
+      },
+      "twin-short-events": {
+        "fixture": "fixture-twin-short-events.mp4",
+        "budget": 12,
+        "category": "两个间隔较短的事件",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/twin-short-events/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 2,
+                "not_found": 10,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 4,
+              "state_transitions": [
+                {
+                  "left_ms": 1416.667,
+                  "right_ms": 2083.333,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 666.666
+                },
+                {
+                  "left_ms": 2083.333,
+                  "right_ms": 2791.667,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 708.334
+                },
+                {
+                  "left_ms": 2791.667,
+                  "right_ms": 3500.0,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 708.333
+                },
+                {
+                  "left_ms": 3500.0,
+                  "right_ms": 4208.333,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 708.333
+                }
+              ],
+              "max_uncertainty_width_ms": 708.334,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.086,
+              "pipeline_total_ms": 84.372
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/twin-short-events/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 4,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 0,
+                "not_found": 4,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": false,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.081,
+              "pipeline_total_ms": 79.087
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/twin-short-events/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 7,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 0,
+                "not_found": 7,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": false,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.107,
+              "pipeline_total_ms": 104.922
+            }
+          }
+        }
+      },
+      "absent-throughout": {
+        "fixture": "fixture-absent-throughout.mp4",
+        "budget": 12,
+        "category": "无目标/无状态转换",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/absent-throughout/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 0,
+                "not_found": 12,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": false,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.078,
+              "pipeline_total_ms": 75.286
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/absent-throughout/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 4,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 0,
+                "not_found": 4,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": false,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.088,
+              "pipeline_total_ms": 85.818
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/absent-throughout/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 7,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 0,
+                "not_found": 7,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": false,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.066,
+              "pipeline_total_ms": 64.454
+            }
+          }
+        }
+      },
+      "short-event-phase-b": {
+        "fixture": "fixture-short-event-phase-b.mp4",
+        "budget": 12,
+        "category": "相位移动的短 confirmed 事件（对抗样本）",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-event-phase-b/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 1,
+                "not_found": 11,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 2,
+              "state_transitions": [
+                {
+                  "left_ms": 5583.333,
+                  "right_ms": 6291.667,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 708.334
+                },
+                {
+                  "left_ms": 6291.667,
+                  "right_ms": 7000.0,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 708.333
+                }
+              ],
+              "max_uncertainty_width_ms": 708.334,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.09,
+              "pipeline_total_ms": 87.353
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-event-phase-b/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 4,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 0,
+                "not_found": 4,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": false,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.078,
+              "pipeline_total_ms": 75.483
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-event-phase-b/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 11,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 4,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 2,
+                "not_found": 9,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 2,
+              "state_transitions": [
+                {
+                  "left_ms": 5958.333,
+                  "right_ms": 6291.667,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 333.334
+                },
+                {
+                  "left_ms": 6625.0,
+                  "right_ms": 6958.333,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 333.333
+                }
+              ],
+              "max_uncertainty_width_ms": 333.334,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.148,
+              "pipeline_total_ms": 145.487
+            }
+          }
+        }
+      },
+      "short-uncertain-phase-b": {
+        "fixture": "fixture-short-uncertain-phase-b.mp4",
+        "budget": 12,
+        "category": "相位移动的短 uncertain 区域（对抗样本）",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-uncertain-phase-b/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 12,
+              "configured_budget": 12,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 12,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 708.334,
+              "max_adjacent_sampling_gap_ms_final": 708.334,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 11,
+                "not_found": 0,
+                "abstained": 1,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 2,
+              "state_transitions": [
+                {
+                  "left_ms": 5583.333,
+                  "right_ms": 6291.667,
+                  "from_class": "confirmed",
+                  "to_class": "abstained",
+                  "uncertainty_width_ms": 708.334
+                },
+                {
+                  "left_ms": 6291.667,
+                  "right_ms": 7000.0,
+                  "from_class": "abstained",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 708.333
+                }
+              ],
+              "max_uncertainty_width_ms": 708.334,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.081,
+              "pipeline_total_ms": 79.044
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-uncertain-phase-b/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 4,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2666.667,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 4,
+                "not_found": 0,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 0,
+              "state_transitions": [],
+              "max_uncertainty_width_ms": null,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.073,
+              "pipeline_total_ms": 71.403
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/short-uncertain-phase-b/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 11,
+              "configured_budget": 12,
+              "budget_exhausted": false,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 3,
+              "boundary_refinement_calls": 4,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 1333.334,
+              "underobserved_intervals": [],
+              "stop_reasons": [
+                "coverage_gap_target_reached",
+                "no_refinable_interval"
+              ],
+              "class_counts": {
+                "confirmed": 9,
+                "not_found": 0,
+                "abstained": 2,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 2,
+              "state_transitions": [
+                {
+                  "left_ms": 5958.333,
+                  "right_ms": 6291.667,
+                  "from_class": "confirmed",
+                  "to_class": "abstained",
+                  "uncertainty_width_ms": 333.334
+                },
+                {
+                  "left_ms": 6625.0,
+                  "right_ms": 6958.333,
+                  "from_class": "abstained",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 333.333
+                }
+              ],
+              "max_uncertainty_width_ms": 333.334,
+              "target_precision_reached": true,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.124,
+              "pipeline_total_ms": 122.44
+            }
+          }
+        }
+      },
+      "reappear-tight-budget": {
+        "fixture": "fixture-reappear.mp4",
+        "budget": 6,
+        "category": "预算不足以同时完成覆盖与全部边界细化",
+        "arms": {
+          "uniform": {
+            "artifacts_dir": "artifacts/task-18/deterministic/reappear-tight-budget/uniform",
+            "metrics": {
+              "strategy": "uniform",
+              "final_status": "completed",
+              "actual_model_calls": 6,
+              "configured_budget": 6,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 6,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 4500.0,
+              "max_adjacent_sampling_gap_ms_final": 4500.0,
+              "underobserved_intervals": null,
+              "stop_reasons": [],
+              "class_counts": {
+                "confirmed": 3,
+                "not_found": 3,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 1,
+              "state_transitions": [
+                {
+                  "left_ms": 1416.667,
+                  "right_ms": 2083.333,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 666.666
+                }
+              ],
+              "max_uncertainty_width_ms": 666.666,
+              "target_precision_reached": null,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.038,
+              "pipeline_total_ms": 36.153
+            }
+          },
+          "adaptive": {
+            "artifacts_dir": "artifacts/task-18/deterministic/reappear-tight-budget/adaptive",
+            "metrics": {
+              "strategy": "adaptive_coarse_to_fine",
+              "final_status": "completed",
+              "actual_model_calls": 6,
+              "configured_budget": 6,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 0,
+              "boundary_refinement_calls": 2,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2625.0,
+              "underobserved_intervals": null,
+              "stop_reasons": [
+                "budget_exhausted"
+              ],
+              "class_counts": {
+                "confirmed": 4,
+                "not_found": 2,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 3,
+              "state_transitions": [
+                {
+                  "left_ms": 1333.333,
+                  "right_ms": 2666.667,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 1333.334
+                },
+                {
+                  "left_ms": 2666.667,
+                  "right_ms": 4000.0,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 1333.333
+                },
+                {
+                  "left_ms": 5333.333,
+                  "right_ms": 7958.333,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 2625.0
+                }
+              ],
+              "max_uncertainty_width_ms": 2625.0,
+              "target_precision_reached": false,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.098,
+              "pipeline_total_ms": 96.505
+            }
+          },
+          "coverage": {
+            "artifacts_dir": "artifacts/task-18/deterministic/reappear-tight-budget/coverage",
+            "metrics": {
+              "strategy": "coverage_aware_adaptive",
+              "final_status": "completed",
+              "actual_model_calls": 6,
+              "configured_budget": 6,
+              "budget_exhausted": true,
+              "initial_coverage_calls": 4,
+              "coverage_exploration_calls": 2,
+              "boundary_refinement_calls": 0,
+              "max_adjacent_sampling_gap_ms_initial": 2666.667,
+              "max_adjacent_sampling_gap_ms_final": 2625.0,
+              "underobserved_intervals": [
+                {
+                  "left_ms": 5333.333,
+                  "right_ms": 7958.333,
+                  "width_ms": 2625.0
+                }
+              ],
+              "stop_reasons": [
+                "budget_exhausted"
+              ],
+              "class_counts": {
+                "confirmed": 4,
+                "not_found": 2,
+                "abstained": 0,
+                "low_confidence": 0,
+                "failed": 0
+              },
+              "state_transition_count": 3,
+              "state_transitions": [
+                {
+                  "left_ms": 1333.333,
+                  "right_ms": 2666.667,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 1333.334
+                },
+                {
+                  "left_ms": 2666.667,
+                  "right_ms": 4000.0,
+                  "from_class": "not_found",
+                  "to_class": "confirmed",
+                  "uncertainty_width_ms": 1333.333
+                },
+                {
+                  "left_ms": 5333.333,
+                  "right_ms": 7958.333,
+                  "from_class": "confirmed",
+                  "to_class": "not_found",
+                  "uncertainty_width_ms": 2625.0
+                }
+              ],
+              "max_uncertainty_width_ms": 2625.0,
+              "target_precision_reached": false,
+              "evidence_nature": "constructed_fixture_evidence",
+              "report_has_temporal_disclaimer": true,
+              "report_has_coverage_statement": true,
+              "resource_blocked": false,
+              "wall_time_s": 0.099,
+              "pipeline_total_ms": 96.517
+            }
+          }
+        }
+      }
+    },
+    "pairwise": {
+      "coverage-vs-uniform": {
+        "baseline": "uniform",
+        "candidate": "coverage",
+        "fairness_gate": {
+          "conditions": [
+            {
+              "id": "same_sample_ids",
+              "passed": true,
+              "detail": "两臂样本集合与比较规格一致（10 个）"
+            },
+            {
+              "id": "same_media_hash",
+              "passed": true,
+              "detail": "两臂媒体文件与 manifest 一致"
+            },
+            {
+              "id": "same_target_query",
+              "passed": true,
+              "detail": "两臂 target_query 一致: ['红色正方形']"
+            },
+            {
+              "id": "same_ground_truth_version",
+              "passed": true,
+              "detail": "Ground Truth annotation_version 一致: ['1.0.0']"
+            },
+            {
+              "id": "same_model_and_backend",
+              "passed": true,
+              "detail": "模型/后端一致: ['modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest'] / ['ollama']"
+            },
+            {
+              "id": "same_call_budget",
+              "passed": true,
+              "detail": "两臂 configured_budget 一致: [12]"
+            },
+            {
+              "id": "no_single_side_retry_or_extra_context",
+              "passed": true,
+              "detail": "调用方声明（不可从产物观测）: no_single_side_retry=True, no_extra_context=True; 依据: 任务 18 预注册协议：相同场景/媒体/查询/Ground Truth/模型/预算/超时/分类规则；固定执行顺序；无单侧重试、无额外上下文、无人工修正、不删除失败场景"
+            },
+            {
+              "id": "prediction_input_complete",
+              "passed": true,
+              "detail": "两臂全部样本的预测输入完整且硬门通过"
+            },
+            {
+              "id": "same_evidence_nature",
+              "passed": true,
+              "detail": "两臂 evidence_nature 一致: ['constructed_fixture_evidence']"
+            },
+            {
+              "id": "ground_truth_not_revised_after_run",
+              "passed": true,
+              "detail": "全部样本 GT 无模型运行后修订"
+            }
+          ],
+          "all_passed": true
+        },
+        "metrics": {
+          "uniform": {
+            "aggregate": {
+              "correct_decisive": 118,
+              "incorrect_decisive": 0,
+              "abstention_on_determinate": 0,
+              "failed_on_determinate": 0,
+              "appropriate_abstention": 2,
+              "overclaim_on_uncertain": 0,
+              "failed_on_uncertain": 0,
+              "denominator_analyzed_samples": 120,
+              "gt_confirmed_segments": 13,
+              "covered_confirmed_events": 13,
+              "missed_confirmed_events": 0,
+              "gt_boundaries_total": 17,
+              "matched_boundaries": 17,
+              "missed_gt_boundaries": 0,
+              "unmatched_predicted_transitions": 0,
+              "within_tolerance_boundaries": 12,
+              "unreached_uncertain_segments": 0,
+              "actual_model_calls": 120,
+              "boundary_error_stats": {
+                "matched_count": 17,
+                "max_ms": 354.167,
+                "min_ms": 54.167,
+                "median_ms": 237.5,
+                "mean_ms": 210.049
+              }
+            }
+          },
+          "coverage": {
+            "aggregate": {
+              "correct_decisive": 91,
+              "incorrect_decisive": 0,
+              "abstention_on_determinate": 0,
+              "failed_on_determinate": 0,
+              "appropriate_abstention": 4,
+              "overclaim_on_uncertain": 0,
+              "failed_on_uncertain": 0,
+              "denominator_analyzed_samples": 95,
+              "gt_confirmed_segments": 13,
+              "covered_confirmed_events": 11,
+              "missed_confirmed_events": 2,
+              "gt_boundaries_total": 17,
+              "matched_boundaries": 13,
+              "missed_gt_boundaries": 4,
+              "unmatched_predicted_transitions": 0,
+              "within_tolerance_boundaries": 12,
+              "unreached_uncertain_segments": 0,
+              "actual_model_calls": 95,
+              "boundary_error_stats": {
+                "matched_count": 13,
+                "max_ms": 291.666,
+                "min_ms": 0.0,
+                "median_ms": 66.666,
+                "mean_ms": 76.282
+              }
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "TRADEOFF",
+          "reason": "有严格改进（['fewer_model_calls', 'smaller_max_boundary_error', 'smaller_mean_boundary_error']）但非回归条件被违反（['more_missed_confirmed_events', 'more_missed_gt_boundaries']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+          "reason_codes": [
+            "fewer_model_calls",
+            "smaller_max_boundary_error",
+            "smaller_mean_boundary_error",
+            "more_missed_confirmed_events",
+            "more_missed_gt_boundaries"
+          ],
+          "strict_improvements": [
+            "fewer_model_calls",
+            "smaller_max_boundary_error",
+            "smaller_mean_boundary_error"
+          ],
+          "regressions": [
+            "more_missed_confirmed_events",
+            "more_missed_gt_boundaries"
+          ],
+          "non_regression_conditions": {
+            "incorrect_decisive_not_worse": true,
+            "overclaim_on_uncertain_not_worse": true,
+            "missed_confirmed_events_not_worse": false,
+            "missed_gt_boundaries_not_worse": false,
+            "unreached_uncertain_not_worse": true
+          }
+        }
+      },
+      "coverage-vs-adaptive": {
+        "baseline": "adaptive",
+        "candidate": "coverage",
+        "fairness_gate": {
+          "conditions": [
+            {
+              "id": "same_sample_ids",
+              "passed": true,
+              "detail": "两臂样本集合与比较规格一致（10 个）"
+            },
+            {
+              "id": "same_media_hash",
+              "passed": true,
+              "detail": "两臂媒体文件与 manifest 一致"
+            },
+            {
+              "id": "same_target_query",
+              "passed": true,
+              "detail": "两臂 target_query 一致: ['红色正方形']"
+            },
+            {
+              "id": "same_ground_truth_version",
+              "passed": true,
+              "detail": "Ground Truth annotation_version 一致: ['1.0.0']"
+            },
+            {
+              "id": "same_model_and_backend",
+              "passed": true,
+              "detail": "模型/后端一致: ['modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest'] / ['ollama']"
+            },
+            {
+              "id": "same_call_budget",
+              "passed": true,
+              "detail": "两臂 configured_budget 一致: [12]"
+            },
+            {
+              "id": "no_single_side_retry_or_extra_context",
+              "passed": true,
+              "detail": "调用方声明（不可从产物观测）: no_single_side_retry=True, no_extra_context=True; 依据: 任务 18 预注册协议：相同场景/媒体/查询/Ground Truth/模型/预算/超时/分类规则；固定执行顺序；无单侧重试、无额外上下文、无人工修正、不删除失败场景"
+            },
+            {
+              "id": "prediction_input_complete",
+              "passed": true,
+              "detail": "两臂全部样本的预测输入完整且硬门通过"
+            },
+            {
+              "id": "same_evidence_nature",
+              "passed": true,
+              "detail": "两臂 evidence_nature 一致: ['constructed_fixture_evidence']"
+            },
+            {
+              "id": "ground_truth_not_revised_after_run",
+              "passed": true,
+              "detail": "全部样本 GT 无模型运行后修订"
+            }
+          ],
+          "all_passed": true
+        },
+        "metrics": {
+          "adaptive": {
+            "aggregate": {
+              "correct_decisive": 54,
+              "incorrect_decisive": 0,
+              "abstention_on_determinate": 0,
+              "failed_on_determinate": 0,
+              "appropriate_abstention": 0,
+              "overclaim_on_uncertain": 0,
+              "failed_on_uncertain": 0,
+              "denominator_analyzed_samples": 54,
+              "gt_confirmed_segments": 13,
+              "covered_confirmed_events": 9,
+              "missed_confirmed_events": 4,
+              "gt_boundaries_total": 17,
+              "matched_boundaries": 5,
+              "missed_gt_boundaries": 12,
+              "unmatched_predicted_transitions": 0,
+              "within_tolerance_boundaries": 4,
+              "unreached_uncertain_segments": 2,
+              "actual_model_calls": 54,
+              "boundary_error_stats": {
+                "matched_count": 5,
+                "max_ms": 291.666,
+                "min_ms": 33.333,
+                "median_ms": 166.667,
+                "mean_ms": 138.333
+              }
+            }
+          },
+          "coverage": {
+            "aggregate": {
+              "correct_decisive": 91,
+              "incorrect_decisive": 0,
+              "abstention_on_determinate": 0,
+              "failed_on_determinate": 0,
+              "appropriate_abstention": 4,
+              "overclaim_on_uncertain": 0,
+              "failed_on_uncertain": 0,
+              "denominator_analyzed_samples": 95,
+              "gt_confirmed_segments": 13,
+              "covered_confirmed_events": 11,
+              "missed_confirmed_events": 2,
+              "gt_boundaries_total": 17,
+              "matched_boundaries": 13,
+              "missed_gt_boundaries": 4,
+              "unmatched_predicted_transitions": 0,
+              "within_tolerance_boundaries": 12,
+              "unreached_uncertain_segments": 0,
+              "actual_model_calls": 95,
+              "boundary_error_stats": {
+                "matched_count": 13,
+                "max_ms": 291.666,
+                "min_ms": 0.0,
+                "median_ms": 66.666,
+                "mean_ms": 76.282
+              }
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "IMPROVEMENT",
+          "reason": "非回归条件全部满足，且至少一项严格更好（['smaller_mean_boundary_error', 'more_boundaries_within_tolerance']）",
+          "reason_codes": [
+            "smaller_mean_boundary_error",
+            "more_boundaries_within_tolerance"
+          ],
+          "strict_improvements": [
+            "smaller_mean_boundary_error",
+            "more_boundaries_within_tolerance"
+          ],
+          "regressions": [],
+          "non_regression_conditions": {
+            "incorrect_decisive_not_worse": true,
+            "overclaim_on_uncertain_not_worse": true,
+            "missed_confirmed_events_not_worse": true,
+            "missed_gt_boundaries_not_worse": true,
+            "unreached_uncertain_not_worse": true
+          }
+        }
+      },
+      "adaptive-vs-uniform": {
+        "baseline": "uniform",
+        "candidate": "adaptive",
+        "fairness_gate": {
+          "conditions": [
+            {
+              "id": "same_sample_ids",
+              "passed": true,
+              "detail": "两臂样本集合与比较规格一致（10 个）"
+            },
+            {
+              "id": "same_media_hash",
+              "passed": true,
+              "detail": "两臂媒体文件与 manifest 一致"
+            },
+            {
+              "id": "same_target_query",
+              "passed": true,
+              "detail": "两臂 target_query 一致: ['红色正方形']"
+            },
+            {
+              "id": "same_ground_truth_version",
+              "passed": true,
+              "detail": "Ground Truth annotation_version 一致: ['1.0.0']"
+            },
+            {
+              "id": "same_model_and_backend",
+              "passed": true,
+              "detail": "模型/后端一致: ['modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest'] / ['ollama']"
+            },
+            {
+              "id": "same_call_budget",
+              "passed": true,
+              "detail": "两臂 configured_budget 一致: [12]"
+            },
+            {
+              "id": "no_single_side_retry_or_extra_context",
+              "passed": true,
+              "detail": "调用方声明（不可从产物观测）: no_single_side_retry=True, no_extra_context=True; 依据: 任务 18 预注册协议：相同场景/媒体/查询/Ground Truth/模型/预算/超时/分类规则；固定执行顺序；无单侧重试、无额外上下文、无人工修正、不删除失败场景"
+            },
+            {
+              "id": "prediction_input_complete",
+              "passed": true,
+              "detail": "两臂全部样本的预测输入完整且硬门通过"
+            },
+            {
+              "id": "same_evidence_nature",
+              "passed": true,
+              "detail": "两臂 evidence_nature 一致: ['constructed_fixture_evidence']"
+            },
+            {
+              "id": "ground_truth_not_revised_after_run",
+              "passed": true,
+              "detail": "全部样本 GT 无模型运行后修订"
+            }
+          ],
+          "all_passed": true
+        },
+        "metrics": {
+          "uniform": {
+            "aggregate": {
+              "correct_decisive": 118,
+              "incorrect_decisive": 0,
+              "abstention_on_determinate": 0,
+              "failed_on_determinate": 0,
+              "appropriate_abstention": 2,
+              "overclaim_on_uncertain": 0,
+              "failed_on_uncertain": 0,
+              "denominator_analyzed_samples": 120,
+              "gt_confirmed_segments": 13,
+              "covered_confirmed_events": 13,
+              "missed_confirmed_events": 0,
+              "gt_boundaries_total": 17,
+              "matched_boundaries": 17,
+              "missed_gt_boundaries": 0,
+              "unmatched_predicted_transitions": 0,
+              "within_tolerance_boundaries": 12,
+              "unreached_uncertain_segments": 0,
+              "actual_model_calls": 120,
+              "boundary_error_stats": {
+                "matched_count": 17,
+                "max_ms": 354.167,
+                "min_ms": 54.167,
+                "median_ms": 237.5,
+                "mean_ms": 210.049
+              }
+            }
+          },
+          "adaptive": {
+            "aggregate": {
+              "correct_decisive": 54,
+              "incorrect_decisive": 0,
+              "abstention_on_determinate": 0,
+              "failed_on_determinate": 0,
+              "appropriate_abstention": 0,
+              "overclaim_on_uncertain": 0,
+              "failed_on_uncertain": 0,
+              "denominator_analyzed_samples": 54,
+              "gt_confirmed_segments": 13,
+              "covered_confirmed_events": 9,
+              "missed_confirmed_events": 4,
+              "gt_boundaries_total": 17,
+              "matched_boundaries": 5,
+              "missed_gt_boundaries": 12,
+              "unmatched_predicted_transitions": 0,
+              "within_tolerance_boundaries": 4,
+              "unreached_uncertain_segments": 2,
+              "actual_model_calls": 54,
+              "boundary_error_stats": {
+                "matched_count": 5,
+                "max_ms": 291.666,
+                "min_ms": 33.333,
+                "median_ms": 166.667,
+                "mean_ms": 138.333
+              }
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "TRADEOFF",
+          "reason": "有严格改进（['fewer_model_calls', 'smaller_max_boundary_error', 'smaller_mean_boundary_error']）但非回归条件被违反（['more_missed_confirmed_events', 'more_missed_gt_boundaries', 'more_unreached_uncertain_segments']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+          "reason_codes": [
+            "fewer_model_calls",
+            "smaller_max_boundary_error",
+            "smaller_mean_boundary_error",
+            "more_missed_confirmed_events",
+            "more_missed_gt_boundaries",
+            "more_unreached_uncertain_segments"
+          ],
+          "strict_improvements": [
+            "fewer_model_calls",
+            "smaller_max_boundary_error",
+            "smaller_mean_boundary_error"
+          ],
+          "regressions": [
+            "more_missed_confirmed_events",
+            "more_missed_gt_boundaries",
+            "more_unreached_uncertain_segments"
+          ],
+          "non_regression_conditions": {
+            "incorrect_decisive_not_worse": true,
+            "overclaim_on_uncertain_not_worse": true,
+            "missed_confirmed_events_not_worse": false,
+            "missed_gt_boundaries_not_worse": false,
+            "unreached_uncertain_not_worse": false
+          }
+        }
+      }
+    },
+    "pack_verdict": {
+      "verdict": "TRADEOFF",
+      "reason": "有严格改进（['smaller_mean_boundary_error_than_both']）但非回归条件被违反（['more_missed_confirmed_events_vs_uniform', 'more_missed_gt_boundaries_vs_uniform', 'larger_max_sampling_gap_vs_uniform']）：省调用/缩边界/缩间隔的同时增加了漏检、过度断言或未触达 uncertain",
+      "reason_codes": [
+        "smaller_mean_boundary_error_than_both",
+        "more_missed_confirmed_events_vs_uniform",
+        "more_missed_gt_boundaries_vs_uniform",
+        "larger_max_sampling_gap_vs_uniform"
+      ],
+      "strict_improvements": [
+        "smaller_mean_boundary_error_than_both"
+      ],
+      "regressions": [
+        "more_missed_confirmed_events_vs_uniform",
+        "more_missed_gt_boundaries_vs_uniform",
+        "larger_max_sampling_gap_vs_uniform"
+      ],
+      "non_regression_conditions": {
+        "coverage_vs_uniform": {
+          "incorrect_decisive_not_worse": true,
+          "overclaim_on_uncertain_not_worse": true,
+          "missed_confirmed_events_not_worse": false,
+          "missed_gt_boundaries_not_worse": false,
+          "unreached_uncertain_not_worse": true
+        },
+        "coverage_vs_adaptive": {
+          "incorrect_decisive_not_worse": true,
+          "overclaim_on_uncertain_not_worse": true,
+          "missed_confirmed_events_not_worse": true,
+          "missed_gt_boundaries_not_worse": true,
+          "unreached_uncertain_not_worse": true
+        }
+      }
+    },
+    "max_sampling_gap_ms": {
+      "adaptive": 2666.667,
+      "coverage": 1333.334,
+      "uniform": 708.334
+    },
+    "aggregate_metrics": {
+      "adaptive": {
+        "aggregate": {
+          "correct_decisive": 54,
+          "incorrect_decisive": 0,
+          "abstention_on_determinate": 0,
+          "failed_on_determinate": 0,
+          "appropriate_abstention": 0,
+          "overclaim_on_uncertain": 0,
+          "failed_on_uncertain": 0,
+          "denominator_analyzed_samples": 54,
+          "gt_confirmed_segments": 13,
+          "covered_confirmed_events": 9,
+          "missed_confirmed_events": 4,
+          "gt_boundaries_total": 17,
+          "matched_boundaries": 5,
+          "missed_gt_boundaries": 12,
+          "unmatched_predicted_transitions": 0,
+          "within_tolerance_boundaries": 4,
+          "unreached_uncertain_segments": 2,
+          "actual_model_calls": 54,
+          "boundary_error_stats": {
+            "matched_count": 5,
+            "max_ms": 291.666,
+            "min_ms": 33.333,
+            "median_ms": 166.667,
+            "mean_ms": 138.333
+          }
+        }
+      },
+      "coverage": {
+        "aggregate": {
+          "correct_decisive": 91,
+          "incorrect_decisive": 0,
+          "abstention_on_determinate": 0,
+          "failed_on_determinate": 0,
+          "appropriate_abstention": 4,
+          "overclaim_on_uncertain": 0,
+          "failed_on_uncertain": 0,
+          "denominator_analyzed_samples": 95,
+          "gt_confirmed_segments": 13,
+          "covered_confirmed_events": 11,
+          "missed_confirmed_events": 2,
+          "gt_boundaries_total": 17,
+          "matched_boundaries": 13,
+          "missed_gt_boundaries": 4,
+          "unmatched_predicted_transitions": 0,
+          "within_tolerance_boundaries": 12,
+          "unreached_uncertain_segments": 0,
+          "actual_model_calls": 95,
+          "boundary_error_stats": {
+            "matched_count": 13,
+            "max_ms": 291.666,
+            "min_ms": 0.0,
+            "median_ms": 66.666,
+            "mean_ms": 76.282
+          }
+        }
+      },
+      "uniform": {
+        "aggregate": {
+          "correct_decisive": 118,
+          "incorrect_decisive": 0,
+          "abstention_on_determinate": 0,
+          "failed_on_determinate": 0,
+          "appropriate_abstention": 2,
+          "overclaim_on_uncertain": 0,
+          "failed_on_uncertain": 0,
+          "denominator_analyzed_samples": 120,
+          "gt_confirmed_segments": 13,
+          "covered_confirmed_events": 13,
+          "missed_confirmed_events": 0,
+          "gt_boundaries_total": 17,
+          "matched_boundaries": 17,
+          "missed_gt_boundaries": 0,
+          "unmatched_predicted_transitions": 0,
+          "within_tolerance_boundaries": 12,
+          "unreached_uncertain_segments": 0,
+          "actual_model_calls": 120,
+          "boundary_error_stats": {
+            "matched_count": 17,
+            "max_ms": 354.167,
+            "min_ms": 54.167,
+            "median_ms": 237.5,
+            "mean_ms": 210.049
+          }
+        }
+      }
+    }
+  },
+  "pack_verdict": {
+    "verdict": "TRADEOFF",
+    "reason": "有严格改进（['smaller_mean_boundary_error_than_both']）但非回归条件被违反（['more_missed_confirmed_events_vs_uniform', 'more_missed_gt_boundaries_vs_uniform', 'larger_max_sampling_gap_vs_uniform']）：省调用/缩边界/缩间隔的同时增加了漏检、过度断言或未触达 uncertain",
+    "reason_codes": [
+      "smaller_mean_boundary_error_than_both",
+      "more_missed_confirmed_events_vs_uniform",
+      "more_missed_gt_boundaries_vs_uniform",
+      "larger_max_sampling_gap_vs_uniform"
+    ],
+    "strict_improvements": [
+      "smaller_mean_boundary_error_than_both"
+    ],
+    "regressions": [
+      "more_missed_confirmed_events_vs_uniform",
+      "more_missed_gt_boundaries_vs_uniform",
+      "larger_max_sampling_gap_vs_uniform"
+    ],
+    "non_regression_conditions": {
+      "coverage_vs_uniform": {
+        "incorrect_decisive_not_worse": true,
+        "overclaim_on_uncertain_not_worse": true,
+        "missed_confirmed_events_not_worse": false,
+        "missed_gt_boundaries_not_worse": false,
+        "unreached_uncertain_not_worse": true
+      },
+      "coverage_vs_adaptive": {
+        "incorrect_decisive_not_worse": true,
+        "overclaim_on_uncertain_not_worse": true,
+        "missed_confirmed_events_not_worse": true,
+        "missed_gt_boundaries_not_worse": true,
+        "unreached_uncertain_not_worse": true
+      }
+    }
+  },
+  "pairwise": {
+    "coverage-vs-uniform": {
+      "baseline": "uniform",
+      "candidate": "coverage",
+      "fairness_gate": {
+        "conditions": [
+          {
+            "id": "same_sample_ids",
+            "passed": true,
+            "detail": "两臂样本集合与比较规格一致（10 个）"
+          },
+          {
+            "id": "same_media_hash",
+            "passed": true,
+            "detail": "两臂媒体文件与 manifest 一致"
+          },
+          {
+            "id": "same_target_query",
+            "passed": true,
+            "detail": "两臂 target_query 一致: ['红色正方形']"
+          },
+          {
+            "id": "same_ground_truth_version",
+            "passed": true,
+            "detail": "Ground Truth annotation_version 一致: ['1.0.0']"
+          },
+          {
+            "id": "same_model_and_backend",
+            "passed": true,
+            "detail": "模型/后端一致: ['modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest'] / ['ollama']"
+          },
+          {
+            "id": "same_call_budget",
+            "passed": true,
+            "detail": "两臂 configured_budget 一致: [12]"
+          },
+          {
+            "id": "no_single_side_retry_or_extra_context",
+            "passed": true,
+            "detail": "调用方声明（不可从产物观测）: no_single_side_retry=True, no_extra_context=True; 依据: 任务 18 预注册协议：相同场景/媒体/查询/Ground Truth/模型/预算/超时/分类规则；固定执行顺序；无单侧重试、无额外上下文、无人工修正、不删除失败场景"
+          },
+          {
+            "id": "prediction_input_complete",
+            "passed": true,
+            "detail": "两臂全部样本的预测输入完整且硬门通过"
+          },
+          {
+            "id": "same_evidence_nature",
+            "passed": true,
+            "detail": "两臂 evidence_nature 一致: ['constructed_fixture_evidence']"
+          },
+          {
+            "id": "ground_truth_not_revised_after_run",
+            "passed": true,
+            "detail": "全部样本 GT 无模型运行后修订"
+          }
+        ],
+        "all_passed": true
+      },
+      "metrics": {
+        "uniform": {
+          "aggregate": {
+            "correct_decisive": 118,
+            "incorrect_decisive": 0,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 2,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 120,
+            "gt_confirmed_segments": 13,
+            "covered_confirmed_events": 13,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 17,
+            "matched_boundaries": 17,
+            "missed_gt_boundaries": 0,
+            "unmatched_predicted_transitions": 0,
+            "within_tolerance_boundaries": 12,
+            "unreached_uncertain_segments": 0,
+            "actual_model_calls": 120,
+            "boundary_error_stats": {
+              "matched_count": 17,
+              "max_ms": 354.167,
+              "min_ms": 54.167,
+              "median_ms": 237.5,
+              "mean_ms": 210.049
+            }
+          }
+        },
+        "coverage": {
+          "aggregate": {
+            "correct_decisive": 91,
+            "incorrect_decisive": 0,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 4,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 95,
+            "gt_confirmed_segments": 13,
+            "covered_confirmed_events": 11,
+            "missed_confirmed_events": 2,
+            "gt_boundaries_total": 17,
+            "matched_boundaries": 13,
+            "missed_gt_boundaries": 4,
+            "unmatched_predicted_transitions": 0,
+            "within_tolerance_boundaries": 12,
+            "unreached_uncertain_segments": 0,
+            "actual_model_calls": 95,
+            "boundary_error_stats": {
+              "matched_count": 13,
+              "max_ms": 291.666,
+              "min_ms": 0.0,
+              "median_ms": 66.666,
+              "mean_ms": 76.282
+            }
+          }
+        }
+      },
+      "verdict": {
+        "verdict": "TRADEOFF",
+        "reason": "有严格改进（['fewer_model_calls', 'smaller_max_boundary_error', 'smaller_mean_boundary_error']）但非回归条件被违反（['more_missed_confirmed_events', 'more_missed_gt_boundaries']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+        "reason_codes": [
+          "fewer_model_calls",
+          "smaller_max_boundary_error",
+          "smaller_mean_boundary_error",
+          "more_missed_confirmed_events",
+          "more_missed_gt_boundaries"
+        ],
+        "strict_improvements": [
+          "fewer_model_calls",
+          "smaller_max_boundary_error",
+          "smaller_mean_boundary_error"
+        ],
+        "regressions": [
+          "more_missed_confirmed_events",
+          "more_missed_gt_boundaries"
+        ],
+        "non_regression_conditions": {
+          "incorrect_decisive_not_worse": true,
+          "overclaim_on_uncertain_not_worse": true,
+          "missed_confirmed_events_not_worse": false,
+          "missed_gt_boundaries_not_worse": false,
+          "unreached_uncertain_not_worse": true
+        }
+      }
+    },
+    "coverage-vs-adaptive": {
+      "baseline": "adaptive",
+      "candidate": "coverage",
+      "fairness_gate": {
+        "conditions": [
+          {
+            "id": "same_sample_ids",
+            "passed": true,
+            "detail": "两臂样本集合与比较规格一致（10 个）"
+          },
+          {
+            "id": "same_media_hash",
+            "passed": true,
+            "detail": "两臂媒体文件与 manifest 一致"
+          },
+          {
+            "id": "same_target_query",
+            "passed": true,
+            "detail": "两臂 target_query 一致: ['红色正方形']"
+          },
+          {
+            "id": "same_ground_truth_version",
+            "passed": true,
+            "detail": "Ground Truth annotation_version 一致: ['1.0.0']"
+          },
+          {
+            "id": "same_model_and_backend",
+            "passed": true,
+            "detail": "模型/后端一致: ['modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest'] / ['ollama']"
+          },
+          {
+            "id": "same_call_budget",
+            "passed": true,
+            "detail": "两臂 configured_budget 一致: [12]"
+          },
+          {
+            "id": "no_single_side_retry_or_extra_context",
+            "passed": true,
+            "detail": "调用方声明（不可从产物观测）: no_single_side_retry=True, no_extra_context=True; 依据: 任务 18 预注册协议：相同场景/媒体/查询/Ground Truth/模型/预算/超时/分类规则；固定执行顺序；无单侧重试、无额外上下文、无人工修正、不删除失败场景"
+          },
+          {
+            "id": "prediction_input_complete",
+            "passed": true,
+            "detail": "两臂全部样本的预测输入完整且硬门通过"
+          },
+          {
+            "id": "same_evidence_nature",
+            "passed": true,
+            "detail": "两臂 evidence_nature 一致: ['constructed_fixture_evidence']"
+          },
+          {
+            "id": "ground_truth_not_revised_after_run",
+            "passed": true,
+            "detail": "全部样本 GT 无模型运行后修订"
+          }
+        ],
+        "all_passed": true
+      },
+      "metrics": {
+        "adaptive": {
+          "aggregate": {
+            "correct_decisive": 54,
+            "incorrect_decisive": 0,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 0,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 54,
+            "gt_confirmed_segments": 13,
+            "covered_confirmed_events": 9,
+            "missed_confirmed_events": 4,
+            "gt_boundaries_total": 17,
+            "matched_boundaries": 5,
+            "missed_gt_boundaries": 12,
+            "unmatched_predicted_transitions": 0,
+            "within_tolerance_boundaries": 4,
+            "unreached_uncertain_segments": 2,
+            "actual_model_calls": 54,
+            "boundary_error_stats": {
+              "matched_count": 5,
+              "max_ms": 291.666,
+              "min_ms": 33.333,
+              "median_ms": 166.667,
+              "mean_ms": 138.333
+            }
+          }
+        },
+        "coverage": {
+          "aggregate": {
+            "correct_decisive": 91,
+            "incorrect_decisive": 0,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 4,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 95,
+            "gt_confirmed_segments": 13,
+            "covered_confirmed_events": 11,
+            "missed_confirmed_events": 2,
+            "gt_boundaries_total": 17,
+            "matched_boundaries": 13,
+            "missed_gt_boundaries": 4,
+            "unmatched_predicted_transitions": 0,
+            "within_tolerance_boundaries": 12,
+            "unreached_uncertain_segments": 0,
+            "actual_model_calls": 95,
+            "boundary_error_stats": {
+              "matched_count": 13,
+              "max_ms": 291.666,
+              "min_ms": 0.0,
+              "median_ms": 66.666,
+              "mean_ms": 76.282
+            }
+          }
+        }
+      },
+      "verdict": {
+        "verdict": "IMPROVEMENT",
+        "reason": "非回归条件全部满足，且至少一项严格更好（['smaller_mean_boundary_error', 'more_boundaries_within_tolerance']）",
+        "reason_codes": [
+          "smaller_mean_boundary_error",
+          "more_boundaries_within_tolerance"
+        ],
+        "strict_improvements": [
+          "smaller_mean_boundary_error",
+          "more_boundaries_within_tolerance"
+        ],
+        "regressions": [],
+        "non_regression_conditions": {
+          "incorrect_decisive_not_worse": true,
+          "overclaim_on_uncertain_not_worse": true,
+          "missed_confirmed_events_not_worse": true,
+          "missed_gt_boundaries_not_worse": true,
+          "unreached_uncertain_not_worse": true
+        }
+      }
+    },
+    "adaptive-vs-uniform": {
+      "baseline": "uniform",
+      "candidate": "adaptive",
+      "fairness_gate": {
+        "conditions": [
+          {
+            "id": "same_sample_ids",
+            "passed": true,
+            "detail": "两臂样本集合与比较规格一致（10 个）"
+          },
+          {
+            "id": "same_media_hash",
+            "passed": true,
+            "detail": "两臂媒体文件与 manifest 一致"
+          },
+          {
+            "id": "same_target_query",
+            "passed": true,
+            "detail": "两臂 target_query 一致: ['红色正方形']"
+          },
+          {
+            "id": "same_ground_truth_version",
+            "passed": true,
+            "detail": "Ground Truth annotation_version 一致: ['1.0.0']"
+          },
+          {
+            "id": "same_model_and_backend",
+            "passed": true,
+            "detail": "模型/后端一致: ['modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest'] / ['ollama']"
+          },
+          {
+            "id": "same_call_budget",
+            "passed": true,
+            "detail": "两臂 configured_budget 一致: [12]"
+          },
+          {
+            "id": "no_single_side_retry_or_extra_context",
+            "passed": true,
+            "detail": "调用方声明（不可从产物观测）: no_single_side_retry=True, no_extra_context=True; 依据: 任务 18 预注册协议：相同场景/媒体/查询/Ground Truth/模型/预算/超时/分类规则；固定执行顺序；无单侧重试、无额外上下文、无人工修正、不删除失败场景"
+          },
+          {
+            "id": "prediction_input_complete",
+            "passed": true,
+            "detail": "两臂全部样本的预测输入完整且硬门通过"
+          },
+          {
+            "id": "same_evidence_nature",
+            "passed": true,
+            "detail": "两臂 evidence_nature 一致: ['constructed_fixture_evidence']"
+          },
+          {
+            "id": "ground_truth_not_revised_after_run",
+            "passed": true,
+            "detail": "全部样本 GT 无模型运行后修订"
+          }
+        ],
+        "all_passed": true
+      },
+      "metrics": {
+        "uniform": {
+          "aggregate": {
+            "correct_decisive": 118,
+            "incorrect_decisive": 0,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 2,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 120,
+            "gt_confirmed_segments": 13,
+            "covered_confirmed_events": 13,
+            "missed_confirmed_events": 0,
+            "gt_boundaries_total": 17,
+            "matched_boundaries": 17,
+            "missed_gt_boundaries": 0,
+            "unmatched_predicted_transitions": 0,
+            "within_tolerance_boundaries": 12,
+            "unreached_uncertain_segments": 0,
+            "actual_model_calls": 120,
+            "boundary_error_stats": {
+              "matched_count": 17,
+              "max_ms": 354.167,
+              "min_ms": 54.167,
+              "median_ms": 237.5,
+              "mean_ms": 210.049
+            }
+          }
+        },
+        "adaptive": {
+          "aggregate": {
+            "correct_decisive": 54,
+            "incorrect_decisive": 0,
+            "abstention_on_determinate": 0,
+            "failed_on_determinate": 0,
+            "appropriate_abstention": 0,
+            "overclaim_on_uncertain": 0,
+            "failed_on_uncertain": 0,
+            "denominator_analyzed_samples": 54,
+            "gt_confirmed_segments": 13,
+            "covered_confirmed_events": 9,
+            "missed_confirmed_events": 4,
+            "gt_boundaries_total": 17,
+            "matched_boundaries": 5,
+            "missed_gt_boundaries": 12,
+            "unmatched_predicted_transitions": 0,
+            "within_tolerance_boundaries": 4,
+            "unreached_uncertain_segments": 2,
+            "actual_model_calls": 54,
+            "boundary_error_stats": {
+              "matched_count": 5,
+              "max_ms": 291.666,
+              "min_ms": 33.333,
+              "median_ms": 166.667,
+              "mean_ms": 138.333
+            }
+          }
+        }
+      },
+      "verdict": {
+        "verdict": "TRADEOFF",
+        "reason": "有严格改进（['fewer_model_calls', 'smaller_max_boundary_error', 'smaller_mean_boundary_error']）但非回归条件被违反（['more_missed_confirmed_events', 'more_missed_gt_boundaries', 'more_unreached_uncertain_segments']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+        "reason_codes": [
+          "fewer_model_calls",
+          "smaller_max_boundary_error",
+          "smaller_mean_boundary_error",
+          "more_missed_confirmed_events",
+          "more_missed_gt_boundaries",
+          "more_unreached_uncertain_segments"
+        ],
+        "strict_improvements": [
+          "fewer_model_calls",
+          "smaller_max_boundary_error",
+          "smaller_mean_boundary_error"
+        ],
+        "regressions": [
+          "more_missed_confirmed_events",
+          "more_missed_gt_boundaries",
+          "more_unreached_uncertain_segments"
+        ],
+        "non_regression_conditions": {
+          "incorrect_decisive_not_worse": true,
+          "overclaim_on_uncertain_not_worse": true,
+          "missed_confirmed_events_not_worse": false,
+          "missed_gt_boundaries_not_worse": false,
+          "unreached_uncertain_not_worse": false
+        }
+      }
+    }
+  },
+  "max_sampling_gap_ms": {
+    "adaptive": 2666.667,
+    "coverage": 1333.334,
+    "uniform": 708.334
+  },
+  "no_extrapolation_statement": "技术 fixture 小样本 + 单次运行：不构成统计显著性，不得外推为真实仓储/园区准确率；deterministic replay 为构造证据回放（零模型调用），真实 Qwen 运行受模型非确定性影响；`completed`（execution_status）不等于语义正确；覆盖探索不保证发现任意短事件"
+}

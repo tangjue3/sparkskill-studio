@@ -1,0 +1,16 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "metrics": {
+      "overclaim_on_uncertain": {
+        "passed": 1,
+        "total": 1
+      },
+      "appropriate_abstention": {
+        "passed": 0,
+        "total": 1
+      }
+    }
+  }
+}

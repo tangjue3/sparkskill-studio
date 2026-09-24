@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task18-technical-fixtures",
+  "profile": "task18-technical-fixtures",
+  "created_at": "2026-09-22T11:27:13.916411+00:00",
+  "frozen_at": "2026-09-22T11:27:13.916411+00:00",
+  "samples": [
+    {
+      "sample_id": "present-throughout",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../../task-16/fixtures/videos/fixture-present-throughout.mp4",
+      "media_sha256": "f0f37098e966b337c3fb877e87d59bb4fae67d424a59b890f872dffa7a804b3a",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/present-throughout.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task16_fixtures.py",
+        "generation_params_ref": "artifacts/task-16/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-16/fixtures/fixtures.sha256.json",
+        "notes": "目标全程存在/无状态转换；持续正向 + 无状态变化（目标全程清晰存在；adaptive 应 0 次细化）"
+      }
+    },
+    {
+      "sample_id": "appear-midway",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../../task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "media_sha256": "37147666284b3481c9a4ea7b0236014e880fc96f74eadd168d1910ee9e94721f",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/appear-midway.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task16_fixtures.py",
+        "generation_params_ref": "artifacts/task-16/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-16/fixtures/fixtures.sha256.json",
+        "notes": "中途出现；中途出现（目标在 3200 ms 进入画面）"
+      }
+    },
+    {
+      "sample_id": "disappear-midway",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../../task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "media_sha256": "59a203c0ebff95d96f9d73e3429b60fa9de32ecdef019dfc86f7afdc5e945728",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/disappear-midway.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task16_fixtures.py",
+        "generation_params_ref": "artifacts/task-16/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-16/fixtures/fixtures.sha256.json",
+        "notes": "中途消失；中途消失（目标在 4800 ms 离开画面）"
+      }
+    },
+    {
+      "sample_id": "reappear",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../../task-16/fixtures/videos/fixture-reappear.mp4",
+      "media_sha256": "a298c6e36b61f4299cd09ee46bbf0b2999c6049bb71cb8a73856a7b1e9f7d0ca",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/reappear.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task16_fixtures.py",
+        "generation_params_ref": "artifacts/task-16/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-16/fixtures/fixtures.sha256.json",
+        "notes": "出现—消失—再次出现；出现、消失、再次出现（两次进入 + 两次离开）"
+      }
+    },
+    {
+      "sample_id": "short-event-between-grid",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../fixtures/videos/fixture-short-event-between-grid.mp4",
+      "media_sha256": "d9f194ff7ef2b5d3f52f9e98c90d77b9de2cc907639bd7adcdbb09ffb4a4d172",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/short-event-between-grid.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task18_fixtures.py",
+        "generation_params_ref": "artifacts/task-18/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-18/fixtures/fixtures.sha256.json",
+        "notes": "coarse 初始网格之间的短 confirmed 事件；coarse 初始网格之间的短 confirmed 事件（3500–4100 ms，落在 2666.667/5333.333 两个初始采样点之间；adaptive 无触发信号必然漏检）"
+      }
+    },
+    {
+      "sample_id": "short-uncertain-between-grid",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../fixtures/videos/fixture-short-uncertain-between-grid.mp4",
+      "media_sha256": "05b3fb405150b6fcd0c7c8191b3d09f46c524b0250d18e3e87ef57711f6f8aa3",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/short-uncertain-between-grid.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task18_fixtures.py",
+        "generation_params_ref": "artifacts/task-18/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-18/fixtures/fixtures.sha256.json",
+        "notes": "coarse 初始网格之间的短 uncertain 区域；coarse 初始网格之间的短 uncertain 区域（3500–4100 ms 低对比度，落在两个初始采样点之间；对应任务 17 量化的 adaptive 覆盖盲区）"
+      }
+    },
+    {
+      "sample_id": "twin-short-events",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../fixtures/videos/fixture-twin-short-events.mp4",
+      "media_sha256": "27a44ff7ac55f5d304eeaf0dc4ee6f9c51b541b55d1ae13303e807047ea68b7b",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/twin-short-events.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task18_fixtures.py",
+        "generation_params_ref": "artifacts/task-18/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-18/fixtures/fixtures.sha256.json",
+        "notes": "两个间隔较短的事件；两个间隔较短的事件（1600–2200 ms 与 3000–3600 ms，各 600ms，均落在 coarse 网格间隔内）"
+      }
+    },
+    {
+      "sample_id": "absent-throughout",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../fixtures/videos/fixture-absent-throughout.mp4",
+      "media_sha256": "77729bc7755b703f4fc6fff92da55266cdb1826f2d5cc03f00468408f2b72d9a",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/absent-throughout.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task18_fixtures.py",
+        "generation_params_ref": "artifacts/task-18/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-18/fixtures/fixtures.sha256.json",
+        "notes": "无目标/无状态转换；无目标/无状态转换（目标全程不存在；验证确定性负面与覆盖探索不产生虚假事件）"
+      }
+    },
+    {
+      "sample_id": "short-event-phase-b",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../fixtures/videos/fixture-short-event-phase-b.mp4",
+      "media_sha256": "d2bd059a75c0aa2f6bec0373c5d50fb591d2c20d56c09bbc752eb985c16aee5d",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/short-event-phase-b.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task18_fixtures.py",
+        "generation_params_ref": "artifacts/task-18/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-18/fixtures/fixtures.sha256.json",
+        "notes": "相位移动的短 confirmed 事件；相位移动的短 confirmed 事件（6200–6800 ms；与 short-event-between-grid 语义相同、时间相位不同，防止只对单一时间位置调参）"
+      }
+    },
+    {
+      "sample_id": "short-uncertain-phase-b",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../fixtures/videos/fixture-short-uncertain-phase-b.mp4",
+      "media_sha256": "ba3b9e928d4c839dcf6471f3993348906cf2df55fa7856b0bfb9f1cb84e710cb",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/short-uncertain-phase-b.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task18_fixtures.py",
+        "generation_params_ref": "artifacts/task-18/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-18/fixtures/fixtures.sha256.json",
+        "notes": "相位移动的短 uncertain 区域；相位移动的短 uncertain 区域（6200–6800 ms 低对比度；与 short-uncertain-between-grid 语义相同、时间相位不同）"
+      }
+    },
+    {
+      "sample_id": "reappear-tight-budget",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "../../task-16/fixtures/videos/fixture-reappear.mp4",
+      "media_sha256": "a298c6e36b61f4299cd09ee46bbf0b2999c6049bb71cb8a73856a7b1e9f7d0ca",
+      "media_duration_ms": 8000,
+      "data_card": "data-cards/reappear-tight-budget.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "scripts/generate_task16_fixtures.py",
+        "generation_params_ref": "artifacts/task-16/fixtures/ground-truth.json#generation_params",
+        "freeze_record_ref": "artifacts/task-16/fixtures/fixtures.sha256.json",
+        "notes": "预算不足以同时完成覆盖与全部边界细化（三臂统一预算 6）；出现、消失、再次出现（两次进入 + 两次离开）"
+      }
+    }
+  ]
+}

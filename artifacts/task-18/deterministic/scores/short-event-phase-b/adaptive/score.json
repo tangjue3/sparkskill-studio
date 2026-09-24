@@ -1,0 +1,241 @@
+{
+  "schema_version": "1.0.0",
+  "scorer": "score_temporal_ground_truth.py",
+  "scorer_version": "1.0.0",
+  "pack_id": "task18-technical-fixtures",
+  "sample_id": "short-event-phase-b",
+  "arm_id": "adaptive",
+  "split": "dev",
+  "source_type": "technical_fixture",
+  "execution_status": "completed",
+  "semantic_score_status": "scored",
+  "validation": {
+    "hard_gates": [
+      {
+        "id": "G1-sample-identity",
+        "passed": true,
+        "detail": "evidence.target_query 存在且非空"
+      },
+      {
+        "id": "G2-media-hash-freeze",
+        "passed": true,
+        "detail": "媒体 SHA-256 三方一致（manifest/GT/实际文件）: d2bd059a75c0aa2f…"
+      },
+      {
+        "id": "G3-target-query",
+        "passed": true,
+        "detail": "target_query 三方一致（manifest/GT/evidence）"
+      },
+      {
+        "id": "G4-media-duration",
+        "passed": true,
+        "detail": "媒体时长一致（manifest/GT/evidence）: 8000.0 ms"
+      },
+      {
+        "id": "G5-ground-truth-timeline",
+        "passed": true,
+        "detail": "GT 时间线合法（排序/覆盖/不重叠/不留隙/正长度/相邻合并）"
+      },
+      {
+        "id": "G6-prediction-timestamps-in-range",
+        "passed": true,
+        "detail": "全部 4 个采样时间戳位于 [0, 8000.0] ms"
+      },
+      {
+        "id": "G7-provenance-self-consistency",
+        "passed": true,
+        "detail": "provenance 自洽（调用数=新鲜调用=时间线条目；预算未超；时间戳集合一致；五类计数复算一致）"
+      },
+      {
+        "id": "G8-prediction-shape",
+        "passed": true,
+        "detail": "单来源时序证据文档（顶层 timeline）"
+      }
+    ],
+    "all_passed": true,
+    "errors": []
+  },
+  "prediction_summary": {
+    "strategy": "adaptive_coarse_to_fine",
+    "evidence_nature": "constructed_fixture_evidence",
+    "input_nature": "technical_fixture",
+    "sampled_frames": 4,
+    "duration_ms": 8000.0,
+    "target_query": "红色正方形",
+    "backend_model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+    "vision_backend": "ollama"
+  },
+  "known_limitations": [
+    "completed（execution_status）不等于语义正确；语义正确只由七类计数定义",
+    "时序结论是采样证据支持的结论，不是连续跟踪真值；采样点之间不断言连续存在",
+    "单次运行 + 小样本：不构成统计显著性，不得外推",
+    "technical_fixture 为合成技术测试输入；不得外推为真实仓储/园区准确率",
+    "构造证据（非模型输出）：调用数为分析调用计数，不是真实视觉调用"
+  ],
+  "input_hashes": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/short-event-phase-b.temporal-ground-truth.json",
+      "sha256": "1892b5a84e35aeb48d927f647c97b1820b822fefa9bbb464553f99a983cc1c26"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/short-event-phase-b/adaptive/temporal-evidence.json",
+      "sha256": "a2093760530d2a2cce2bc63f3a07192b7385fb41807ffdffac1b4b5a30cadb89"
+    },
+    "media": {
+      "path": "../fixtures/videos/fixture-short-event-phase-b.mp4",
+      "sha256": "d2bd059a75c0aa2f6bec0373c5d50fb591d2c20d56c09bbc752eb985c16aee5d"
+    }
+  },
+  "sample_point_scores": {
+    "denominator_analyzed_samples": 4,
+    "denominator_determinate_samples": 4,
+    "denominator_uncertain_samples": 0,
+    "metrics": {
+      "correct_decisive": {
+        "passed": 4,
+        "total": 4,
+        "ratio": 1.0
+      },
+      "incorrect_decisive": {
+        "passed": 0,
+        "total": 4,
+        "ratio": 0.0
+      },
+      "abstention_on_determinate": {
+        "passed": 0,
+        "total": 4,
+        "ratio": 0.0
+      },
+      "failed_on_determinate": {
+        "passed": 0,
+        "total": 4,
+        "ratio": 0.0
+      },
+      "appropriate_abstention": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      },
+      "overclaim_on_uncertain": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      },
+      "failed_on_uncertain": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      }
+    },
+    "per_sample_rows": [
+      {
+        "timestamp_ms": 0.0,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 2666.667,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 5333.333,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 7958.333,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      }
+    ]
+  },
+  "event_scores": {
+    "gt_confirmed_segments": 1,
+    "covered_confirmed_events": 0,
+    "missed_confirmed_events": 1,
+    "gt_not_found_segments": 2,
+    "covered_not_found_segments": 2,
+    "missed_not_found_segments": 0,
+    "gt_uncertain_segments": 0,
+    "uncertain_segments": [],
+    "unreached_uncertain_segments": 0
+  },
+  "boundary_scores": {
+    "gt_boundaries_total": 2,
+    "matched_boundaries": 0,
+    "missed_gt_boundaries": 2,
+    "unmatched_predicted_transitions": 0,
+    "within_tolerance_boundaries": 0,
+    "boundary_tolerance_ms": 250.0,
+    "boundary_error_stats": {
+      "matched_count": 0,
+      "max_ms": "not_applicable",
+      "min_ms": "not_applicable",
+      "median_ms": "not_applicable",
+      "mean_ms": "not_applicable"
+    },
+    "matched_boundary_details": [],
+    "gt_boundaries": [
+      {
+        "at_ms": 6200.0,
+        "from_state": "not_found",
+        "to_state": "confirmed"
+      },
+      {
+        "at_ms": 6800.0,
+        "from_state": "confirmed",
+        "to_state": "not_found"
+      }
+    ],
+    "predicted_transitions_total": 0,
+    "matched_gt_boundary_times": [],
+    "unmatched_predicted_transition_indices": []
+  },
+  "efficiency": {
+    "configured_budget": 12,
+    "actual_model_calls": 4,
+    "unique_analyzed_timestamps": 4,
+    "reused_evidence_count": 0,
+    "duplicate_skips": 0,
+    "budget_exhausted": false,
+    "stop_reasons": [
+      "no_refinable_interval"
+    ],
+    "timing": {
+      "extraction_ms": 1.104,
+      "analysis_ms": 0.0,
+      "aggregation_ms": 0.086,
+      "total_ms": 75.483
+    },
+    "calls_per_correct_decisive_sample": 1.0,
+    "calls_per_covered_confirmed_event": "not_applicable",
+    "calls_per_matched_boundary": "not_applicable",
+    "caveat": "效率指标不抵消语义错误：调用少不等于效果好"
+  },
+  "ground_truth": {
+    "included": true,
+    "gt_sha256": "1892b5a84e35aeb48d927f647c97b1820b822fefa9bbb464553f99a983cc1c26",
+    "annotation_version": "1.0.0",
+    "boundary_tolerance_ms": 250.0,
+    "segment_count": 3,
+    "states": [
+      "not_found",
+      "confirmed",
+      "not_found"
+    ],
+    "boundary_count": 2
+  }
+}

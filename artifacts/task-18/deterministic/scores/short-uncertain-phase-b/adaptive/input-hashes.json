@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "short-uncertain-phase-b",
+  "arm_id": "adaptive",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/short-uncertain-phase-b.temporal-ground-truth.json",
+      "sha256": "9f5de571278dd18162bcc90cdb524bd35072a0c60c3677cf5e2d27329c935832"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/short-uncertain-phase-b/adaptive/temporal-evidence.json",
+      "sha256": "3611efc4c6db6ba5e504f56307fbff324a5bac4aea6eadfce90f05b8e394e825"
+    },
+    "media": {
+      "path": "../fixtures/videos/fixture-short-uncertain-phase-b.mp4",
+      "sha256": "ba3b9e928d4c839dcf6471f3993348906cf2df55fa7856b0bfb9f1cb84e710cb"
+    }
+  }
+}

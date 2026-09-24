@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t01-all-correct",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t01-all-correct",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

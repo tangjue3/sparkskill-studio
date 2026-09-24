@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t15-gt-overlap",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t15-gt-overlap",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

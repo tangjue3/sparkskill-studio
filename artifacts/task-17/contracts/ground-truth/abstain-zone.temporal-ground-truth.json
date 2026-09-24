@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "abstain-zone",
+  "media_sha256": "277de0bbbb2bb327d38a5d5a30e8f0e414a15dc919daa802b81fb998adb441b2",
+  "media_duration_ms": 8000,
+  "target_query": "红色正方形",
+  "annotation_version": "1.0.0",
+  "annotated_at": "2026-09-22T08:00:27.356200+00:00",
+  "annotator_id": "task16-fixture-freeze",
+  "boundary_tolerance_ms": 250,
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 3000,
+      "state": "confirmed"
+    },
+    {
+      "start_ms": 3000,
+      "end_ms": 5000,
+      "state": "uncertain",
+      "reason": "低对比度区间（present_low_contrast）：目标难以可靠确认，标注为 uncertain"
+    },
+    {
+      "start_ms": 5000,
+      "end_ms": 8000,
+      "state": "confirmed"
+    }
+  ],
+  "label_frozen": {
+    "frozen": true,
+    "frozen_at": "2026-09-22T08:00:27.356200+00:00",
+    "derived_from": "由 artifacts/task-16/fixtures/ground-truth.json（冻结于 2026-09-22T08:00:27Z）按固定映射派生：present->confirmed，absent->not_found，present_low_contrast->uncertain（低对比度区间无法可靠确认）；boundary_tolerance_ms=250（覆盖 24fps 帧量化与百毫秒标注取整，对应任务 16 目标边界精度 500ms 的一半）；未修改任何源标签",
+    "freeze_note": "派生自任务 16 冻结 fixture ground truth；technical fixture，不得外推为真实素材结论"
+  },
+  "revision_history": [],
+  "notes": "abstained / low-confidence 区间（3000–5000 ms 目标低对比度，难以可靠确认）"
+}

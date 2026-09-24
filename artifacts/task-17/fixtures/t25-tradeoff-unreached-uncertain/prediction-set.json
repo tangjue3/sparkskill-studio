@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t25-tradeoff-unreached-uncertain",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t25-tradeoff-unreached-uncertain",
+          "evidence": "evidence-a.json"
+        }
+      ]
+    },
+    {
+      "arm_id": "adaptive",
+      "samples": [
+        {
+          "sample_id": "t25-tradeoff-unreached-uncertain",
+          "evidence": "evidence-b.json"
+        }
+      ]
+    }
+  ]
+}

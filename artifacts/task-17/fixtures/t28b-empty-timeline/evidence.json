@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.3.0",
+  "task_id": "task17-t28b-empty-timeline",
+  "target_query": "红色正方形",
+  "input_nature": "technical_fixture",
+  "evidence_nature": "constructed_fixture_evidence",
+  "source_video": "media.mp4",
+  "duration_ms": 8000,
+  "sampled_frames": 0,
+  "sampling_strategy": "uniform",
+  "strategy_config": {
+    "strategy": "uniform",
+    "max_model_calls": 8
+  },
+  "timeline": [],
+  "state_changes": [],
+  "summary": {
+    "overall_status": "completed",
+    "confirmed_frame_count": 0
+  },
+  "sampling_provenance": {
+    "strategy": "uniform",
+    "configured_budget": 8,
+    "actual_model_calls": 0,
+    "reused_evidence_count": 0,
+    "budget_exhausted": false,
+    "initial_samples": 0,
+    "refinement_samples": 0,
+    "refinement_rounds": 0,
+    "uniform_sampling_truncated_to_budget": false,
+    "decisions": [],
+    "analyzed_timestamps": [],
+    "skipped_duplicate_timestamps": [],
+    "stop_reasons": [],
+    "resource_guard": {
+      "blocked": false
+    },
+    "resource_blocked": false,
+    "timing": {
+      "extraction_ms": 1.0,
+      "analysis_ms": 2.0,
+      "aggregation_ms": 0.5,
+      "total_ms": 3.5
+    }
+  },
+  "temporal_evidence": {
+    "class_counts": {
+      "confirmed": 0,
+      "not_found": 0,
+      "abstained": 0,
+      "low_confidence": 0,
+      "failed": 0
+    },
+    "actual_model_calls": 0,
+    "state_transitions": []
+  },
+  "backend": {
+    "vision_backend": "ollama",
+    "model": "fixture-backend-model-for-contract-tests",
+    "analysis_logic": "fixture（构造证据，非模型输出）"
+  },
+  "warnings": []
+}

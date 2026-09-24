@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "plan": "task-18-verdict-policy",
+  "created_at": "2026-09-22",
+  "note": "verdict 规则预注册冻结。pairwise 规则逐条复述自任务 17 冻结评分器 scripts/score_temporal_ground_truth.py 的 compute_verdict（该文件零改动）；pack 级三臂规则为本计划新增，全部由指标确定性计算，不预设结果、不允许手写预设 verdict。",
+  "allowed_verdicts": ["IMPROVEMENT", "TRADEOFF", "NO_IMPROVEMENT", "INVALID_COMPARISON"],
+  "pairwise": {
+    "pairs": [
+      {"baseline": "uniform", "candidate": "coverage", "id": "coverage-vs-uniform"},
+      {"baseline": "adaptive", "candidate": "coverage", "id": "coverage-vs-adaptive"},
+      {"baseline": "uniform", "candidate": "adaptive", "id": "adaptive-vs-uniform"}
+    ],
+    "sample_scope": "同预算主对照的 10 个场景（不含 reappear-tight-budget）",
+    "rule_source": "任务 17 冻结评分器 compute_verdict / evaluate_fairness（经 task18_scorer_adapter 调用，不修改冻结文件）",
+    "fairness_gate_conditions": [
+      "same_sample_ids",
+      "same_media_hash",
+      "same_target_query",
+      "same_ground_truth_version",
+      "same_model_and_backend",
+      "same_call_budget",
+      "no_single_side_retry_or_extra_context",
+      "prediction_input_complete",
+      "same_evidence_nature",
+      "ground_truth_not_revised_after_run"
+    ],
+    "non_regression_conditions": {
+      "incorrect_decisive_not_worse": "candidate.incorrect_decisive <= baseline.incorrect_decisive",
+      "overclaim_on_uncertain_not_worse": "candidate.overclaim_on_uncertain <= baseline.overclaim_on_uncertain",
+      "missed_confirmed_events_not_worse": "candidate.missed_confirmed_events <= baseline.missed_confirmed_events",
+      "missed_gt_boundaries_not_worse": "candidate.missed_gt_boundaries <= baseline.missed_gt_boundaries",
+      "unreached_uncertain_not_worse": "candidate.unreached_uncertain_segments <= baseline.unreached_uncertain_segments"
+    },
+    "strict_improvement_codes": {
+      "fewer_model_calls": "candidate.actual_model_calls < baseline.actual_model_calls",
+      "smaller_max_boundary_error": "两臂 matched_count 均 >=1 且 candidate 最大边界误差 < baseline",
+      "smaller_mean_boundary_error": "两臂 matched_count 均 >=1 且 candidate 平均边界误差 < baseline",
+      "more_boundaries_within_tolerance": "candidate.within_tolerance_boundaries > baseline.within_tolerance_boundaries"
+    },
+    "regression_codes": [
+      "more_incorrect_decisive",
+      "more_overclaim_on_uncertain",
+      "more_missed_confirmed_events",
+      "more_missed_gt_boundaries",
+      "more_unreached_uncertain_segments"
+    ],
+    "decision_matrix": [
+      {"non_regression": "all_pass", "strict_improvement": "at_least_one", "verdict": "IMPROVEMENT"},
+      {"non_regression": "all_pass", "strict_improvement": "none", "verdict": "NO_IMPROVEMENT"},
+      {"non_regression": "any_violated", "strict_improvement": "at_least_one", "verdict": "TRADEOFF"},
+      {"non_regression": "any_violated", "strict_improvement": "none", "verdict": "NO_IMPROVEMENT（不表示两臂等价；违反项在差异字段完整披露）"}
+    ],
+    "invalid_comparison": "fairness gate 任一条件失败 → INVALID_COMPARISON（不计算 verdict）"
+  },
+  "pack_level": {
+    "candidate_arm": "coverage",
+    "baseline_arms": ["uniform", "adaptive"],
+    "sample_scope": "同预算主对照的 10 个场景；指标按任务 17 aggregate_metrics 聚合（跨样本边界误差统计；maximum sampling gap 取跨场景最大值）",
+    "invalid_comparison": "任一两臂公平门失败 → INVALID_COMPARISON",
+    "non_regression": "coverage 对 uniform 且 对 adaptive 的 5 项非回归条件全部满足（同 pairwise 定义）",
+    "strict_improvement": "至少一项同时相对两个基线成立：",
+    "strict_improvement_codes": {
+      "fewer_model_calls_than_both": "coverage.actual_model_calls < uniform 且 < adaptive",
+      "smaller_mean_boundary_error_than_both": "两基线 matched_count 均 >=1 且 coverage 平均边界误差 < 两基线",
+      "more_boundaries_within_tolerance_than_both": "coverage.within_tolerance_boundaries > 两基线",
+      "smaller_max_sampling_gap_than_both": "coverage 最大相邻采样间隔（跨场景最大值）< 两基线（覆盖效率指标）",
+      "fewer_unreached_uncertain_than_both": "coverage.unreached_uncertain_segments < 两基线（仅当两基线均 >0 时计入；语义覆盖指标）"
+    },
+    "decision_matrix": [
+      {"non_regression": "all_pass", "strict_improvement": "at_least_one", "verdict": "IMPROVEMENT"},
+      {"non_regression": "all_pass", "strict_improvement": "none", "verdict": "NO_IMPROVEMENT"},
+      {"non_regression": "any_violated", "strict_improvement": "at_least_one", "verdict": "TRADEOFF"},
+      {"non_regression": "any_violated", "strict_improvement": "none", "verdict": "NO_IMPROVEMENT（完整披露违反项）"}
+    ],
+    "reason_codes": "verdict 附 strict_improvements + regressions 代码列表（pairwise 代码 + smaller_max_sampling_gap_than_both / larger_max_sampling_gap / more_unreached_uncertain_segments 等 pack 级代码）",
+    "discipline": [
+      "算法 verdict 与工程实现验收（PASS/FAIL）分开输出",
+      "verdict 由冻结规则从指标计算，不得手写预设",
+      "不得为获得漂亮 verdict 调参、删场景、重写标签或只报告有利样本",
+      "TRADEOFF/NO_IMPROVEMENT 不影响工程验收；任务仍可在工程实现、评测完整性与诚实度层面通过"
+    ]
+  },
+  "reporting": {
+    "ratio_convention": "所有比例同时给出通过数/总数；零分母写 not_applicable",
+    "small_sample_caveat": "技术 fixture 小样本 + 单次运行：不构成统计显著性，不得外推为真实仓储/园区准确率",
+    "nondeterminism_caveat": "真实 Qwen 运行受模型非确定性影响；deterministic replay（构造证据）逐字节可复算；两者指标不混合平均"
+  }
+}

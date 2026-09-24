@@ -1,0 +1,17 @@
+{
+  "task_id": "red-backpack-trace-001",
+  "skill_name": "visual-evidence-extractor",
+  "task_type": "object_trace",
+  "target": {
+    "description": "红色背包",
+    "attributes": ["红色", "背包"]
+  },
+  "source_media": "<内部测试媒体目录>/test_first.png",
+  "required_outputs": ["object_found", "description", "bounding_box", "confidence", "evidence_text"],
+  "constraints": {
+    "abstain_if_insufficient_evidence": true,
+    "forbidden_inferences": ["identity", "age", "nationality", "relationship", "intent"]
+  },
+  "confidence_threshold": 0.5,
+  "requires_visual_input": true
+}

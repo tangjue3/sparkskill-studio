@@ -1,0 +1,11 @@
+{
+  "mem_available_gib_samples": [
+    59.11,
+    59.11,
+    59.13
+  ],
+  "mem_gate_passed": true,
+  "ollama_reachable": true,
+  "port_8000_listening": false,
+  "all_passed": true
+}

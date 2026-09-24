@@ -1,0 +1,22 @@
+# SparkSkill Studio Public Candidate (Task 29) — .gitignore
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# 编辑器与系统
+.DS_Store
+Thumbs.db
+
+# 公开版 QA 输出（本地保留，不入库）
+qa-shots/
+browser-qa-results.json
+
+# 注：app/data/demo-manifest.json 是 artifacts 的确定性投影，随仓库提交
+# （与原仓库设计一致：全新克隆后 python3 scripts/serve_demo.py 即可打开工作台）。
+# 重新生成：python3 scripts/build_demo_manifest.py
+
+# 注：artifacts/task-19/**/frames/、artifacts/task-20/frames/、artifacts/task-25/frames/
+# 等派生效期产物在公开版中**整目录不随仓库分发**（已通过 include 列表排除），
+# 故本文件不需要为它们保留排除规则。

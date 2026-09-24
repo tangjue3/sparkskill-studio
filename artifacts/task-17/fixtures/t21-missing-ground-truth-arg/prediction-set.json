@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t21-missing-ground-truth-arg",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t21-missing-ground-truth-arg",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

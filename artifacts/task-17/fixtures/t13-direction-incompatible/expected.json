@@ -1,0 +1,19 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "boundaries": {
+      "gt_boundaries_total": 2,
+      "matched_boundaries": 0,
+      "missed_gt_boundaries": 2,
+      "unmatched_predicted_transitions": 2,
+      "within_tolerance_boundaries": 0
+    },
+    "metrics": {
+      "overclaim_on_uncertain": {
+        "passed": 1,
+        "total": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,349 @@
+{
+  "strategy": "adaptive_coarse_to_fine",
+  "configured_budget": 12,
+  "actual_model_calls": 12,
+  "reused_evidence_count": 0,
+  "budget_exhausted": true,
+  "initial_samples": 4,
+  "refinement_samples": 8,
+  "refinement_rounds": 3,
+  "uniform_sampling_truncated_to_budget": false,
+  "decisions": [
+    {
+      "sample_index": 0,
+      "timestamp_ms": 0.0,
+      "phase": "initial_coverage",
+      "refinement_round": null,
+      "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+      "trigger_interval": null,
+      "trigger_reason": null,
+      "observed_states_at_decision": {
+        "analyzed_so_far": 0
+      },
+      "model_call_seq": 1,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 1,
+        "reused_evidence_count": 0,
+        "remaining_calls": 11,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 1,
+      "timestamp_ms": 2666.667,
+      "phase": "initial_coverage",
+      "refinement_round": null,
+      "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+      "trigger_interval": null,
+      "trigger_reason": null,
+      "observed_states_at_decision": {
+        "analyzed_so_far": 1
+      },
+      "model_call_seq": 2,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 2,
+        "reused_evidence_count": 0,
+        "remaining_calls": 10,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 2,
+      "timestamp_ms": 5333.333,
+      "phase": "initial_coverage",
+      "refinement_round": null,
+      "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+      "trigger_interval": null,
+      "trigger_reason": null,
+      "observed_states_at_decision": {
+        "analyzed_so_far": 2
+      },
+      "model_call_seq": 3,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 3,
+        "reused_evidence_count": 0,
+        "remaining_calls": 9,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 3,
+      "timestamp_ms": 7958.333,
+      "phase": "initial_coverage",
+      "refinement_round": null,
+      "reason": "adaptive_coarse_to_fine 初始覆盖采样（策略：adaptive_coarse_to_fine）",
+      "trigger_interval": null,
+      "trigger_reason": null,
+      "observed_states_at_decision": {
+        "analyzed_so_far": 3
+      },
+      "model_call_seq": 4,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 4,
+        "reused_evidence_count": 0,
+        "remaining_calls": 8,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 4,
+      "timestamp_ms": 1333.333,
+      "phase": "refinement",
+      "refinement_round": 1,
+      "reason": "相邻采样状态变化 confirmed(0.0ms) → not_found(2666.667ms)，需细化定位边界",
+      "trigger_interval": {
+        "left_ms": 0.0,
+        "right_ms": 2666.667
+      },
+      "trigger_reason": "state_change",
+      "observed_states_at_decision": {
+        "class_left": "confirmed",
+        "class_right": "not_found",
+        "analyzed_so_far": 4
+      },
+      "model_call_seq": 5,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 5,
+        "reused_evidence_count": 0,
+        "remaining_calls": 7,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 5,
+      "timestamp_ms": 4000.0,
+      "phase": "refinement",
+      "refinement_round": 1,
+      "reason": "相邻采样状态变化 not_found(2666.667ms) → confirmed(5333.333ms)，需细化定位边界",
+      "trigger_interval": {
+        "left_ms": 2666.667,
+        "right_ms": 5333.333
+      },
+      "trigger_reason": "state_change",
+      "observed_states_at_decision": {
+        "class_left": "not_found",
+        "class_right": "confirmed",
+        "analyzed_so_far": 5
+      },
+      "model_call_seq": 6,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 6,
+        "reused_evidence_count": 0,
+        "remaining_calls": 6,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 6,
+      "timestamp_ms": 6625.0,
+      "phase": "refinement",
+      "refinement_round": 1,
+      "reason": "相邻采样状态变化 confirmed(5333.333ms) → not_found(7958.333ms)，需细化定位边界",
+      "trigger_interval": {
+        "left_ms": 5333.333,
+        "right_ms": 7958.333
+      },
+      "trigger_reason": "state_change",
+      "observed_states_at_decision": {
+        "class_left": "confirmed",
+        "class_right": "not_found",
+        "analyzed_so_far": 6
+      },
+      "model_call_seq": 7,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 7,
+        "reused_evidence_count": 0,
+        "remaining_calls": 5,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 7,
+      "timestamp_ms": 2000.0,
+      "phase": "refinement",
+      "refinement_round": 2,
+      "reason": "相邻采样状态变化 confirmed(1333.333ms) → not_found(2666.667ms)，需细化定位边界",
+      "trigger_interval": {
+        "left_ms": 1333.333,
+        "right_ms": 2666.667
+      },
+      "trigger_reason": "state_change",
+      "observed_states_at_decision": {
+        "class_left": "confirmed",
+        "class_right": "not_found",
+        "analyzed_so_far": 7
+      },
+      "model_call_seq": 8,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 8,
+        "reused_evidence_count": 0,
+        "remaining_calls": 4,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 8,
+      "timestamp_ms": 3333.333,
+      "phase": "refinement",
+      "refinement_round": 2,
+      "reason": "相邻采样状态变化 not_found(2666.667ms) → confirmed(4000.0ms)，需细化定位边界",
+      "trigger_interval": {
+        "left_ms": 2666.667,
+        "right_ms": 4000.0
+      },
+      "trigger_reason": "state_change",
+      "observed_states_at_decision": {
+        "class_left": "not_found",
+        "class_right": "confirmed",
+        "analyzed_so_far": 8
+      },
+      "model_call_seq": 9,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 9,
+        "reused_evidence_count": 0,
+        "remaining_calls": 3,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 9,
+      "timestamp_ms": 5958.333,
+      "phase": "refinement",
+      "refinement_round": 2,
+      "reason": "相邻采样状态变化 confirmed(5333.333ms) → not_found(6625.0ms)，需细化定位边界",
+      "trigger_interval": {
+        "left_ms": 5333.333,
+        "right_ms": 6625.0
+      },
+      "trigger_reason": "state_change",
+      "observed_states_at_decision": {
+        "class_left": "confirmed",
+        "class_right": "not_found",
+        "analyzed_so_far": 9
+      },
+      "model_call_seq": 10,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 10,
+        "reused_evidence_count": 0,
+        "remaining_calls": 2,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 10,
+      "timestamp_ms": 1666.667,
+      "phase": "refinement",
+      "refinement_round": 3,
+      "reason": "相邻采样状态变化 confirmed(1333.333ms) → not_found(2000.0ms)，需细化定位边界",
+      "trigger_interval": {
+        "left_ms": 1333.333,
+        "right_ms": 2000.0
+      },
+      "trigger_reason": "state_change",
+      "observed_states_at_decision": {
+        "class_left": "confirmed",
+        "class_right": "not_found",
+        "analyzed_so_far": 10
+      },
+      "model_call_seq": 11,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 11,
+        "reused_evidence_count": 0,
+        "remaining_calls": 1,
+        "budget_exhausted": false,
+        "skipped_duplicate_timestamps": []
+      }
+    },
+    {
+      "sample_index": 11,
+      "timestamp_ms": 3666.667,
+      "phase": "refinement",
+      "refinement_round": 3,
+      "reason": "相邻采样状态变化 not_found(3333.333ms) → confirmed(4000.0ms)，需细化定位边界",
+      "trigger_interval": {
+        "left_ms": 3333.333,
+        "right_ms": 4000.0
+      },
+      "trigger_reason": "state_change",
+      "observed_states_at_decision": {
+        "class_left": "not_found",
+        "class_right": "confirmed",
+        "analyzed_so_far": 11
+      },
+      "model_call_seq": 12,
+      "cache_status": "fresh_call",
+      "budget_state": {
+        "max_model_calls": 12,
+        "actual_model_calls": 12,
+        "reused_evidence_count": 0,
+        "remaining_calls": 0,
+        "budget_exhausted": true,
+        "skipped_duplicate_timestamps": []
+      }
+    }
+  ],
+  "analyzed_timestamps": [
+    0.0,
+    1333.333,
+    1666.667,
+    2000.0,
+    2666.667,
+    3333.333,
+    3666.667,
+    4000.0,
+    5333.333,
+    5958.333,
+    6625.0,
+    7958.333
+  ],
+  "skipped_duplicate_timestamps": [],
+  "stop_reasons": [
+    "budget_exhausted"
+  ],
+  "resource_guard": {
+    "mem_available_gib": 59.01,
+    "min_available_gib": 40.0,
+    "ollama_reachable": true,
+    "blocked": false
+  },
+  "resource_blocked": false,
+  "timing": {
+    "extraction_ms": 0.981,
+    "analysis_ms": 218209.77000000002,
+    "aggregation_ms": 0.104,
+    "total_ms": 218483.684
+  },
+  "_copy_note": "本文件是 artifacts/task-16/dsh-session/temporal-evidence.json 中 sampling_provenance 的顶层副本（DSH 自主会话真实运行，adaptive_coarse_to_fine，12/12 次真实 Qwen 调用）"
+}

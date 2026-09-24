@@ -1,0 +1,1 @@
+{"object_found": false, "description": "画面为均匀的浅灰色背景，左右两侧有黑色竖条边框，无任何其他图形或物体。", "bounding_box": null, "confidence": 1.0, "evidence_text": "整个画面仅呈现单一浅灰色填充区域，未出现任何红色色块或正方形轮廓，目标对象不存在。", "abstention_reason": null}

@@ -1,0 +1,18 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "semantic_score_status": "scored",
+    "holdout_gt_excluded": true,
+    "output_absent_keys": [
+      "segments",
+      "gt_boundaries",
+      "matched_boundary_details"
+    ],
+    "output_present_keys": [
+      "gt_sha256",
+      "gt_segment_count",
+      "gt_states_digest"
+    ]
+  }
+}

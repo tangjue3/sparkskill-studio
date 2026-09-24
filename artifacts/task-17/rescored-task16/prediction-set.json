@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task16-technical-fixtures",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "present-throughout",
+          "evidence": "../../task-16/comparison/present-throughout/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "appear-midway",
+          "evidence": "../../task-16/comparison/appear-midway/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "disappear-midway",
+          "evidence": "../../task-16/comparison/disappear-midway/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "reappear",
+          "evidence": "../../task-16/comparison/reappear/uniform/temporal-evidence.json"
+        },
+        {
+          "sample_id": "abstain-zone",
+          "evidence": "../../task-16/comparison/abstain-zone/uniform/temporal-evidence.json"
+        }
+      ]
+    },
+    {
+      "arm_id": "adaptive",
+      "samples": [
+        {
+          "sample_id": "present-throughout",
+          "evidence": "../../task-16/comparison/present-throughout/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "appear-midway",
+          "evidence": "../../task-16/comparison/appear-midway/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "disappear-midway",
+          "evidence": "../../task-16/comparison/disappear-midway/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "reappear",
+          "evidence": "../../task-16/comparison/reappear/adaptive/temporal-evidence.json"
+        },
+        {
+          "sample_id": "abstain-zone",
+          "evidence": "../../task-16/comparison/abstain-zone/adaptive/temporal-evidence.json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "short-uncertain-phase-b",
+  "media_sha256": "ba3b9e928d4c839dcf6471f3993348906cf2df55fa7856b0bfb9f1cb84e710cb",
+  "media_duration_ms": 8000,
+  "target_query": "红色正方形",
+  "annotation_version": "1.0.0",
+  "annotated_at": "2026-09-22T11:27:13.916411+00:00",
+  "annotator_id": "task18-fixture-freeze",
+  "boundary_tolerance_ms": 250,
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 6200,
+      "state": "confirmed"
+    },
+    {
+      "start_ms": 6200,
+      "end_ms": 6800,
+      "state": "uncertain",
+      "reason": "低对比度区间（present_low_contrast）：目标难以可靠确认，标注为 uncertain"
+    },
+    {
+      "start_ms": 6800,
+      "end_ms": 8000,
+      "state": "confirmed"
+    }
+  ],
+  "label_frozen": {
+    "frozen": true,
+    "frozen_at": "2026-09-22T11:27:13.916411+00:00",
+    "derived_from": "由 artifacts/task-18/fixtures/ground-truth.json（冻结 manifest + ground truth）按固定映射派生：present->confirmed，absent->not_found，present_low_contrast->uncertain；boundary_tolerance_ms=250（覆盖 24fps 帧量化与百毫秒标注取整，对应任务 16 目标边界精度 500ms 的一半）；未修改任何源标签",
+    "freeze_note": "任务 18 三臂评测 fixture ground truth；technical fixture，不得外推为真实素材结论"
+  },
+  "revision_history": [],
+  "notes": "相位移动的短 uncertain 区域；相位移动的短 uncertain 区域（6200–6800 ms 低对比度；与 short-uncertain-between-grid 语义相同、时间相位不同）"
+}

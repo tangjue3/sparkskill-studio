@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "t21-missing-ground-truth-arg",
+  "media_sha256": "36468db5721d1eeb217901ed24e324fa88c33b541d2761eaf57500db4ea71f8a",
+  "media_duration_ms": 8000,
+  "target_query": "红色正方形",
+  "annotation_version": "1.0.0",
+  "annotated_at": "2026-09-22T00:00:00Z",
+  "annotator_id": "task17-fixture-annotator",
+  "boundary_tolerance_ms": 250,
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 8000,
+      "state": "confirmed"
+    }
+  ],
+  "label_frozen": {
+    "frozen": true,
+    "frozen_at": "2026-09-22T00:00:00Z",
+    "freeze_note": "任务 17 规则 fixture（构造真值，非真实素材标注）"
+  },
+  "revision_history": [],
+  "notes": "确定性规则 fixture 的 Ground Truth"
+}

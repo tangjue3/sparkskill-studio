@@ -1,0 +1,25 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "events": {
+      "gt_uncertain_segments": 1,
+      "unreached_uncertain_segments": 1
+    },
+    "metrics": {
+      "appropriate_abstention": {
+        "passed": 0,
+        "total": 0
+      },
+      "overclaim_on_uncertain": {
+        "passed": 0,
+        "total": 0
+      }
+    },
+    "boundaries": {
+      "gt_boundaries_total": 2,
+      "matched_boundaries": 0,
+      "missed_gt_boundaries": 2
+    }
+  }
+}

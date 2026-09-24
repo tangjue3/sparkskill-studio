@@ -1,0 +1,281 @@
+{
+  "schema_version": "1.0.0",
+  "scorer": "score_temporal_ground_truth.py",
+  "scorer_version": "1.0.0",
+  "pack_id": "task18-technical-fixtures",
+  "sample_id": "disappear-midway",
+  "arm_id": "coverage",
+  "split": "dev",
+  "source_type": "technical_fixture",
+  "execution_status": "completed",
+  "semantic_score_status": "scored",
+  "validation": {
+    "hard_gates": [
+      {
+        "id": "G1-sample-identity",
+        "passed": true,
+        "detail": "evidence.target_query 存在且非空"
+      },
+      {
+        "id": "G2-media-hash-freeze",
+        "passed": true,
+        "detail": "媒体 SHA-256 三方一致（manifest/GT/实际文件）: 59a203c0ebff95d9…"
+      },
+      {
+        "id": "G3-target-query",
+        "passed": true,
+        "detail": "target_query 三方一致（manifest/GT/evidence）"
+      },
+      {
+        "id": "G4-media-duration",
+        "passed": true,
+        "detail": "媒体时长一致（manifest/GT/evidence）: 8000.0 ms"
+      },
+      {
+        "id": "G5-ground-truth-timeline",
+        "passed": true,
+        "detail": "GT 时间线合法（排序/覆盖/不重叠/不留隙/正长度/相邻合并）"
+      },
+      {
+        "id": "G6-prediction-timestamps-in-range",
+        "passed": true,
+        "detail": "全部 9 个采样时间戳位于 [0, 8000.0] ms"
+      },
+      {
+        "id": "G7-provenance-self-consistency",
+        "passed": true,
+        "detail": "provenance 自洽（调用数=新鲜调用=时间线条目；预算未超；时间戳集合一致；五类计数复算一致）"
+      },
+      {
+        "id": "G8-prediction-shape",
+        "passed": true,
+        "detail": "单来源时序证据文档（顶层 timeline）"
+      }
+    ],
+    "all_passed": true,
+    "errors": []
+  },
+  "prediction_summary": {
+    "strategy": "coverage_aware_adaptive",
+    "evidence_nature": "constructed_fixture_evidence",
+    "input_nature": "technical_fixture",
+    "sampled_frames": 9,
+    "duration_ms": 8000.0,
+    "target_query": "红色正方形",
+    "backend_model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+    "vision_backend": "ollama"
+  },
+  "known_limitations": [
+    "completed（execution_status）不等于语义正确；语义正确只由七类计数定义",
+    "时序结论是采样证据支持的结论，不是连续跟踪真值；采样点之间不断言连续存在",
+    "单次运行 + 小样本：不构成统计显著性，不得外推",
+    "technical_fixture 为合成技术测试输入；不得外推为真实仓储/园区准确率",
+    "构造证据（非模型输出）：调用数为分析调用计数，不是真实视觉调用"
+  ],
+  "input_hashes": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/disappear-midway.temporal-ground-truth.json",
+      "sha256": "374959750fa5bfd07a6d30b4322b299d11a67a5e2351f43e50bf412620dd392d"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/disappear-midway/coverage/temporal-evidence.json",
+      "sha256": "6500d19e58ee3a1b94d41935f9b0a01dfadb48349ac327926842e5ab638c2de0"
+    },
+    "media": {
+      "path": "../../task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "sha256": "59a203c0ebff95d96f9d73e3429b60fa9de32ecdef019dfc86f7afdc5e945728"
+    }
+  },
+  "sample_point_scores": {
+    "denominator_analyzed_samples": 9,
+    "denominator_determinate_samples": 9,
+    "denominator_uncertain_samples": 0,
+    "metrics": {
+      "correct_decisive": {
+        "passed": 9,
+        "total": 9,
+        "ratio": 1.0
+      },
+      "incorrect_decisive": {
+        "passed": 0,
+        "total": 9,
+        "ratio": 0.0
+      },
+      "abstention_on_determinate": {
+        "passed": 0,
+        "total": 9,
+        "ratio": 0.0
+      },
+      "failed_on_determinate": {
+        "passed": 0,
+        "total": 9,
+        "ratio": 0.0
+      },
+      "appropriate_abstention": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      },
+      "overclaim_on_uncertain": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      },
+      "failed_on_uncertain": {
+        "passed": 0,
+        "total": 0,
+        "ratio": "not_applicable"
+      }
+    },
+    "per_sample_rows": [
+      {
+        "timestamp_ms": 0.0,
+        "prediction_class": "confirmed",
+        "ground_truth_state": "confirmed",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 1333.333,
+        "prediction_class": "confirmed",
+        "ground_truth_state": "confirmed",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 2666.667,
+        "prediction_class": "confirmed",
+        "ground_truth_state": "confirmed",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 4000.0,
+        "prediction_class": "confirmed",
+        "ground_truth_state": "confirmed",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 4666.667,
+        "prediction_class": "confirmed",
+        "ground_truth_state": "confirmed",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 5000.0,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 5333.333,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 6625.0,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      },
+      {
+        "timestamp_ms": 7958.333,
+        "prediction_class": "not_found",
+        "ground_truth_state": "not_found",
+        "metric": "correct_decisive"
+      }
+    ]
+  },
+  "event_scores": {
+    "gt_confirmed_segments": 1,
+    "covered_confirmed_events": 1,
+    "missed_confirmed_events": 0,
+    "gt_not_found_segments": 1,
+    "covered_not_found_segments": 1,
+    "missed_not_found_segments": 0,
+    "gt_uncertain_segments": 0,
+    "uncertain_segments": [],
+    "unreached_uncertain_segments": 0
+  },
+  "boundary_scores": {
+    "gt_boundaries_total": 1,
+    "matched_boundaries": 1,
+    "missed_gt_boundaries": 0,
+    "unmatched_predicted_transitions": 0,
+    "within_tolerance_boundaries": 1,
+    "boundary_tolerance_ms": 250.0,
+    "boundary_error_stats": {
+      "matched_count": 1,
+      "max_ms": 33.334,
+      "min_ms": 33.334,
+      "median_ms": 33.334,
+      "mean_ms": 33.334
+    },
+    "matched_boundary_details": [
+      {
+        "gt_boundary_at_ms": 4800.0,
+        "gt_from_state": "confirmed",
+        "gt_to_state": "not_found",
+        "predicted_transition_index": 0,
+        "bracket_left_ms": 4666.667,
+        "bracket_right_ms": 5000.0,
+        "bracket_width_ms": 333.333,
+        "bracket_midpoint_ms": 4833.334,
+        "midpoint_abs_error_ms": 33.334,
+        "within_tolerance": true
+      }
+    ],
+    "gt_boundaries": [
+      {
+        "at_ms": 4800.0,
+        "from_state": "confirmed",
+        "to_state": "not_found"
+      }
+    ],
+    "predicted_transitions_total": 1,
+    "matched_gt_boundary_times": [
+      4800.0
+    ],
+    "unmatched_predicted_transition_indices": []
+  },
+  "efficiency": {
+    "configured_budget": 12,
+    "actual_model_calls": 9,
+    "unique_analyzed_timestamps": 9,
+    "reused_evidence_count": 0,
+    "duplicate_skips": 0,
+    "budget_exhausted": false,
+    "stop_reasons": [
+      "coverage_gap_target_reached",
+      "no_refinable_interval"
+    ],
+    "timing": {
+      "extraction_ms": 0.698,
+      "analysis_ms": 0.0,
+      "aggregation_ms": 0.163,
+      "total_ms": 121.217
+    },
+    "calls_per_correct_decisive_sample": 1.0,
+    "calls_per_covered_confirmed_event": 9.0,
+    "calls_per_matched_boundary": 9.0,
+    "caveat": "效率指标不抵消语义错误：调用少不等于效果好"
+  },
+  "ground_truth": {
+    "included": true,
+    "gt_sha256": "374959750fa5bfd07a6d30b4322b299d11a67a5e2351f43e50bf412620dd392d",
+    "annotation_version": "1.0.0",
+    "boundary_tolerance_ms": 250.0,
+    "segment_count": 2,
+    "states": [
+      "confirmed",
+      "not_found"
+    ],
+    "boundary_count": 1
+  }
+}

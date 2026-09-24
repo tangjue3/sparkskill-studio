@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sparkskill.studio/schemas/visual-task-spec.schema.json",
+  "title": "VisualTaskSpec",
+  "description": "SparkSkill Studio 视觉任务规格契约：由 task-to-skill-compiler 通过 DSH + StepFun 从自然语言任务生成，供 visual-evidence-extractor 消费。source_media 支持单个路径字符串（旧版兼容）或来源对象数组（多段视频，任务 06）。sampling_strategy 为可选采样策略块（任务 16）：缺失时保持旧版 uniform 行为；提供 adaptive_coarse_to_fine 时必须给出硬性视觉调用预算与边界精度目标；提供 coverage_aware_adaptive（任务 18）时还必须给出覆盖目标与覆盖调用储备（时间覆盖探索 + 边界细化双职责，同一硬预算内管理）。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "skill_name",
+    "task_type",
+    "target",
+    "source_media",
+    "required_outputs",
+    "constraints",
+    "confidence_threshold",
+    "requires_visual_input"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{2,63}$",
+      "description": "任务唯一标识，kebab/snake 安全字符"
+    },
+    "skill_name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "目标 Skill 名称，kebab-case"
+    },
+    "task_type": {
+      "enum": ["object_trace", "object_presence"],
+      "description": "首版仅允许对象追踪或对象存在性判断"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "attributes": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 100 },
+          "maxItems": 20,
+          "default": []
+        }
+      }
+    },
+    "source_media": {
+      "description": "输入媒体：单个本地路径字符串（旧版单媒体任务，保持兼容）或来源对象数组（多段视频统一证据时间线，任务 06）。数组时每个来源必须有唯一 source_id，path 必须经过安全校验，time_offset_ms 必须为非负数。",
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["source_id", "path"],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+                "description": "来源唯一标识（同一任务内不得重复）"
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "description": "本地媒体路径（必须经过安全校验：禁止 shell/代码/凭据样式，禁止越权路径）"
+              },
+              "location": {
+                "type": "string",
+                "maxLength": 100,
+                "description": "可选：来源场景标注（如 scene-a）；不得包含身份等敏感推断"
+              },
+              "time_offset_ms": {
+                "type": "number",
+                "minimum": 0,
+                "description": "可选：该来源在全局时间线上的偏移（毫秒，非负数，默认 0）"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "required_outputs": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "object_found",
+          "description",
+          "bounding_box",
+          "confidence",
+          "evidence_text",
+          "timestamp",
+          "keyframe_ref",
+          "per_source_timeline",
+          "global_timeline",
+          "keyframes",
+          "evidence_report"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 11
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["abstain_if_insufficient_evidence", "forbidden_inferences"],
+      "properties": {
+        "abstain_if_insufficient_evidence": {
+          "type": "boolean",
+          "default": true
+        },
+        "forbidden_inferences": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "identity",
+              "age",
+              "nationality",
+              "relationship",
+              "intent",
+              "health",
+              "emotion"
+            ]
+          },
+          "default": ["identity", "age", "nationality", "relationship", "intent"]
+        }
+      }
+    },
+    "confidence_threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "default": 0.5
+    },
+    "requires_visual_input": {
+      "const": true,
+      "description": "本契约仅用于视觉任务，必须为 true"
+    },
+    "sampling_strategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy"],
+      "description": "可选：视频采样策略（任务 16）。缺失 = 旧版 uniform 行为（向后兼容，必填字段不受影响）。strategy=uniform 时只允许 max_model_calls（硬上限）；strategy=adaptive_coarse_to_fine 时必须提供 max_model_calls、initial_coverage_samples、target_boundary_precision_ms、max_refinement_rounds（细化参数对 uniform 是不支持组合，明确拒绝）；strategy=coverage_aware_adaptive（任务 18）时必须额外提供 coverage_gap_target_ms 与 coverage_call_reserve（覆盖目标与覆盖调用储备；两者对 uniform/adaptive_coarse_to_fine 均是不支持组合，明确拒绝），且 initial_coverage_samples + coverage_call_reserve 不得超过 max_model_calls（覆盖配置不得超出硬预算）。",
+      "properties": {
+        "strategy": {
+          "enum": ["uniform", "adaptive_coarse_to_fine", "coverage_aware_adaptive"],
+          "description": "采样策略：uniform=旧版固定间隔/均匀采样（正式 baseline）；adaptive_coarse_to_fine=初始覆盖 + 按触发器细化；coverage_aware_adaptive=初始覆盖 + 时间覆盖探索（largest-gap-first 压缩未观测间隔）+ 边界细化（同一硬预算内双职责，任务 18）"
+        },
+        "max_model_calls": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512,
+          "description": "硬性视觉模型调用预算：整个任务真实 Qwen 视觉调用次数不得超过该值；0/负数/非整数/超上限一律拒绝"
+        },
+        "initial_coverage_samples": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64,
+          "description": "adaptive 策略的初始覆盖采样数量（均匀覆盖 [start_ms,end_ms]；不得超过 max_model_calls）"
+        },
+        "target_boundary_precision_ms": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 600000,
+          "description": "目标时间边界精度（毫秒，必须 > 0；无法达到时如实报告剩余不确定性）"
+        },
+        "max_refinement_rounds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16,
+          "description": "adaptive 策略最大细化轮数"
+        },
+        "coverage_gap_target_ms": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 600000,
+          "description": "coverage_aware_adaptive 覆盖目标：最大相邻采样间隔的目标值（毫秒，必须 > 0；覆盖探索在达到该目标、储备用尽、预算耗尽或无合法候选时确定性停止；0/负值/非数字一律拒绝）"
+        },
+        "coverage_call_reserve": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512,
+          "description": "coverage_aware_adaptive 覆盖调用储备：初始覆盖之外允许的最大覆盖探索调用次数（正整数；0/负数/非整数一律拒绝；initial_coverage_samples + coverage_call_reserve 不得超过 max_model_calls）"
+        },
+        "refinement_triggers": {
+          "type": "array",
+          "items": {
+            "enum": ["state_change", "abstained", "low_confidence", "failed"]
+          },
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "description": "哪些证据状态允许触发细化（缺省四种全开；uniform 策略不接受该字段）"
+        },
+        "require_sampling_provenance": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否要求输出采样 provenance（缺省 true）"
+        },
+        "require_temporal_evidence": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否要求输出 temporal evidence（缺省 true）"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+任务完成。全部产物已写入 `artifacts/task-16/dsh-session/`，18/18 项交叉核验通过。
+
+## 执行摘要
+
+**⚠️ 输入性质声明：这是合成技术 fixture（synthetic technical fixture），不是真实行业视频**，结论不得外推。
+
+### 流水线执行（三环 Skill 链）
+1. **媒体来源硬门**：`check_source_media.py` → `accepted` / `user_provided`（路径由你在请求中显式提供）
+2. **VisualTaskSpec**：`visual-task-spec.json` 含 `sampling_strategy`（adaptive_coarse_to_fine，预算 12、初始覆盖 4、精度 500ms、细化轮数 6）→ Schema 校验 **VALID**
+3. **自适应证据链**：`trace_temporal.py` 真实调用本地 Ollama Qwen3.8-27B Vision **12 次**（4 初始覆盖 + 8 细化 / 3 轮），资源守卫通过（59 GiB 可用）
+4. **最终报告**：`generate_report.py --mode temporal`，独立复算与上游一致
+
+### 时序证据结论（采样观察，非连续跟踪真值）
+| 指标 | 值 |
+|---|---|
+| confirmed / not_found / abstained / low_confidence / failed | **6 / 6 / 0 / 0 / 0**（互不折算） |
+| 首个 / 最后 confirmed **采样观察**时间 | 0.0 ms / 5958.333 ms（≠真实进入/离开） |
+| 状态转换（边界=左右采样点范围） | ① [1666.7, 2000.0] 消失，宽 333.3ms；② [3666.7, 4000.0] 重现，宽 333.3ms；③ [5958.3, 6625.0] 消失，宽 **666.7ms** |
+| 视觉调用预算 | 12/12 **已耗尽**（`budget_exhausted=true`，停止原因 `budget_exhausted`） |
+| 目标边界精度 500ms | **未达到**，残存不确定性 **666.667ms**（预算耗尽，非分析成功） |
+
+### 语义红线遵守
+- 未断言两个采样点之间的连续存在；首/末 confirmed 仅为采样观察时间
+- abstained/failed 独立计数（本例为 0），未写成 not_found
+- 证据不足即拒答的机制就绪（本 run 无 abstained/failed 帧，12 帧全部 `real_model_output`，confidence 均 1.0，无拒答触发）
+- 不是 ReID / 目标跟踪器 / 实时跟踪
+
+### 产物清单（`dsh-session/`）
+- `visual-task-spec.json` — 合法规格（已过 Schema 校验）
+- `temporal-evidence.json` — timeline(12) + summary + **sampling_provenance**(12 条决策) + temporal_evidence
+- `final-report.json` — 最终报告（含语义限制声明）
+- `frames/` — 12 个真实关键帧；`raw/` — 12 份模型原始返回存档（可审计）
+- `SESSION-SUMMARY.md` — 会话摘要；`request.txt` — 请求文本（校验输入）

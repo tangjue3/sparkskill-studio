@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "main-object-presence-001",
+  "task_type": "object_presence",
+  "backend": "ollama",
+  "model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+  "source_media": "<内部测试媒体目录>/test_first.png",
+  "target_query": "图片中的主要目标",
+  "object_found": true,
+  "description": "深蓝色背景上有一个黄色圆形和一个绿色矩形，底部有一条深蓝色横条",
+  "bounding_box": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "confidence": 1.0,
+  "evidence_text": "画面中清晰可见一个黄色圆形位于左上方，一个绿色矩形位于右下方，底部有一条深蓝色横条，背景为深蓝色",
+  "abstention_reason": null,
+  "evidence_sufficient": true,
+  "gaps": [],
+  "generated_at": "2026-09-21T04:36:06.346042+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "semantic_score_status": "scored",
+    "not_applicable_fields": [
+      "sample_point_scores.metrics.appropriate_abstention.ratio",
+      "sample_point_scores.metrics.overclaim_on_uncertain.ratio",
+      "sample_point_scores.metrics.failed_on_uncertain.ratio",
+      "efficiency.calls_per_matched_boundary"
+    ],
+    "efficiency": {
+      "calls_per_correct_decisive_sample": 1.0,
+      "calls_per_covered_confirmed_event": 1.0
+    }
+  }
+}

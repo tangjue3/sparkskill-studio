@@ -1,0 +1,69 @@
+{
+  "suite": "task-18-technical-fixtures",
+  "nature": "synthetic technical fixture（合成技术测试输入；非真实行业素材；不得外推）",
+  "generated_at": "2026-09-22T11:27:13.916411+00:00",
+  "video_count": 6,
+  "videos": {
+    "short-event-between-grid": {
+      "file": "fixture-short-event-between-grid.mp4",
+      "path": "artifacts/task-18/fixtures/videos/fixture-short-event-between-grid.mp4",
+      "sha256": "d9f194ff7ef2b5d3f52f9e98c90d77b9de2cc907639bd7adcdbb09ffb4a4d172",
+      "purpose": "coarse 初始网格之间的短 confirmed 事件（3500–4100 ms，落在 2666.667/5333.333 两个初始采样点之间；adaptive 无触发信号必然漏检）"
+    },
+    "short-uncertain-between-grid": {
+      "file": "fixture-short-uncertain-between-grid.mp4",
+      "path": "artifacts/task-18/fixtures/videos/fixture-short-uncertain-between-grid.mp4",
+      "sha256": "05b3fb405150b6fcd0c7c8191b3d09f46c524b0250d18e3e87ef57711f6f8aa3",
+      "purpose": "coarse 初始网格之间的短 uncertain 区域（3500–4100 ms 低对比度，落在两个初始采样点之间；对应任务 17 量化的 adaptive 覆盖盲区）"
+    },
+    "twin-short-events": {
+      "file": "fixture-twin-short-events.mp4",
+      "path": "artifacts/task-18/fixtures/videos/fixture-twin-short-events.mp4",
+      "sha256": "27a44ff7ac55f5d304eeaf0dc4ee6f9c51b541b55d1ae13303e807047ea68b7b",
+      "purpose": "两个间隔较短的事件（1600–2200 ms 与 3000–3600 ms，各 600ms，均落在 coarse 网格间隔内）"
+    },
+    "absent-throughout": {
+      "file": "fixture-absent-throughout.mp4",
+      "path": "artifacts/task-18/fixtures/videos/fixture-absent-throughout.mp4",
+      "sha256": "77729bc7755b703f4fc6fff92da55266cdb1826f2d5cc03f00468408f2b72d9a",
+      "purpose": "无目标/无状态转换（目标全程不存在；验证确定性负面与覆盖探索不产生虚假事件）"
+    },
+    "short-event-phase-b": {
+      "file": "fixture-short-event-phase-b.mp4",
+      "path": "artifacts/task-18/fixtures/videos/fixture-short-event-phase-b.mp4",
+      "sha256": "d2bd059a75c0aa2f6bec0373c5d50fb591d2c20d56c09bbc752eb985c16aee5d",
+      "purpose": "相位移动的短 confirmed 事件（6200–6800 ms；与 short-event-between-grid 语义相同、时间相位不同，防止只对单一时间位置调参）"
+    },
+    "short-uncertain-phase-b": {
+      "file": "fixture-short-uncertain-phase-b.mp4",
+      "path": "artifacts/task-18/fixtures/videos/fixture-short-uncertain-phase-b.mp4",
+      "sha256": "ba3b9e928d4c839dcf6471f3993348906cf2df55fa7856b0bfb9f1cb84e710cb",
+      "purpose": "相位移动的短 uncertain 区域（6200–6800 ms 低对比度；与 short-uncertain-between-grid 语义相同、时间相位不同）"
+    }
+  },
+  "ground_truth": "artifacts/task-18/fixtures/ground-truth.json",
+  "hashes": "artifacts/task-18/fixtures/fixtures.sha256.json",
+  "reused_task16_fixtures": {
+    "present-throughout": {
+      "file": "fixture-present-throughout.mp4",
+      "relpath": "../../task-16/fixtures/videos/fixture-present-throughout.mp4",
+      "purpose": "持续正向 + 无状态变化（复用任务 16 冻结 fixture）"
+    },
+    "appear-midway": {
+      "file": "fixture-appear-midway.mp4",
+      "relpath": "../../task-16/fixtures/videos/fixture-appear-midway.mp4",
+      "purpose": "中途出现 3200ms（复用任务 16 冻结 fixture）"
+    },
+    "disappear-midway": {
+      "file": "fixture-disappear-midway.mp4",
+      "relpath": "../../task-16/fixtures/videos/fixture-disappear-midway.mp4",
+      "purpose": "中途消失 4800ms（复用任务 16 冻结 fixture）"
+    },
+    "reappear": {
+      "file": "fixture-reappear.mp4",
+      "relpath": "../../task-16/fixtures/videos/fixture-reappear.mp4",
+      "purpose": "出现/消失/再次出现（复用任务 16 冻结 fixture）"
+    }
+  },
+  "freeze_rule": "第一次评测前冻结；manifest/hash 落盘后不得重新生成或修改标签；评测前用 --verify 复核 SHA-256 与元数据"
+}

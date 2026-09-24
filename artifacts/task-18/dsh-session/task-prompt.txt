@@ -1,0 +1,19 @@
+请对以下预注册技术测试视频执行一次完整的受控视觉证据抽取自主任务：
+
+媒体路径（合法路径，直接使用，禁止猜测或替换）：
+artifacts/task-18/fixtures/videos/fixture-short-event-between-grid.mp4
+
+目标：红色正方形（属性：红色、正方形）；任务类型：object_trace；视觉后端：本地 Ollama；模型：modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest；输入性质：technical_fixture（合成技术 fixture，不是真实行业视频）；单帧超时 300 秒。
+
+硬性要求：
+
+1. 你必须先自主发现并加载三个相关 Skill（任务编译/受控视觉证据抽取/证据报告生成），按 Skill 的契约执行；禁止用外部自由脚本替代 Skill 编排。
+2. 文本理解、规划与 VisualTaskSpec 生成由你（StepFun，文本模型）完成——你不读取、不看图片，只做规格与规划；所有图像/视频帧分析必须由本地 Qwen Vision 模型真实执行。
+3. 生成的 VisualTaskSpec 必须使用 coverage_aware_adaptive 采样策略，参数为冻结预注册值：max_model_calls=12、initial_coverage_samples=4、coverage_gap_target_ms=1500、coverage_call_reserve=4、target_boundary_precision_ms=500、max_refinement_rounds=6；必须通过仓库现有 VisualTaskSpec 校验器（schema + 业务校验全部通过），校验不通过不得继续。
+4. 不得从 README、历史 artifacts 或文件名推断媒体内容；媒体以上方给定路径为准。
+5. 不得读取任何 Ground Truth 文件来选择或调整采样点；采样只能依据已观测到的视觉证据与策略规则。
+6. 运行受控证据链：真实调用本地 Qwen Vision 逐帧分析，遵守硬性调用预算；每次模型原始返回必须存档。
+7. 输出必须包含：coverage/refinement 采样 provenance（初始覆盖/覆盖探索/边界细化调用区分、最大相邻采样间隔初始值与最终值、未充分观测区间）、temporal evidence（状态转换与边界不确定性）、以及限制声明（不保证发现任意短事件；采样证据支持的时序结论不是连续跟踪真值；technical fixture 不代表真实仓储准确率）。
+8. 最终报告必须由报告器独立复算状态生成；证据不足必须拒答，禁止编造，禁止把 uncertain 写成确定性结论。
+9. 全部产物写入：artifacts/task-18/dsh-session/（含 task-spec、校验结果、temporal-evidence、final-report、原始模型返回与 provenance）。
+10. 如实报告实际模型调用次数、失败与拒答；不得为了让结果好看而重试或挑选样本。

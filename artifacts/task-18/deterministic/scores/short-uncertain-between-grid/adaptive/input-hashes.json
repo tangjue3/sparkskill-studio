@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "short-uncertain-between-grid",
+  "arm_id": "adaptive",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/short-uncertain-between-grid.temporal-ground-truth.json",
+      "sha256": "634d22c41ea7cd8a3f8a99b77ed8e66bee1d57025972d6f0493e975d8d7caa58"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/short-uncertain-between-grid/adaptive/temporal-evidence.json",
+      "sha256": "b85502298f26d58abe0d2104e30f5b38179271b5d4eb7a3787b3c8d1d49f7ef9"
+    },
+    "media": {
+      "path": "../fixtures/videos/fixture-short-uncertain-between-grid.mp4",
+      "sha256": "05b3fb405150b6fcd0c7c8191b3d09f46c524b0250d18e3e87ef57711f6f8aa3"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task18-technical-fixtures",
+  "note": "DSH 自主会话产物离线评分用预测集合（单臂单样本；由执行 Agent 在会话结束后用冻结评分器评分，非会话内脚本）",
+  "arms": [
+    {
+      "arm_id": "dsh-session",
+      "samples": [
+        {
+          "sample_id": "short-event-between-grid",
+          "evidence": "temporal-evidence.json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "mode": "cli",
+  "expect": {
+    "exit_code": 1,
+    "stderr_contains": [
+      "gt_timeline_overlap",
+      "Ground Truth 未通过契约校验"
+    ]
+  }
+}

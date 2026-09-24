@@ -1,0 +1,344 @@
+{
+  "skill": "visual-evidence-extractor",
+  "version": "1.4.0",
+  "updated": "2026-09-22",
+  "backend": "ollama",
+  "model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+  "video_backend": "opencv（仅作底层抽帧工具：读元数据/抽帧/存图）",
+  "multi_video": "scripts/trace_multi_video.py（复用 trace_video.py 单段能力；统一全局时间线；跨视频身份断言禁止）",
+  "temporal_evidence": "scripts/trace_temporal.py + scripts/adaptive_sampler.py（uniform baseline / adaptive_coarse_to_fine / coverage_aware_adaptive；硬调用预算；采样 provenance；时序证据；覆盖探索与剩余盲区声明；语义红线见 references/temporal-evidence.md）",
+  "test_suite": "scripts/test_video_pipeline.py；scripts/test_multi_video_pipeline.py；scripts/test_temporal_evidence.py",
+  "last_run": {
+    "date": "2026-09-21",
+    "results_json": "artifacts/task-06/test-results.json",
+    "multi_video_passed": 32,
+    "multi_video_total": 32,
+    "task04_regression_passed": 16,
+    "task04_regression_total": 16,
+    "note": "小样本只记录通过数/总数；多视频规则测试使用真实抽取帧 + 任务 03 真实证据回放 + 构造输入（明确标注）；真实多视频 Qwen 逐帧运行由 DSH 自主会话完成（见 BENCHMARK.md M1–M9 与 artifacts/task-06/）"
+  },
+  "cases": [
+    {
+      "id": "image-positive-main-object",
+      "kind": "positive",
+      "image": "<内部测试媒体目录>/test_first.png",
+      "target_description": "图片中的主要目标",
+      "expect": {
+        "returns_valid_evidence_json": true,
+        "object_found": true,
+        "has_evidence_text": true,
+        "confidence_at_least": 0.5
+      }
+    },
+    {
+      "id": "image-negative-absent-object",
+      "kind": "negative",
+      "image": "<内部测试媒体目录>/test_first.png",
+      "target_description": "与图片实际内容明显不符、不可能存在的目标（依据正向测试的实际画面内容选择）",
+      "expect": {
+        "returns_valid_evidence_json": true,
+        "object_found": false,
+        "abstention_or_negative_reason_present": true,
+        "no_fabricated_bounding_box": true
+      }
+    },
+    {
+      "id": "spec-guard-invalid-spec-rejected",
+      "kind": "negative",
+      "input": {
+        "requires_visual_input": false
+      },
+      "expect": {
+        "exit_code": 1,
+        "reason": "requires_visual_input 必须为 true，否则拒绝执行"
+      }
+    },
+    {
+      "id": "video-metadata-read",
+      "kind": "positive",
+      "test_id": "A1-video-metadata",
+      "input_video": "<内部测试媒体目录>/h3-smoke.mp4",
+      "expect": {
+        "fps": 24.0,
+        "frame_count": 107,
+        "width": 960,
+        "height": 576,
+        "duration_ms_approx": 4458.333
+      }
+    },
+    {
+      "id": "video-frame-extraction",
+      "kind": "positive",
+      "test_id": "A2-frame-extraction",
+      "input_video": "<内部测试媒体目录>/h3-smoke.mp4",
+      "expect": {
+        "frames_extracted": 6,
+        "all_frame_files_exist": true,
+        "stable_naming": true
+      }
+    },
+    {
+      "id": "video-timestamps-monotonic",
+      "kind": "positive",
+      "test_id": "A3-monotonic-timestamps",
+      "expect": {
+        "strictly_increasing": true,
+        "derived_from_frame_index": true
+      }
+    },
+    {
+      "id": "video-frame-path-traceable",
+      "kind": "positive",
+      "test_id": "A4-frame-traceability",
+      "expect": {
+        "every_frame_path_exists": true
+      }
+    },
+    {
+      "id": "video-target-exists-sample",
+      "kind": "positive",
+      "test_id": "B1-positive-target-exists",
+      "input_nature": "任务 03 真实 Qwen 图片证据回放（非真实视频模型运行）",
+      "expect": {
+        "confirmed_frame_count": 3,
+        "overall_status": "completed",
+        "first_last_confirmed_recorded": true
+      }
+    },
+    {
+      "id": "video-target-absent-sample",
+      "kind": "negative",
+      "test_id": "B2-negative-target-absent",
+      "input_nature": "任务 03 真实 Qwen 负向证据（红色背包确定性负面）回放",
+      "expect": {
+        "confirmed_frame_count": 0,
+        "not_found_recorded": true,
+        "no_fabricated_path_or_timeline": true,
+        "conclusion_is_negative": true
+      }
+    },
+    {
+      "id": "video-insufficient-evidence-sample",
+      "kind": "negative",
+      "test_id": "B3-insufficient-evidence-abstains",
+      "input_nature": "构造输入（明确标注，非模型输出）",
+      "expect": {
+        "overall_status": "abstained",
+        "abstention_reason_preserved": true
+      }
+    },
+    {
+      "id": "video-bounding-box-not-fabricated",
+      "kind": "negative",
+      "test_id": "B4-bounding-box-not-fabricated",
+      "expect": {
+        "null_stays_null": true,
+        "full_frame_box_flagged_unreliable": true,
+        "no_invented_box": true
+      }
+    },
+    {
+      "id": "video-report-status-consistency",
+      "kind": "positive",
+      "test_id": "B6-report-status-consistency",
+      "expect": {
+        "report_status_matches_timeline_summary": true,
+        "cross_check_on_mismatch": true
+      }
+    },
+    {
+      "id": "video-failure-input-error-handling",
+      "kind": "negative",
+      "test_ids": [
+        "C1-missing-video-rejected",
+        "C2-corrupted-video-rejected",
+        "C3-invalid-spec-rejected",
+        "C4-malformed-evidence-rejected"
+      ],
+      "expect": {
+        "missing_video_exit": 3,
+        "corrupted_video_exit": 3,
+        "invalid_spec_exit": 2,
+        "malformed_evidence_exit": 2
+      }
+    },
+    {
+      "id": "multi-video-spec-legacy-compat",
+      "kind": "positive",
+      "test_id": "A1-legacy-single-media-spec-valid",
+      "expect": {
+        "legacy_string_source_media_still_valid": true,
+        "backward_compatible": true
+      }
+    },
+    {
+      "id": "multi-video-spec-valid",
+      "kind": "positive",
+      "test_id": "A2-multi-video-spec-valid",
+      "input_nature": "构造输入（两段真实视频路径，source_media 来源数组）",
+      "expect": {
+        "validator_exit_code": 0,
+        "unique_source_ids": true,
+        "non_negative_time_offset": true
+      }
+    },
+    {
+      "id": "multi-video-spec-rejections",
+      "kind": "negative",
+      "test_ids": [
+        "A3-duplicate-source-id-rejected",
+        "A4-negative-time-offset-rejected",
+        "A5-unauthorized-path-rejected",
+        "A6-shell-metachar-path-rejected",
+        "A7-legacy-path-guard-works"
+      ],
+      "expect": {
+        "duplicate_source_id_rejected": true,
+        "negative_time_offset_rejected": true,
+        "unauthorized_path_rejected": true,
+        "shell_metachar_path_rejected": true
+      }
+    },
+    {
+      "id": "pixel-box-controlled-normalization",
+      "kind": "positive",
+      "test_id": "B1-pixel-box-normalized",
+      "input_nature": "真实抽取帧（960x576 PNG）+ 任务 05 真实出现过的像素坐标 [431,222,545,356]",
+      "expect": {
+        "normalized_when_all_conditions_met": true,
+        "records_source_format_pixel": true,
+        "records_normalization_applied": true,
+        "records_raw_and_frame_size": true
+      }
+    },
+    {
+      "id": "pixel-box-illegal-rejected",
+      "kind": "negative",
+      "test_ids": [
+        "B3-mixed-coords-rejected",
+        "B4-out-of-bounds-rejected",
+        "B5-wrong-order-rejected",
+        "B6-unknown-size-rejected",
+        "B8-negative-coords-rejected",
+        "B10-coerce-evidence-nulls-invalid-box"
+      ],
+      "expect": {
+        "no_normalization": true,
+        "bounding_box_null": true,
+        "warning_recorded_with_raw_summary": true,
+        "no_model_rerun": true
+      }
+    },
+    {
+      "id": "multi-video-global-timeline",
+      "kind": "positive",
+      "test_ids": [
+        "C1-global-time-equals-local-plus-offset",
+        "C2-per-source-timestamps-monotonic",
+        "C3-failed-entries-preserved",
+        "C4-global-summary-first-last-confirmed",
+        "C9-execution-path-guard-accepts-authorized"
+      ],
+      "input_nature": "真实抽取帧 + 任务 03 真实证据回放 + 构造失败帧（明确标注）",
+      "expect": {
+        "global_equals_local_plus_offset": true,
+        "per_source_monotonic": true,
+        "failed_entries_preserved": true,
+        "global_first_last_confirmed_correct": true
+      }
+    },
+    {
+      "id": "multi-video-real-run",
+      "kind": "positive",
+      "input_nature": "DSH 自主会话真实运行（两段真实视频，本地 Qwen Vision 真实逐帧调用）",
+      "results": {
+        "positive": "8/8 confirmed（每来源 4/4），置信度 0.95–0.98，3 帧真实像素归一化",
+        "negative": "8/8 not_found（紫色大象），bbox 全 null"
+      },
+      "expect": {
+        "per_source_timelines": true,
+        "global_timeline_sorted": true,
+        "no_cross_video_identity_assertion": true,
+        "raw_model_outputs_archived": true
+      }
+    },
+    {
+      "id": "temporal-adaptive-sampling-rule-tests",
+      "kind": "positive",
+      "test_suite": "scripts/test_temporal_evidence.py",
+      "input_nature": "冻结 technical fixture 真实视频抽取 + 脚本化构造证据回放（明确标注，非模型输出）；无真实 Qwen 调用",
+      "expect": {
+        "actual_calls_within_budget": true,
+        "duplicate_timestamp_no_recall": true,
+        "timestamps_strictly_increasing": true,
+        "initial_vs_refinement_distinguishable": true,
+        "state_change_boundaries": true,
+        "boundary_uncertainty_width_correct": true,
+        "budget_exhaustion_stops": true,
+        "abstained_not_collapsed": true,
+        "failed_not_collapsed": true,
+        "no_pointless_refinement_without_state_change": true,
+        "uniform_adaptive_same_classification_rules": true,
+        "multi_source_ids_and_timestamps_preserved": true,
+        "no_cross_video_identity_assertion": true,
+        "resource_guard_zero_calls": true,
+        "provenance_no_credentials": true,
+        "fixture_vs_model_output_distinguished": true
+      }
+    },
+    {
+      "id": "temporal-uniform-vs-adaptive-real-run",
+      "kind": "positive",
+      "input_nature": "technical fixture（合成视频，非真实行业素材）+ 本地 Qwen Vision 真实调用",
+      "results_json": "artifacts/task-16/comparison.json",
+      "expect": {
+        "same_budget_fairness": true,
+        "fixture_frozen_before_evaluation": true,
+        "verdict_not_preset": true,
+        "no_extrapolation_to_real_warehouse_accuracy": true
+      }
+    },
+    {
+      "id": "temporal-coverage-aware-sampling-rule-tests",
+      "kind": "positive",
+      "input": "scripts/test_task18_coverage_sampling.py（C01–C35 + C34b）",
+      "expect": {
+        "all_passed": true,
+        "passed": 36,
+        "total": 36,
+        "no_real_model_calls": true,
+        "results_json": "artifacts/task-18/test-results.json",
+        "coverage": [
+          "契约与向后兼容",
+          "硬预算不突破",
+          "覆盖探索与边界细化竞争预算",
+          "重复时间戳跳过",
+          "最大相邻间隔可复算",
+          "网格间短事件/短 uncertain/相位移动/多事件场景",
+          "Ground Truth 不进入采样决策",
+          "provenance 自洽",
+          "四类 verdict 纪律",
+          "预注册哈希一致"
+        ]
+      }
+    },
+    {
+      "id": "temporal-three-arm-preregistered-comparison",
+      "kind": "positive",
+      "input": "scripts/run_task18_comparison.py --mode replay + scripts/task18_scorer_adapter.py",
+      "expect": {
+        "scenarios": 11,
+        "arms": 3,
+        "fairness_gate": "10/10 × 3 对全部通过",
+        "pack_verdict": "TRADEOFF（deterministic replay；预注册规则计算）",
+        "pairwise": {
+          "coverage-vs-adaptive": "IMPROVEMENT",
+          "coverage-vs-uniform": "TRADEOFF",
+          "adaptive-vs-uniform": "TRADEOFF"
+        },
+        "run_status": "PARTIAL_RESOURCE_BLOCKED（真实 Qwen 评测因用户 MiniMax-H3 服务活跃未执行）",
+        "results_json": "artifacts/task-18/three-arm-comparison.json"
+      }
+    }
+  ]
+}

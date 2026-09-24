@@ -1,0 +1,58 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "semantic_score_status": "scored",
+    "execution_status": "completed",
+    "metrics": {
+      "correct_decisive": {
+        "passed": 4,
+        "total": 4,
+        "ratio": 1.0
+      },
+      "incorrect_decisive": {
+        "passed": 0,
+        "total": 4
+      },
+      "abstention_on_determinate": {
+        "passed": 0,
+        "total": 4
+      },
+      "failed_on_determinate": {
+        "passed": 0,
+        "total": 4
+      },
+      "appropriate_abstention": {
+        "passed": 0,
+        "total": 0
+      },
+      "overclaim_on_uncertain": {
+        "passed": 0,
+        "total": 0
+      },
+      "failed_on_uncertain": {
+        "passed": 0,
+        "total": 0
+      }
+    },
+    "not_applicable_fields": [
+      "sample_point_scores.metrics.appropriate_abstention.ratio",
+      "sample_point_scores.metrics.overclaim_on_uncertain.ratio",
+      "sample_point_scores.metrics.failed_on_uncertain.ratio"
+    ],
+    "events": {
+      "gt_confirmed_segments": 1,
+      "covered_confirmed_events": 1,
+      "missed_confirmed_events": 0
+    },
+    "boundaries": {
+      "gt_boundaries_total": 0,
+      "matched_boundaries": 0
+    },
+    "efficiency": {
+      "actual_model_calls": 4,
+      "calls_per_correct_decisive_sample": 1.0,
+      "calls_per_matched_boundary": "not_applicable"
+    }
+  }
+}

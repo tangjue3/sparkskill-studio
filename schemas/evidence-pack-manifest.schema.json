@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sparkskill.studio/schemas/evidence-pack-manifest.schema.json",
+  "title": "EvidencePackManifest",
+  "description": "SparkSkill Studio Evidence Pack 输入清单契约（任务 17）：声明样本、媒体身份（相对路径 + SHA-256 + 时长）、目标查询、来源 provenance 与 dev/holdout 划分。硬性纪律：manifest 不得内嵌任何时间真值（Ground Truth 是显式独立输入，见 schemas/temporal-ground-truth.schema.json）；sample_id 全局唯一；媒体路径为相对路径且解析后位于项目根内；媒体 SHA-256 为 64 位小写十六进制；时长为正数。source_provenance 按 source_type 有条件必填字段（generated: model_name/service_or_model_version/prompt_version_ref/attempt_id/generation_record_ref；licensed_public: original_page_url/author_or_uploader/license_name/official_license_url/license_evidence_ref/attribution_requirement；technical_fixture: fixture_generator_ref/generation_params_ref/freeze_record_ref）——条件组合规则由 scripts/validate_evidence_pack.py 确定性执行（与 sampling_strategy 的 Schema 管结构、校验器管组合语义同一模式）。profile 为自由字符串时只执行通用规则；profile=sparkskill-competition-2026 时额外校验 12 样本（8 个 generated 样本 + 4 个 licensed_public 样本）、dev 9 / holdout 3、generated 8 / licensed_public 4。底层契约不硬编码任何固定编号。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pack_id",
+    "profile",
+    "created_at",
+    "frozen_at",
+    "samples"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "manifest 契约版本（semver）"
+    },
+    "pack_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{2,63}$",
+      "description": "Evidence Pack 唯一标识"
+    },
+    "profile": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "数据包 profile（自由字符串；已知值 sparkskill-competition-2026 触发 8 AI + 4 真实视频编号/split/来源校验）"
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "创建时间（ISO-8601 UTC）"
+    },
+    "frozen_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "冻结时间（ISO-8601 UTC）；冻结后样本清单与媒体哈希不得修改"
+    },
+    "samples": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sample_id",
+          "split",
+          "source_type",
+          "media_path",
+          "media_sha256",
+          "media_duration_ms",
+          "data_card",
+          "target_query",
+          "task_type",
+          "public_demo_allowed",
+          "raw_file_public_git_allowed",
+          "source_provenance"
+        ],
+        "properties": {
+          "sample_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "description": "样本唯一标识（pack 内不得重复）"
+          },
+          "split": {
+            "enum": ["dev", "holdout"],
+            "description": "数据划分：dev 可随公开产物引用；holdout 真值隔离（不进入公开 manifest/输出）"
+          },
+          "source_type": {
+            "enum": ["generated", "licensed_public", "technical_fixture"],
+            "description": "来源类型：generated=AI 生成；licensed_public=公开许可真实素材；technical_fixture=合成技术测试输入"
+          },
+          "media_path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "媒体相对路径（相对本 manifest 所在目录；禁绝对路径/路径穿越出项目根/shell 元字符/敏感标记）"
+          },
+          "media_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "description": "媒体文件 SHA-256（64 位小写十六进制；评分器硬门计算实际文件哈希并三方一致）"
+          },
+          "media_duration_ms": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "媒体时长（毫秒，正数）"
+          },
+          "data_card": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "数据卡相对路径（描述样本用途、性质与限制）"
+          },
+          "target_query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "目标查询（与 Ground Truth、预测产物的 target_query 必须一致）"
+          },
+          "task_type": {
+            "const": "temporal_presence_evidence",
+            "description": "任务类型（本契约只用于时间存在性证据）"
+          },
+          "public_demo_allowed": {
+            "type": "boolean",
+            "description": "是否允许公开演示"
+          },
+          "raw_file_public_git_allowed": {
+            "type": "boolean",
+            "description": "是否允许原始媒体文件进入公开 Git 仓库"
+          },
+          "source_provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["source_type"],
+            "description": "来源 provenance；source_type 必须与 sample.source_type 一致；条件必填字段由校验器按来源类型执行（见顶层 description）",
+            "properties": {
+              "source_type": {
+                "enum": ["generated", "licensed_public", "technical_fixture"],
+                "description": "必须与 sample.source_type 一致"
+              },
+              "model_name": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "generated 必填：生成模型名称"
+              },
+              "service_or_model_version": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "generated 必填：服务或模型版本"
+              },
+              "prompt_version_ref": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "generated 必填：Prompt 版本引用"
+              },
+              "attempt_id": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "generated 必填：生成尝试 ID"
+              },
+              "generation_record_ref": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "generated 必填：生成记录引用（日志/产物路径）"
+              },
+              "original_page_url": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "licensed_public 必填：原始详情页 URL"
+              },
+              "author_or_uploader": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "licensed_public 必填：作者或上传者"
+              },
+              "license_name": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "licensed_public 必填：许可名称"
+              },
+              "official_license_url": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "licensed_public 必填：官方许可 URL"
+              },
+              "license_evidence_ref": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "licensed_public 必填：许可凭证引用"
+              },
+              "attribution_requirement": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "licensed_public 必填：署名要求"
+              },
+              "fixture_generator_ref": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "technical_fixture 必填：fixture 生成器引用"
+              },
+              "generation_params_ref": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "technical_fixture 必填：生成参数引用"
+              },
+              "freeze_record_ref": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "technical_fixture 必填：冻结记录引用（manifest/hash 文件）"
+              },
+              "notes": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "可选：来源备注（非敏感）"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

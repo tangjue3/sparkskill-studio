@@ -1,0 +1,39 @@
+{
+  "recorded_at": "2026-09-22T08:28:54+0000",
+  "checks": {
+    "minimax_h3_no_generation_task": {
+      "passed": true,
+      "evidence": ":8000 无监听（ss 无记录）；无 vllm/DiffusionWorker 生成进程；用户 h3-lite 实验 API（:8010）无活动连接且进程已退出"
+    },
+    "port_8000_no_active_inference": {
+      "passed": true,
+      "evidence": ":8000 无监听"
+    },
+    "mem_available_3x_ge_45gib": {
+      "passed": true,
+      "samples_gib": [
+        60.09,
+        60.09,
+        60.08
+      ],
+      "threshold_gib": 45
+    },
+    "ollama_reachable": {
+      "passed": true,
+      "evidence": "GET /api/tags 200"
+    },
+    "no_external_qwen_consumer": {
+      "passed": true,
+      "evidence": "任务开始时 ollama /api/ps 无已加载模型；无外部 Qwen 推理进程"
+    },
+    "dsh_normal": {
+      "passed": true,
+      "evidence": "dsh --version = 0.1.5-rc.2"
+    },
+    "git_workspace_expected": {
+      "passed": true,
+      "evidence": "工作区仅含任务 16 自身的已跟踪修改与新增文件（预期内）；无未知 Git 操作、无锁、无进行中的 Git 进程；恢复 tag pre-task13-deploy-4c4c3ca 保留"
+    }
+  },
+  "all_passed": true
+}

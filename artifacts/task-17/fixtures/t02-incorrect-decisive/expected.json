@@ -1,0 +1,17 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "semantic_score_status": "scored",
+    "metrics": {
+      "correct_decisive": {
+        "passed": 1,
+        "total": 2
+      },
+      "incorrect_decisive": {
+        "passed": 1,
+        "total": 2
+      }
+    }
+  }
+}

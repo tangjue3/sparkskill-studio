@@ -1,0 +1,510 @@
+{
+  "schema_version": "1.3.0",
+  "report_type": "temporal_evidence",
+  "task_id": "task18-cmp-twin-short-events-coverage",
+  "target_query": "红色正方形",
+  "source_video": "artifacts/task-18/fixtures/videos/fixture-twin-short-events.mp4",
+  "input_nature": "technical_fixture",
+  "evidence_nature": "constructed_fixture_evidence",
+  "sampling_strategy": "coverage_aware_adaptive",
+  "vision_call_budget": 12,
+  "actual_model_calls": 7,
+  "budget_exhausted": false,
+  "target_boundary_precision_ms": 500,
+  "target_precision_reached": true,
+  "residual_uncertainty_ms": null,
+  "resource_blocked": false,
+  "coverage_summary": {
+    "coverage_exploration_calls": 3,
+    "boundary_refinement_calls": 0,
+    "initial_coverage_calls": 4,
+    "coverage_call_reserve": 4,
+    "coverage_gap_target_ms": 1500,
+    "max_adjacent_sampling_gap_ms_initial": 2666.667,
+    "max_adjacent_sampling_gap_ms_final": 1333.334,
+    "underobserved_intervals": [],
+    "arbitrary_short_event_detection_guaranteed": false,
+    "events_shorter_than_max_sampling_gap_may_be_missed": true
+  },
+  "duration_ms": 8000.0,
+  "sampled_frames": 7,
+  "status": "completed",
+  "conclusion": "在已分析的 7 个采样点中未确认目标「红色正方形」存在（负面结论，非肯定性断言；未发现与无法确认已严格区分）。（采样策略 coverage_aware_adaptive；视觉调用预算 12，实际调用 7，耗尽预算=False）时间覆盖：最大相邻采样间隔 1333.334 ms（初始 2666.667 ms，覆盖目标 1500 ms），覆盖探索调用 3 次、边界细化调用 0 次；不保证发现任意短事件，宽度小于最大相邻采样间隔的事件可能被漏检。",
+  "confidence": 0.0,
+  "abstention_reason": null,
+  "summary": {
+    "first_confirmed_observed_ms": null,
+    "last_confirmed_observed_ms": null,
+    "confirmed_sample_count": 0,
+    "class_counts": {
+      "confirmed": 0,
+      "not_found": 7,
+      "abstained": 0,
+      "low_confidence": 0,
+      "failed": 0
+    },
+    "analyzed_sample_count": 7,
+    "analyzed_ratio": 1.0,
+    "state_transitions": [],
+    "state_transition_count": 0,
+    "max_uncertainty_width_ms": null,
+    "overall_status": "completed"
+  },
+  "sampling_provenance": {
+    "strategy": "coverage_aware_adaptive",
+    "configured_budget": 12,
+    "actual_model_calls": 7,
+    "reused_evidence_count": 0,
+    "budget_exhausted": false,
+    "initial_samples": 4,
+    "refinement_samples": 0,
+    "refinement_rounds": 0,
+    "uniform_sampling_truncated_to_budget": false,
+    "initial_coverage_calls": 4,
+    "coverage_exploration_calls": 3,
+    "boundary_refinement_calls": 0,
+    "coverage_call_reserve": 4,
+    "coverage_gap_target_ms": 1500,
+    "max_adjacent_sampling_gap_ms_initial": 2666.667,
+    "max_adjacent_sampling_gap_ms_final": 1333.334,
+    "underobserved_intervals": [],
+    "arbitrary_short_event_detection_guaranteed": false,
+    "events_shorter_than_max_sampling_gap_may_be_missed": true,
+    "decisions": [
+      {
+        "sample_index": 0,
+        "timestamp_ms": 0.0,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "coverage_aware_adaptive 初始覆盖采样（策略：coverage_aware_adaptive）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 0
+        },
+        "model_call_seq": 1,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 1,
+          "reused_evidence_count": 0,
+          "remaining_calls": 11,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "initial_coverage",
+        "candidate_interval": null
+      },
+      {
+        "sample_index": 1,
+        "timestamp_ms": 2666.667,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "coverage_aware_adaptive 初始覆盖采样（策略：coverage_aware_adaptive）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 1
+        },
+        "model_call_seq": 2,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 2,
+          "reused_evidence_count": 0,
+          "remaining_calls": 10,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "initial_coverage",
+        "candidate_interval": null
+      },
+      {
+        "sample_index": 2,
+        "timestamp_ms": 5333.333,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "coverage_aware_adaptive 初始覆盖采样（策略：coverage_aware_adaptive）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 2
+        },
+        "model_call_seq": 3,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 3,
+          "reused_evidence_count": 0,
+          "remaining_calls": 9,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "initial_coverage",
+        "candidate_interval": null
+      },
+      {
+        "sample_index": 3,
+        "timestamp_ms": 7958.333,
+        "phase": "initial_coverage",
+        "refinement_round": null,
+        "reason": "coverage_aware_adaptive 初始覆盖采样（策略：coverage_aware_adaptive）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "analyzed_so_far": 3
+        },
+        "model_call_seq": 4,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 4,
+          "reused_evidence_count": 0,
+          "remaining_calls": 8,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "initial_coverage",
+        "candidate_interval": null
+      },
+      {
+        "sample_index": 4,
+        "timestamp_ms": 1333.333,
+        "phase": "coverage_exploration",
+        "refinement_round": null,
+        "reason": "覆盖探索：压缩最大未观测间隔 [0.0, 2666.667] ms（宽度 2666.667 ms > 覆盖目标 1500 ms；最大相邻间隔 2666.667 ms）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "max_adjacent_gap_ms": 2666.667,
+          "coverage_gap_target_ms": 1500,
+          "analyzed_so_far": 4
+        },
+        "model_call_seq": 5,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 5,
+          "reused_evidence_count": 0,
+          "remaining_calls": 7,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "temporal_coverage",
+        "candidate_interval": {
+          "left_ms": 0.0,
+          "right_ms": 2666.667
+        }
+      },
+      {
+        "sample_index": 5,
+        "timestamp_ms": 4000.0,
+        "phase": "coverage_exploration",
+        "refinement_round": null,
+        "reason": "覆盖探索：压缩最大未观测间隔 [2666.667, 5333.333] ms（宽度 2666.666 ms > 覆盖目标 1500 ms；最大相邻间隔 2666.666 ms）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "max_adjacent_gap_ms": 2666.666,
+          "coverage_gap_target_ms": 1500,
+          "analyzed_so_far": 5
+        },
+        "model_call_seq": 6,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 6,
+          "reused_evidence_count": 0,
+          "remaining_calls": 6,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "temporal_coverage",
+        "candidate_interval": {
+          "left_ms": 2666.667,
+          "right_ms": 5333.333
+        }
+      },
+      {
+        "sample_index": 6,
+        "timestamp_ms": 6625.0,
+        "phase": "coverage_exploration",
+        "refinement_round": null,
+        "reason": "覆盖探索：压缩最大未观测间隔 [5333.333, 7958.333] ms（宽度 2625.0 ms > 覆盖目标 1500 ms；最大相邻间隔 2625.0 ms）",
+        "trigger_interval": null,
+        "trigger_reason": null,
+        "observed_states_at_decision": {
+          "max_adjacent_gap_ms": 2625.0,
+          "coverage_gap_target_ms": 1500,
+          "analyzed_so_far": 6
+        },
+        "model_call_seq": 7,
+        "cache_status": "fresh_call",
+        "budget_state": {
+          "max_model_calls": 12,
+          "actual_model_calls": 7,
+          "reused_evidence_count": 0,
+          "remaining_calls": 5,
+          "budget_exhausted": false,
+          "skipped_duplicate_timestamps": []
+        },
+        "purpose": "temporal_coverage",
+        "candidate_interval": {
+          "left_ms": 5333.333,
+          "right_ms": 7958.333
+        }
+      }
+    ],
+    "analyzed_timestamps": [
+      0.0,
+      1333.333,
+      2666.667,
+      4000.0,
+      5333.333,
+      6625.0,
+      7958.333
+    ],
+    "skipped_duplicate_timestamps": [],
+    "stop_reasons": [
+      "coverage_gap_target_reached",
+      "no_refinable_interval"
+    ],
+    "resource_guard": {
+      "blocked": false
+    },
+    "resource_blocked": false,
+    "timing": {
+      "extraction_ms": 1.076,
+      "analysis_ms": 0.0,
+      "aggregation_ms": 0.123,
+      "total_ms": 104.922
+    }
+  },
+  "temporal_evidence": {
+    "first_confirmed_observed_ms": null,
+    "last_confirmed_observed_ms": null,
+    "confirmed_sample_count": 0,
+    "class_counts": {
+      "confirmed": 0,
+      "not_found": 7,
+      "abstained": 0,
+      "low_confidence": 0,
+      "failed": 0
+    },
+    "analyzed_sample_count": 7,
+    "analyzed_ratio": 1.0,
+    "state_transitions": [],
+    "state_transition_count": 0,
+    "boundary_uncertainty": {
+      "target_ms": 500,
+      "max_ms": null,
+      "min_ms": null,
+      "target_precision_reached": true,
+      "residual_uncertainty_ms": null
+    },
+    "evidence_supported_segments": [
+      {
+        "start_ms": 0.0,
+        "end_ms": 7958.333,
+        "state_class": "not_found",
+        "sample_count": 7,
+        "note": "证据支持的状态片段仅覆盖已采样点，不声称片段内未采样时间的连续事实"
+      }
+    ],
+    "unconfirmed_intervals": [],
+    "stopped_by_budget": false,
+    "stop_reasons": [
+      "coverage_gap_target_reached",
+      "no_refinable_interval"
+    ],
+    "actual_model_calls": 7,
+    "semantics": {
+      "nature": "sampling_evidence_supported_temporal_conclusion",
+      "is_not_continuous_tracking_truth": true,
+      "first_confirmed_semantics": "first_confirmed_observed_ms 是首个被观察为 confirmed 的采样时间，不等于目标真实首次进入时间",
+      "last_confirmed_semantics": "last_confirmed_observed_ms 是最后一个被观察为 confirmed 的采样时间，不等于目标真实离开时间",
+      "no_continuity_assertion": "两个 confirmed 采样点之间不得自动断言目标连续存在；采样点之间的时间只有“未采样/未知”，没有连续性事实",
+      "boundary_semantics": "状态变化只能定位到左右相邻采样点形成的时间范围 [left_ms, right_ms]，uncertainty_width_ms = right_ms - left_ms，不得伪造精确瞬间",
+      "no_inference_collapse": "abstained / low_confidence / failed 独立计数，不得折算为 not_found；not_found 仅表示确定性负面结论",
+      "forbidden_capabilities": "不做跨帧身份一致性、不做跨摄像头实例关联、不输出物体运动路径；本功能不是 ReID、不是目标跟踪器、不是实时跟踪"
+    },
+    "coverage": {
+      "max_adjacent_sampling_gap_ms_initial": 2666.667,
+      "max_adjacent_sampling_gap_ms_final": 1333.334,
+      "coverage_gap_target_ms": 1500,
+      "coverage_calls": 3,
+      "coverage_call_reserve": 4,
+      "underobserved_intervals": [],
+      "arbitrary_short_event_detection_guaranteed": false,
+      "events_shorter_than_max_sampling_gap_may_be_missed": true,
+      "coverage_statement": "覆盖探索只保证不存在宽度超过最大相邻采样间隔的完全未观测时间窗口；不保证事件被视觉模型正确判定，不保证任意短事件必检，不表示采样点之间目标连续存在"
+    }
+  },
+  "semantic_limitation_note": "时序结论语义限制：本报告的目标时序结论是“采样证据支持的时序结论”（temporal presence evidence / evidence-supported state transition / boundary uncertainty），不是连续跟踪真值。first/last confirmed 是采样观察时间，不等于目标真实进入/离开时间；两个 confirmed 采样点之间不得断言目标连续存在；状态变化只定位到左右相邻采样点形成的时间范围。本报告不做跨帧身份一致性、不做跨摄像头实例关联、不输出物体运动路径；不是 ReID、不是目标跟踪器、不是实时跟踪。",
+  "evidence": [
+    {
+      "timestamp_ms": 0.0,
+      "frame_path": "artifacts/task-18/deterministic/twin-short-events/coverage/frames/fixture-twin-short-events_f00000_t00000000ms.png",
+      "object_found": false,
+      "description": "构造证据：画面中无红色正方形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.9,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 1333.333,
+      "frame_path": "artifacts/task-18/deterministic/twin-short-events/coverage/frames/fixture-twin-short-events_f00032_t00001333ms.png",
+      "object_found": false,
+      "description": "构造证据：画面中无红色正方形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.9,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 2666.667,
+      "frame_path": "artifacts/task-18/deterministic/twin-short-events/coverage/frames/fixture-twin-short-events_f00064_t00002667ms.png",
+      "object_found": false,
+      "description": "构造证据：画面中无红色正方形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.9,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 4000.0,
+      "frame_path": "artifacts/task-18/deterministic/twin-short-events/coverage/frames/fixture-twin-short-events_f00096_t00004000ms.png",
+      "object_found": false,
+      "description": "构造证据：画面中无红色正方形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.9,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 5333.333,
+      "frame_path": "artifacts/task-18/deterministic/twin-short-events/coverage/frames/fixture-twin-short-events_f00128_t00005333ms.png",
+      "object_found": false,
+      "description": "构造证据：画面中无红色正方形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.9,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 6625.0,
+      "frame_path": "artifacts/task-18/deterministic/twin-short-events/coverage/frames/fixture-twin-short-events_f00159_t00006625ms.png",
+      "object_found": false,
+      "description": "构造证据：画面中无红色正方形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.9,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    },
+    {
+      "timestamp_ms": 7958.333,
+      "frame_path": "artifacts/task-18/deterministic/twin-short-events/coverage/frames/fixture-twin-short-events_f00191_t00007958ms.png",
+      "object_found": false,
+      "description": "构造证据：画面中无红色正方形",
+      "bounding_box": null,
+      "bounding_box_raw": null,
+      "bounding_box_source_format": null,
+      "bounding_box_normalization_applied": false,
+      "frame_width": null,
+      "frame_height": null,
+      "confidence": 0.9,
+      "evidence_text": "构造证据（规则测试回放，非模型输出）",
+      "abstention_reason": null,
+      "frame_status": "analyzed",
+      "evidence_sufficient": false,
+      "gaps": [
+        "目标未被确认存在"
+      ],
+      "warnings": [],
+      "evidence_nature": "constructed_fixture_evidence"
+    }
+  ],
+  "warnings": [
+    "帧 0.0ms: 目标未被确认存在",
+    "帧 1333.333ms: 目标未被确认存在",
+    "帧 2666.667ms: 目标未被确认存在",
+    "帧 4000.0ms: 目标未被确认存在",
+    "帧 5333.333ms: 目标未被确认存在",
+    "帧 6625.0ms: 目标未被确认存在",
+    "帧 7958.333ms: 目标未被确认存在"
+  ],
+  "generated_at": "2026-09-22T12:02:24.216654+00:00"
+}

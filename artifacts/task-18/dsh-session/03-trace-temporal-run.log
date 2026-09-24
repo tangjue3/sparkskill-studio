@@ -1,0 +1,3 @@
+[完成] 时序证据已写入 artifacts/task-18/dsh-session/temporal-evidence.json
+  策略=coverage_aware_adaptive 采样点=11 整体状态=completed
+  预算=12 实际调用=11 耗尽预算=False

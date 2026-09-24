@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t21-missing-ground-truth-arg",
+  "profile": "task17-rule-fixtures",
+  "created_at": "2026-09-22T00:00:00Z",
+  "frozen_at": "2026-09-22T00:00:00Z",
+  "samples": [
+    {
+      "sample_id": "t21-missing-ground-truth-arg",
+      "split": "dev",
+      "source_type": "technical_fixture",
+      "media_path": "media.mp4",
+      "media_sha256": "36468db5721d1eeb217901ed24e324fa88c33b541d2761eaf57500db4ea71f8a",
+      "media_duration_ms": 8000,
+      "data_card": "data-card.md",
+      "target_query": "红色正方形",
+      "task_type": "temporal_presence_evidence",
+      "public_demo_allowed": false,
+      "raw_file_public_git_allowed": false,
+      "source_provenance": {
+        "source_type": "technical_fixture",
+        "fixture_generator_ref": "artifacts/task-17/fixtures/build_fixtures.py",
+        "generation_params_ref": "artifacts/task-17/fixtures/build_fixtures.py",
+        "freeze_record_ref": "artifacts/task-17/fixtures/README.md"
+      }
+    }
+  ]
+}

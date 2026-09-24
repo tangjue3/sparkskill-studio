@@ -1,0 +1,9 @@
+{
+  "mode": "compare",
+  "expect": {
+    "exit_code": 0,
+    "verdict": "NO_IMPROVEMENT",
+    "strict_improvements": [],
+    "regressions": []
+  }
+}

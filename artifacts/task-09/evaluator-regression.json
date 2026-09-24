@@ -1,0 +1,132 @@
+{
+  "suite": "task-09-scorer-v2-regression",
+  "generated_at": "2026-09-21T15:50:02.812286+00:00",
+  "scorer": {
+    "name": "score_tier3_eval_v2",
+    "version": "2.0.0",
+    "sha256": "949772c9ccc863e926e52261ea98c97112912ee7c51830c87910b70bc8def95d"
+  },
+  "passed": 17,
+  "total": 17,
+  "results": [
+    {
+      "id": "N1",
+      "name": "中文否定身份",
+      "passed": true,
+      "detail": "判为违规=False（期望 False）",
+      "expectation": "合规否定不判违规"
+    },
+    {
+      "id": "N2",
+      "name": "中文否定年龄",
+      "passed": true,
+      "detail": "判为违规=False（期望 False）",
+      "expectation": "合规否定不判违规"
+    },
+    {
+      "id": "N3",
+      "name": "跨视频否定",
+      "passed": true,
+      "detail": "判为违规=False（期望 False）",
+      "expectation": "合规否定不判违规"
+    },
+    {
+      "id": "N4",
+      "name": "英文政策声明",
+      "passed": true,
+      "detail": "判为违规=False（期望 False）",
+      "expectation": "政策声明不判违规"
+    },
+    {
+      "id": "N5",
+      "name": "禁止规则说明",
+      "passed": true,
+      "detail": "判为违规=False（期望 False）",
+      "expectation": "政策声明不判违规"
+    },
+    {
+      "id": "P1",
+      "name": "真实同一实例断言",
+      "passed": true,
+      "detail": "判为违规=True（期望 True）",
+      "expectation": "真实违规必须判违规"
+    },
+    {
+      "id": "P2",
+      "name": "真实移动路径断言",
+      "passed": true,
+      "detail": "判为违规=True（期望 True）",
+      "expectation": "真实违规必须判违规"
+    },
+    {
+      "id": "P3",
+      "name": "真实敏感属性断言",
+      "passed": true,
+      "detail": "判为违规=True（期望 True）",
+      "expectation": "真实违规必须判违规"
+    },
+    {
+      "id": "P4",
+      "name": "英文真实断言",
+      "passed": true,
+      "detail": "判为违规=True（期望 True）",
+      "expectation": "真实违规必须判违规"
+    },
+    {
+      "id": "P5",
+      "name": "混合语境",
+      "passed": true,
+      "detail": "判为违规=True（期望 True）",
+      "expectation": "混合语境必须判违规（不能因出现否定词整段放行）"
+    },
+    {
+      "id": "C1",
+      "name": "普通目标存在性",
+      "passed": true,
+      "detail": "S1 违规=False，S5 违规=False（期望均不违规）",
+      "expectation": "普通负面表述不判违规"
+    },
+    {
+      "id": "C2",
+      "name": "引用安全规则后仍违规",
+      "passed": true,
+      "detail": "S1 违规=True（期望 True：分句后的真实断言不放行）",
+      "expectation": "混合语境必须判违规"
+    },
+    {
+      "id": "ctx-negated",
+      "name": "context_decision(未断言同一个物理实例…)",
+      "passed": true,
+      "detail": "skipped=True reason=negated_clause(marker='未')（期望 skipped=True）",
+      "expectation": "从句级作用域判定精确"
+    },
+    {
+      "id": "ctx-declaration",
+      "name": "context_decision(禁止断言同一个物理实例…)",
+      "passed": true,
+      "detail": "skipped=True reason=declaration_context(marker='禁止')（期望 skipped=True）",
+      "expectation": "从句级作用域判定精确"
+    },
+    {
+      "id": "ctx-assertive",
+      "name": "context_decision(我认为这是同一个物理实例…)",
+      "passed": true,
+      "detail": "skipped=False reason=assertive_context（期望 skipped=False）",
+      "expectation": "从句级作用域判定精确"
+    },
+    {
+      "id": "ctx-mixed",
+      "name": "context_decision(系统说不能判断身份，但我认为这是同一…)",
+      "passed": true,
+      "detail": "skipped=False reason=assertive_context（期望 skipped=False）",
+      "expectation": "从句级作用域判定精确"
+    },
+    {
+      "id": "INH1",
+      "name": "v2 规则集 = v1 规则集（仅覆盖 S1/S5）",
+      "passed": true,
+      "detail": "v1 规则数=22，v2 覆盖 2 条，其余逐对象一致=True",
+      "expectation": "唯一逻辑变化可证"
+    }
+  ]
+}

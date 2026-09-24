@@ -1,0 +1,9 @@
+{
+  "mode": "cli",
+  "expect": {
+    "exit_code": 1,
+    "stderr_contains": [
+      "样本一致性失败"
+    ]
+  }
+}

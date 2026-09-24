@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "task": "task-18-verdict",
+  "run_status": "COMPLETED",
+  "run_status_note": "真实 Qwen 三臂评测（287 次真实模型调用）与一次全新 DSH headless 自主会话均已完成；用户授权优雅停止 MiniMax-H3 服务族后十项资源门槛全部通过（过程见 h3-shutdown-record.json / resource-gate-rerun.json）；deterministic replay 与 real Qwen 分别评分、分别给 verdict，不混合平均",
+  "engineering_acceptance": {
+    "status": "PASS",
+    "basis": [
+      "阶段 A 预注册提交（dcaf324）早于实现提交；预注册文件与 fixture 哈希全程一致",
+      "第三种策略严格向后兼容（旧规格/旧策略行为不变，回归通过）",
+      "硬预算在所有路径成立（initial+coverage+refinement=实际调用≤max_model_calls；真实运行 287 次调用全部在预算内）",
+      "provenance 区分 coverage 与 refinement；最大采样间隔与剩余盲区可复算",
+      "Ground Truth 未进入采样决策（专项测试）",
+      "三臂公平门成立（10 条件，replay 与 real 各自成立）；verdict 由冻结规则计算",
+      "新测试 36/36；旧回归全部通过（详见 verification.json）"
+    ],
+    "note": "工程 PASS 不表示算法一定更优；两者分别报告"
+  },
+  "algorithmic_verdict": {
+    "deterministic_replay": {
+      "pack_level": "TRADEOFF",
+      "reason": "有严格改进（['smaller_mean_boundary_error_than_both']）但非回归条件被违反（['more_missed_confirmed_events_vs_uniform', 'more_missed_gt_boundaries_vs_uniform', 'larger_max_sampling_gap_vs_uniform']）：省调用/缩边界/缩间隔的同时增加了漏检、过度断言或未触达 uncertain",
+      "reason_codes": [
+        "smaller_mean_boundary_error_than_both",
+        "more_missed_confirmed_events_vs_uniform",
+        "more_missed_gt_boundaries_vs_uniform",
+        "larger_max_sampling_gap_vs_uniform"
+      ],
+      "source_run": "deterministic-replay",
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "smaller_max_boundary_error",
+            "smaller_mean_boundary_error",
+            "more_missed_confirmed_events",
+            "more_missed_gt_boundaries"
+          ],
+          "fairness_gate_all_passed": true
+        },
+        "coverage-vs-adaptive": {
+          "verdict": "IMPROVEMENT",
+          "reason_codes": [
+            "smaller_mean_boundary_error",
+            "more_boundaries_within_tolerance"
+          ],
+          "fairness_gate_all_passed": true
+        },
+        "adaptive-vs-uniform": {
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "smaller_max_boundary_error",
+            "smaller_mean_boundary_error",
+            "more_missed_confirmed_events",
+            "more_missed_gt_boundaries",
+            "more_unreached_uncertain_segments"
+          ],
+          "fairness_gate_all_passed": true
+        }
+      }
+    },
+    "real_qwen": {
+      "pack_level": "TRADEOFF",
+      "reason": "有严格改进（['smaller_mean_boundary_error_than_both']）但非回归条件被违反（['more_overclaim_on_uncertain_vs_uniform', 'more_missed_confirmed_events_vs_uniform', 'more_missed_gt_boundaries_vs_uniform', 'larger_max_sampling_gap_vs_uniform', 'more_overclaim_on_uncertain_vs_adaptive']）：省调用/缩边界/缩间隔的同时增加了漏检、过度断言或未触达 uncertain",
+      "reason_codes": [
+        "smaller_mean_boundary_error_than_both",
+        "more_overclaim_on_uncertain_vs_uniform",
+        "more_missed_confirmed_events_vs_uniform",
+        "more_missed_gt_boundaries_vs_uniform",
+        "larger_max_sampling_gap_vs_uniform",
+        "more_overclaim_on_uncertain_vs_adaptive"
+      ],
+      "source_run": "real-qwen",
+      "model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest（本地 Ollama，vision 能力）",
+      "actual_model_calls_total": 287,
+      "failed_calls": 0,
+      "timeout_calls": 0,
+      "invalid_output_calls": 0,
+      "pairwise": {
+        "coverage-vs-uniform": {
+          "verdict": "TRADEOFF",
+          "reason": "有严格改进（['fewer_model_calls', 'smaller_max_boundary_error', 'smaller_mean_boundary_error']）但非回归条件被违反（['more_overclaim_on_uncertain', 'more_missed_confirmed_events', 'more_missed_gt_boundaries']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+          "reason_codes": [
+            "fewer_model_calls",
+            "smaller_max_boundary_error",
+            "smaller_mean_boundary_error",
+            "more_overclaim_on_uncertain",
+            "more_missed_confirmed_events",
+            "more_missed_gt_boundaries"
+          ],
+          "fairness_gate_all_passed": true
+        },
+        "coverage-vs-adaptive": {
+          "verdict": "TRADEOFF",
+          "reason": "有严格改进（['smaller_mean_boundary_error', 'more_boundaries_within_tolerance']）但非回归条件被违反（['more_overclaim_on_uncertain']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+          "reason_codes": [
+            "smaller_mean_boundary_error",
+            "more_boundaries_within_tolerance",
+            "more_overclaim_on_uncertain"
+          ],
+          "fairness_gate_all_passed": true,
+          "note": "replay 中本对为 IMPROVEMENT；真实模型下因 coverage 触达 uncertain 区域后 Qwen 过度断言（4 次 vs adaptive 0 次）而变为 TRADEOFF——差异来自视觉模型语义而非采样策略"
+        },
+        "adaptive-vs-uniform": {
+          "verdict": "TRADEOFF",
+          "reason_codes": [
+            "fewer_model_calls",
+            "smaller_max_boundary_error",
+            "smaller_mean_boundary_error",
+            "more_missed_confirmed_events",
+            "more_missed_gt_boundaries",
+            "more_unreached_uncertain_segments"
+          ],
+          "fairness_gate_all_passed": true
+        }
+      }
+    }
+  },
+  "dsh_autonomous_session": {
+    "status": "SUCCESS",
+    "session_start": "2026-09-22T13:55:46+00:00",
+    "session_end": "2026-09-22T14:00:22+00:00",
+    "exit_code": 0,
+    "fixture": "artifacts/task-18/fixtures/videos/fixture-short-event-between-grid.mp4",
+    "strategy": "coverage_aware_adaptive（冻结预注册参数，校验器 RESULT: VALID）",
+    "actual_model_calls": 11,
+    "budget": 12,
+    "failed_calls": 0,
+    "offline_gt_score": {
+      "scorer": "scripts/task18_scorer_adapter.py（任务 17 冻结评分器 + 任务 18 冻结适配层）",
+      "correct_decisive": 11,
+      "incorrect_decisive": 0,
+      "overclaim_on_uncertain": 0,
+      "covered_confirmed_events": 1,
+      "missed_confirmed_events": 0,
+      "matched_boundaries": 2,
+      "within_tolerance_boundaries": 2,
+      "boundary_error_mean_ms": 33.333,
+      "boundary_error_max_ms": 66.666
+    },
+    "artifacts_dir": "artifacts/task-18/dsh-session/"
+  },
+  "real_vs_replay": {
+    "separation": "replay 与 real Qwen 分别评分、分别给 verdict；两者指标不混合平均",
+    "key_differences": [
+      "coverage-vs-adaptive：replay=IMPROVEMENT，real=TRADEOFF——真实 Qwen 在被 coverage 触达的 uncertain 区域给出确定性结论（overclaim_on_uncertain: coverage 4 / uniform 2 / adaptive 0），重现任务 16 确定性负面 overclaim 模式；差异源于视觉模型语义，采样计划两者完全一致（均为 287 次调用且逐臂逐场景相同）",
+      "pack verdict：replay 与 real 均为 TRADEOFF，但 reason codes 不同（real 增加 overclaim 类违反）",
+      "真实运行证实：coverage 采到短事件后 Qwen 能正确识别（short-event-between-grid / short-event-phase-b：coverage confirmed=2 vs adaptive=0）；600ms twin 事件仍漏检（任意短事件不保证发现）",
+      "真实运行 287 次调用零失败、零超时、零无效输出；全部原始返回已存档"
+    ]
+  },
+  "known_limitations_ref": "artifacts/task-18/known-limitations.md"
+}

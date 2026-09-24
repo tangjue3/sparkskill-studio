@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sparkskill.studio/schemas/temporal-ground-truth.schema.json",
+  "title": "TemporalGroundTruth",
+  "description": "SparkSkill Studio 时间 Ground Truth 契约（任务 17）：每份文件描述一个样本的时间真值。时间线规则（由 scripts/validate_evidence_pack.py 的 check_ground_truth_timeline 确定性执行，任一违反即硬门失败）：按 start_ms 严格排序；完整覆盖 [0, media_duration_ms]；不重叠、不留空隙；每段长度为正；相邻相同状态必须合并；区间判定为左闭右开 [start_ms, end_ms)，最后一段包含媒体终点。Ground Truth 中不得出现模型预测字段、模型置信度或根据模型输出反推的标签。标签冻结信息 label_frozen 与修订历史 revision_history 必须保留；修订发生在模型运行之后（after_model_run=true）时，公平比较判 INVALID_COMPARISON。本契约不依赖任何固定样本编号，可复用于任意 Evidence Pack。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "sample_id",
+    "media_sha256",
+    "media_duration_ms",
+    "target_query",
+    "annotation_version",
+    "annotated_at",
+    "annotator_id",
+    "boundary_tolerance_ms",
+    "segments",
+    "label_frozen",
+    "revision_history",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Ground Truth 契约版本（semver）"
+    },
+    "sample_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+      "description": "样本标识（必须与 Evidence Pack manifest 中的 sample_id 一致）"
+    },
+    "media_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "媒体 SHA-256（必须与 manifest.media_sha256 及实际文件哈希一致）"
+    },
+    "media_duration_ms": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "媒体时长（毫秒，正数；必须与 manifest 及预测产物一致）"
+    },
+    "target_query": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "目标查询（必须与 manifest 及预测产物一致）"
+    },
+    "annotation_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "标注版本（公平比较要求两臂使用相同版本）"
+    },
+    "annotated_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "标注时间（ISO-8601 UTC）"
+    },
+    "annotator_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "标注者标识（非敏感；不得包含凭据、邮箱或个人身份信息）"
+    },
+    "boundary_tolerance_ms": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "边界容差（毫秒，正数）：匹配边界的 midpoint 绝对误差 ≤ 该值计为容差内"
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "description": "时间线区间（严格排序、完整覆盖、不重叠、不留隙、每段为正、相邻同状态必须合并）",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["start_ms", "end_ms", "state"],
+        "properties": {
+          "start_ms": {
+            "type": "number",
+            "minimum": 0,
+            "description": "区间起点（毫秒，含）"
+          },
+          "end_ms": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "区间终点（毫秒；普通段右开，最后一段 end_ms == media_duration_ms 且包含终点）"
+          },
+          "state": {
+            "enum": ["confirmed", "not_found", "uncertain"],
+            "description": "confirmed=确定存在；not_found=确定不存在；uncertain=无法可靠判定（既非存在也非不存在）"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "可选：状态原因（如低对比度导致无法可靠确认）"
+          }
+        }
+      }
+    },
+    "label_frozen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frozen", "frozen_at"],
+      "description": "标签冻结信息；frozen=true 后不得修改标签",
+      "properties": {
+        "frozen": {
+          "type": "boolean",
+          "description": "是否已冻结"
+        },
+        "frozen_at": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "冻结时间（ISO-8601 UTC）"
+        },
+        "derived_from": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "可选：派生来源（如从既有冻结 ground truth 映射，记录源文件与映射规则）"
+        },
+        "freeze_note": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "可选：冻结说明"
+        }
+      }
+    },
+    "revision_history": {
+      "type": "array",
+      "description": "标签修订历史（保留原版本、原因、时间与是否发生在模型运行之后；无修订时为空数组）",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from_version", "to_version", "revised_at", "reason", "after_model_run"],
+        "properties": {
+          "from_version": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "修订前版本"
+          },
+          "to_version": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "修订后版本"
+          },
+          "revised_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "修订时间（ISO-8601 UTC）"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "修订原因"
+          },
+          "after_model_run": {
+            "type": "boolean",
+            "description": "修订是否发生在模型运行之后（true 时公平比较判 INVALID_COMPARISON）"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "备注（非敏感）"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t07-failed-states",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t07-failed-states",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t05-overclaim-not-found",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t05-overclaim-not-found",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

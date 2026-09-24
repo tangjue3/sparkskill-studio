@@ -1,0 +1,1 @@
+{"object_found": false, "description": "画面为纯灰色背景，左右两侧有黑色竖条边框，无任何其他可见物体", "bounding_box": null, "confidence": 1.0, "evidence_text": "整个画面仅由灰色背景和两侧黑色边框组成，不存在任何红色正方形或其他形状", "abstention_reason": null}

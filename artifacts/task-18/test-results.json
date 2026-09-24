@@ -1,0 +1,262 @@
+{
+  "suite": "task-18-coverage-aware-adaptive-sampling",
+  "generated_at": "2026-09-22T12:02:32.898487+00:00",
+  "passed": 36,
+  "total": 36,
+  "all_passed": true,
+  "no_real_model_calls": true,
+  "results": [
+    {
+      "id": "C01-legacy-spec-still-valid",
+      "name": "旧 VisualTaskSpec（无采样策略）继续有效",
+      "passed": true,
+      "detail": "exit=0（任务 03 真实规格原样校验）",
+      "input_nature": "任务 03 真实产物（artifacts/task-03/task-spec.json）"
+    },
+    {
+      "id": "C02-old-strategies-behavior-unchanged",
+      "name": "旧 uniform/adaptive 策略输出行为不变",
+      "passed": true,
+      "detail": "uniform 预算5→实际5(截断=True,无覆盖/细化调用)；adaptive 无变化→4调用/停止['no_refinable_interval']；adaptive 出现场景→1 转换括号含 3200ms、精度达成=True",
+      "input_nature": "构造证据回放（真实 fixture 视频抽取 + 脚本化证据，非模型输出）"
+    },
+    {
+      "id": "C03-coverage-strategy-valid",
+      "name": "coverage_aware_adaptive 策略合法",
+      "passed": true,
+      "detail": "exit=0（预注册 arm-configs.json 的 coverage 配置逐字）",
+      "input_nature": "构造输入（合法 coverage 策略规格）"
+    },
+    {
+      "id": "C04-coverage-missing-required-rejected",
+      "name": "新策略缺失必填参数被拒绝",
+      "passed": true,
+      "detail": "max_model_calls: 拒绝；initial_coverage_samples: 拒绝；coverage_gap_target_ms: 拒绝；coverage_call_reserve: 拒绝；target_boundary_precision_ms: 拒绝；max_refinement_rounds: 拒绝",
+      "input_nature": "构造输入（逐一删除 6 个必填字段）"
+    },
+    {
+      "id": "C05-coverage-illegal-values-rejected",
+      "name": "非法预算/间隔/轮次/精度/储备被拒绝",
+      "passed": true,
+      "detail": "10/10 个非法值被拒绝（含 initial(4)+reserve(9)=13>预算12 的覆盖配置越界）",
+      "input_nature": "构造输入（10 类非法值）"
+    },
+    {
+      "id": "C06-coverage-refinement-within-budget",
+      "name": "coverage 与 refinement 不能突破总预算",
+      "passed": true,
+      "detail": "预算12：实际=12≤12，覆盖=3≤4，三类调用之和=实际；预算6：实际=6≤6，覆盖=2≤2",
+      "input_nature": "构造证据回放（fixture-reappear，预算 12/6）"
+    },
+    {
+      "id": "C07-coverage-without-state-change",
+      "name": "没有状态变化时仍执行覆盖探索",
+      "passed": true,
+      "detail": "覆盖调用=3，最大间隔 2666.667→1333.334 ms，停止=['coverage_gap_target_reached', 'no_refinable_interval']",
+      "input_nature": "构造证据回放（fixture-present-throughout，全程 confirmed 无转换）"
+    },
+    {
+      "id": "C08-refinement-after-state-change",
+      "name": "出现状态变化后执行边界细化",
+      "passed": true,
+      "detail": "细化调用=2，转换括号=[(3000.0, 3333.333)]（含 GT 3200ms）",
+      "input_nature": "构造证据回放（fixture-appear-midway）"
+    },
+    {
+      "id": "C09-coverage-refinement-budget-contention",
+      "name": "覆盖与细化竞争预算（确定性分配）",
+      "passed": true,
+      "detail": "预算6：coverage 初始4+覆盖2+细化0；adaptive 初始4+细化2；uniform 截断至 6 点（三类分配均为确定性结果）",
+      "input_nature": "构造证据回放（fixture-reappear，三臂统一预算 6）"
+    },
+    {
+      "id": "C10-budget-exhausted-in-coverage",
+      "name": "预算在覆盖阶段耗尽",
+      "passed": true,
+      "detail": "实际=6/6，覆盖=2，细化=0，停止=['budget_exhausted', 'no_refinable_interval']",
+      "input_nature": "构造证据回放（present-throughout，覆盖需要 3 次但预算仅剩 2）"
+    },
+    {
+      "id": "C11-budget-exhausted-in-refinement",
+      "name": "预算在边界细化阶段耗尽",
+      "passed": true,
+      "detail": "实际=12/12（覆盖3+细化5），转换=3，停止=['coverage_gap_target_reached', 'budget_exhausted']",
+      "input_nature": "构造证据回放（fixture-reappear，3 个转换的细化超出剩余预算）"
+    },
+    {
+      "id": "C12-duplicate-timestamp-no-recall",
+      "name": "重复时间戳跳过且不调用模型",
+      "passed": true,
+      "detail": "跳过重复=1，唯一时间戳=105=实际调用=105，停止=['coverage_reserve_exhausted', 'refinement_converged_no_new_sample']",
+      "input_nature": "构造证据回放（覆盖目标 1ms + 储备 100，中点收敛到帧分辨率）"
+    },
+    {
+      "id": "C13-cached-evidence-reused",
+      "name": "缓存证据正确复用",
+      "passed": true,
+      "detail": "账本：has_analyzed/复用计数/重复跳过语义正确（复用不计调用）；执行器：1 个重复决策均未产生模型调用",
+      "input_nature": "构造输入（CallBudget 单元 + C12 同配置运行产物）"
+    },
+    {
+      "id": "C14-max-gap-recomputable",
+      "name": "最大相邻采样间隔可复算",
+      "passed": true,
+      "detail": "复算最终=1333.333（provenance/temporal_evidence 一致）；复算初始=2666.667（由初始覆盖时间戳复算）",
+      "input_nature": "构造证据回放（fixture-reappear）"
+    },
+    {
+      "id": "C15-short-event-between-coarse-grid",
+      "name": "短事件落在旧 coarse 网格之间（coverage 发现、adaptive 漏检）",
+      "passed": true,
+      "detail": "事件 [3500,4100)：coverage 采样落入 [3666.667, 4000.0]（漏检=0）；adaptive 落入 []（漏检=1）",
+      "input_nature": "构造证据回放（fixture-short-event-between-grid，冻结 GT 来自 contracts）"
+    },
+    {
+      "id": "C16-short-uncertain-between-coarse-grid",
+      "name": "短 uncertain 区域落在旧 coarse 网格之间（coverage 触达、adaptive 未触达）",
+      "passed": true,
+      "detail": "uncertain [3500,4100)：coverage 拒答采样 [3666.667, 4000.0]（未触达=0）；adaptive []（未触达=1，任务 17 盲区复现）",
+      "input_nature": "构造证据回放（fixture-short-uncertain-between-grid）"
+    },
+    {
+      "id": "C17-phase-shifted-short-event",
+      "name": "相位移动后的短事件（coverage 仍能发现）",
+      "passed": true,
+      "detail": "事件 [6200,6800)：coverage 落入 [6291.667, 6625.0]（漏检=0）；adaptive 落入 []（漏检=1）",
+      "input_nature": "构造证据回放（fixture-short-event-phase-b，与 C15 语义同、相位不同）"
+    },
+    {
+      "id": "C18-multiple-short-events",
+      "name": "多个短事件（诚实记录漏检：事件短于最大相邻间隔）",
+      "passed": true,
+      "detail": "两个 600ms 事件：coverage 漏检=2、adaptive 漏检=2（最终间隔 1333.334ms > 事件宽度，符合'事件短于最大相邻采样间隔可能被漏检'声明）；uniform 12 点网格漏检=0",
+      "input_nature": "构造证据回放（fixture-twin-short-events；预注册对抗场景，不改标签）"
+    },
+    {
+      "id": "C19-throughout-confirmed",
+      "name": "全程 confirmed（无状态转换）",
+      "passed": true,
+      "detail": "五类计数={'confirmed': 7, 'not_found': 0, 'abstained': 0, 'low_confidence': 0, 'failed': 0}，转换=0，整体状态=completed",
+      "input_nature": "构造证据回放（fixture-present-throughout）"
+    },
+    {
+      "id": "C20-throughout-not-found",
+      "name": "全程 not_found（无目标/无转换）",
+      "passed": true,
+      "detail": "五类计数={'confirmed': 0, 'not_found': 7, 'abstained': 0, 'low_confidence': 0, 'failed': 0}，转换=0，整体状态=completed（负面结论）",
+      "input_nature": "构造证据回放（fixture-absent-throughout）"
+    },
+    {
+      "id": "C21-five-class-branches",
+      "name": "failed、abstained、low_confidence 分支互不折算",
+      "passed": true,
+      "detail": "failed=1，abstained=1，low_confidence=1，confirmed=9，not_found=0（该 fixture 无 absent 区：三类非确定/失败证据均未折算为 not_found；注入失败帧触发 failed 触发器属预期行为）",
+      "input_nature": "构造证据回放（1333.333ms 注入单帧失败 + 2666.667ms 低置信 + uncertain 区间拒答）"
+    },
+    {
+      "id": "C22-overclaim-on-uncertain",
+      "name": "触达 uncertain 但模型 decisive overclaim（计为过度断言，不算覆盖成功）",
+      "passed": true,
+      "detail": "uncertain 采样点被确定性判定 → overclaim_on_uncertain=2/2，appropriate_abstention=0，未触达=0（触达≠语义正确）",
+      "input_nature": "构造证据回放（模拟任务 16 记录过的真实 Qwen 确定性负面行为）"
+    },
+    {
+      "id": "C23-unreached-uncertain",
+      "name": "未触达 uncertain（与触达后过度断言是不同失败）",
+      "passed": true,
+      "detail": "adaptive 初始 4 点全部落在 uncertain 区外 → 未触达=1；uncertain 指标分母=0（未触达不计入过度断言）",
+      "input_nature": "构造证据回放（fixture-short-uncertain-between-grid，adaptive 臂）"
+    },
+    {
+      "id": "C24-ground-truth-not-in-sampling",
+      "name": "Ground Truth 不进入采样决策",
+      "passed": true,
+      "detail": "源码无 ground_truth 引用=True；next_coverage_candidate 纯函数=True；GT 驱动与 GT 盲分析器的覆盖阶段时间戳完全一致（[1333.333, 4000.0, 6625.0]）",
+      "input_nature": "构造证据回放（两种分析器对比 + 源码扫描 + 纯函数断言）"
+    },
+    {
+      "id": "C25-inputs-readonly",
+      "name": "输入文件只读",
+      "passed": true,
+      "detail": "22 个输入文件（fixture 视频 + Ground Truth）运行前后 SHA-256 一致",
+      "input_nature": "构造证据回放（运行前后输入哈希比对）"
+    },
+    {
+      "id": "C26-output-no-credentials-or-sensitive-paths",
+      "name": "输出不含凭据或敏感绝对路径",
+      "passed": true,
+      "detail": "凭据标记命中=无；系统敏感路径命中=无；非媒体字段用户路径泄露=无（source_video/frame_path 的绝对路径为帧可追溯审计轨迹，与任务 16 已提交产物惯例一致）",
+      "input_nature": "构造证据回放（temporal-evidence + temporal-report 分层扫描）"
+    },
+    {
+      "id": "C27-single-source-provenance-self-consistent",
+      "name": "单来源 provenance 自洽",
+      "passed": true,
+      "detail": "实际调用=12=新鲜调用=时间线条目；五类计数复算一致；覆盖调用 3≤储备 4；总调用≤预算",
+      "input_nature": "构造证据回放（fixture-reappear，coverage 臂）"
+    },
+    {
+      "id": "C28-multi-source-budget-and-timestamps",
+      "name": "多来源预算和时间戳语义（共享硬预算）",
+      "passed": true,
+      "detail": "来源=['video-a', 'video-b']；原时间戳保持=True；global=local+offset=True；共享预算 18/24=各来源时间线条目之和；每来源覆盖调用≤4；跨视频禁用措辞命中=[]",
+      "input_nature": "构造证据回放（两段 fixture + time_offset_ms=5000，coverage 策略）"
+    },
+    {
+      "id": "C29-resource-guard-zero-calls",
+      "name": "资源守卫阻塞时零模型调用",
+      "passed": true,
+      "detail": "实际调用=0，全部帧 failed（backend_not_called），覆盖调用=0",
+      "input_nature": "真实 fixture 视频抽取 + 资源守卫阈值 1e9 GiB（未调用任何模型）"
+    },
+    {
+      "id": "C30-fairness-gate-invalid-comparison",
+      "name": "三臂公平门任一条件失败时 INVALID_COMPARISON",
+      "passed": true,
+      "detail": "混合预算（12/6）进入比较范围 → 三对比较全部 INVALID_COMPARISON，失败条件均为 same_call_budget（exit=0，比较本身不算分但评分照常完成）",
+      "input_nature": "适配层端到端（复用 deterministic replay 产物，零新模型调用）"
+    },
+    {
+      "id": "C31-tradeoff-fewer-calls-more-misses",
+      "name": "新策略节省调用但增加漏检时 TRADEOFF",
+      "passed": true,
+      "detail": "verdict=TRADEOFF；strict=['fewer_model_calls_than_both', 'smaller_mean_boundary_error_than_both']；reason_codes=['fewer_model_calls_than_both', 'smaller_mean_boundary_error_than_both', 'more_missed_confirmed_events_vs_uniform', 'larger_max_sampling_gap_vs_uniform', 'more_missed_confirmed_events_vs_adaptive']",
+      "input_nature": "构造指标（pack 级预注册规则的确定性单元验证）"
+    },
+    {
+      "id": "C32-tradeoff-better-coverage-more-overclaim",
+      "name": "新策略覆盖更好但 overclaim 增加时 TRADEOFF",
+      "passed": true,
+      "detail": "verdict=TRADEOFF；reason_codes=['fewer_model_calls_than_both', 'smaller_mean_boundary_error_than_both', 'smaller_max_sampling_gap_than_both', 'more_overclaim_on_uncertain_vs_uniform', 'more_overclaim_on_uncertain_vs_adaptive']（触达更多 uncertain 但产生更多 decisive overclaim）",
+      "input_nature": "构造指标（pack 级预注册规则的确定性单元验证）"
+    },
+    {
+      "id": "C33-no-improvement",
+      "name": "无实质改进时 NO_IMPROVEMENT",
+      "passed": true,
+      "detail": "verdict=NO_IMPROVEMENT；strict=[]；reason=非回归条件全部满足（对两个基线），但没有任何严格更好的项",
+      "input_nature": "构造指标（pack 级预注册规则的确定性单元验证）"
+    },
+    {
+      "id": "C34-improvement-only-under-strict-conditions",
+      "name": "满足严格条件时才允许 IMPROVEMENT",
+      "passed": true,
+      "detail": "verdict=IMPROVEMENT；strict=['fewer_model_calls_than_both', 'smaller_mean_boundary_error_than_both', 'smaller_max_sampling_gap_than_both']；非回归条件全部满足（对两个基线）",
+      "input_nature": "构造指标（pack 级预注册规则的确定性单元验证）"
+    },
+    {
+      "id": "C34b-pairwise-verdict-classes",
+      "name": "pairwise 四类 verdict 规则可用",
+      "passed": true,
+      "detail": "compute_verdict：严格更好→IMPROVEMENT；省调用但增漏检→TRADEOFF；等同→NO_IMPROVEMENT（INVALID_COMPARISON 由 C30 覆盖）",
+      "input_nature": "构造指标（冻结评分器 compute_verdict 单元验证）"
+    },
+    {
+      "id": "C35-preregistration-hashes-consistent",
+      "name": "预注册文件和 fixture 哈希与阶段 A 提交一致",
+      "passed": true,
+      "detail": "frozen-hashes.json 41 个条目逐一重算一致；4 份声明文件与阶段 A 提交 dcaf324 逐字节一致；fixture 冻结复核 FROZEN_OK",
+      "input_nature": "确定性核验（哈希重算 + git blob 比对 + fixture 冻结复核）"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+任务完成。以下为如实汇总：
+
+## 执行结果总览
+
+**Skill 链（按契约依序执行）**
+1. `task-to-skill-compiler`：`check_source_media.py` 媒体来源硬门 → `accepted` / `user_provided`（路径来自当前请求显式提供，未从 README/历史产物/文件名推断）→ 生成 VisualTaskSpec → `validate_task_spec.py` **RESULT: VALID**（schema + 业务校验全通过）
+2. `visual-evidence-extractor`：`trace_temporal.py --strategy coverage_aware_adaptive`，冻结预注册参数（max_model_calls=12、initial_coverage_samples=4、coverage_gap_target_ms=1500、coverage_call_reserve=4、target_boundary_precision_ms=500、max_refinement_rounds=6）经校验器通过后执行；单帧超时 300 秒；`--input-nature technical_fixture`
+3. `evidence-report-generator`：`generate_report.py --mode temporal`，按时间线条目**独立复算**并与上游交叉校验，无不一致 warnings
+
+**视觉后端（全部为真实调用，evidence_nature=real_model_output）**
+- 本地 Ollama `modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest`，资源守卫通过（MemAvailable 77.46 GiB ≥ 40 GiB，未阻塞）
+- **实际模型调用 11 / 预算 12，未耗尽；失败 0；帧级拒答 0**（initial_coverage 4 + coverage_exploration 3 + boundary_refinement 4 = 11，与 11 份原始返回、11 个真实帧一一对应）
+- 每次模型原始返回已存档于 `raw-model-returns/`（11 份）
+
+**采样 provenance**：初始覆盖 4 次 → 覆盖探索 3 次（储备 4 用 3，达覆盖目标后确定性停止）→ 边界细化 4 次（2 轮）；最大相邻采样间隔 **初始 2666.667ms → 最终 1333.334ms**（目标 1500ms，已达成）；剩余盲区（underobserved_intervals）为空；停止原因 `coverage_gap_target_reached` + `no_refinable_interval`
+
+**时序证据（报告器独立复算）**：目标「红色正方形」在采样证据中被确认——首/末 confirmed **采样观察时间** 3666.667ms / 4000.0ms（2 帧，bbox [0.44,0.38,0.56,0.62]，置信度 1.0）；2 个状态转换：not_found→confirmed 位于 [3333.333, 3666.667]ms，confirmed→not_found 位于 [4000.0, 4333.333]ms，最大边界不确定宽度 333.334ms（目标精度 500ms 已达成）；五类计数 confirmed 2 / not_found 9 / abstained 0 / low_confidence 0 / failed 0
+
+**限制声明（已随报告输出）**：不保证发现任意短事件（小于 1333.334ms 间隔的事件可能漏检）；时序结论是采样证据支持的结论、不是连续跟踪真值（采样点之间未断言连续存在）；technical fixture 不代表真实仓储准确率；不做跨帧身份一致性/跨摄像头关联/运动路径，不是 ReID 或跟踪器。
+
+**产物位置**：`artifacts/task-18/dsh-session/`（task-spec.json、01-source-media-check.json、02-spec-validation.json、temporal-evidence.json、final-report.json、run-summary.json、raw-model-returns/、frames/、运行日志）

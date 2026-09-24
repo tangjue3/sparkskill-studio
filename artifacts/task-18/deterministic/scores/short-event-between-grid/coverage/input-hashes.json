@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "short-event-between-grid",
+  "arm_id": "coverage",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/short-event-between-grid.temporal-ground-truth.json",
+      "sha256": "ab079bde6eb1d931843bddb788891f148b573768dcae6444072615cf9736be1f"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/short-event-between-grid/coverage/temporal-evidence.json",
+      "sha256": "6b7b604da67238678eddaad39f73ca218300fa91b6fcdf0e6d85652d84795c87"
+    },
+    "media": {
+      "path": "../fixtures/videos/fixture-short-event-between-grid.mp4",
+      "sha256": "d9f194ff7ef2b5d3f52f9e98c90d77b9de2cc907639bd7adcdbb09ffb4a4d172"
+    }
+  }
+}

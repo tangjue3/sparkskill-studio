@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t11-boundary-within-tolerance",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t11-boundary-within-tolerance",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "short-event-phase-b",
+  "arm_id": "adaptive",
+  "inputs": {
+    "manifest": {
+      "path": "artifacts/task-18/contracts/task18-fixture-evidence-pack-manifest.json",
+      "sha256": "5b0c024189a8ea0c39a59c1ba42ea317ab1f2e92b83c0af90ec9a99b6eebfe7b"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-18/deterministic/prediction-set.json",
+      "sha256": "9facf2ad8bf045a47aa81cb273e4ada96c55c856aada8cc146631819f97024ac"
+    },
+    "ground_truth": {
+      "path": "artifacts/task-18/contracts/ground-truth/short-event-phase-b.temporal-ground-truth.json",
+      "sha256": "1892b5a84e35aeb48d927f647c97b1820b822fefa9bbb464553f99a983cc1c26"
+    },
+    "prediction_evidence": {
+      "path": "artifacts/task-18/deterministic/short-event-phase-b/adaptive/temporal-evidence.json",
+      "sha256": "a2093760530d2a2cce2bc63f3a07192b7385fb41807ffdffac1b4b5a30cadb89"
+    },
+    "media": {
+      "path": "../fixtures/videos/fixture-short-event-phase-b.mp4",
+      "sha256": "d2bd059a75c0aa2f6bec0373c5d50fb591d2c20d56c09bbc752eb985c16aee5d"
+    }
+  }
+}

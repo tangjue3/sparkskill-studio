@@ -1,0 +1,1 @@
+{"object_found": false, "description": "画面为纯灰色背景，无任何可见物体或图形", "bounding_box": null, "confidence": 1.0, "evidence_text": "整个画面呈现均匀的灰色，没有红色区域，也没有正方形形状，不存在目标对象", "abstention_reason": null}

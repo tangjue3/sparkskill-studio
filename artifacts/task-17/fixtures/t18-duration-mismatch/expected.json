@@ -1,0 +1,9 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 1,
+    "semantic_score_status": "invalid_input",
+    "hard_gate_failed": "G4-media-duration",
+    "error_code": "duration_mismatch"
+  }
+}

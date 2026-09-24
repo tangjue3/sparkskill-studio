@@ -1,0 +1,83 @@
+{
+  "session": "task-18-dsh-session",
+  "task_id": "task18-red-square-trace",
+  "generated_by": "DSH Harness + StepFun (step-5-preview, text planner) + local Ollama Qwen Vision (visual backend)",
+  "media": {
+    "path": "artifacts/task-18/fixtures/videos/fixture-short-event-between-grid.mp4",
+    "provenance": "user_provided（当前用户请求显式提供，check_source_media.py 硬门通过）",
+    "input_nature": "technical_fixture",
+    "video_metadata": {"fps": 24.0, "frame_count": 192, "width": 640, "height": 360, "duration_ms": 8000.0}
+  },
+  "target": {"description": "红色正方形", "attributes": ["红色", "正方形"]},
+  "skill_chain": [
+    "task-to-skill-compiler：check_source_media.py 硬门 accepted/user_provided → 生成 VisualTaskSpec → validate_task_spec.py RESULT: VALID",
+    "visual-evidence-extractor：trace_temporal.py --strategy coverage_aware_adaptive（真实本地 Qwen Vision 逐帧调用，--save-raw-dir 存档每次原始返回）",
+    "evidence-report-generator：generate_report.py --mode temporal（按时间线条目独立复算，与上游 temporal_evidence 交叉校验，无不一致 warnings）"
+  ],
+  "sampling_strategy": {
+    "strategy": "coverage_aware_adaptive",
+    "max_model_calls": 12,
+    "initial_coverage_samples": 4,
+    "coverage_gap_target_ms": 1500,
+    "coverage_call_reserve": 4,
+    "target_boundary_precision_ms": 500,
+    "max_refinement_rounds": 6,
+    "refinement_triggers": ["state_change", "abstained", "low_confidence", "failed"],
+    "source": "冻结预注册值（spec 与 CLI 一致，validate_task_spec.py 通过）"
+  },
+  "model_calls": {
+    "backend": "ollama",
+    "model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest",
+    "configured_budget": 12,
+    "actual_model_calls": 11,
+    "initial_coverage_calls": 4,
+    "coverage_exploration_calls": 3,
+    "boundary_refinement_calls": 4,
+    "reused_evidence_count": 0,
+    "failed_calls": 0,
+    "abstained_frames": 0,
+    "budget_exhausted": false,
+    "resource_blocked": false,
+    "evidence_nature": "real_model_output",
+    "raw_returns_archived": 11,
+    "stop_reasons": ["coverage_gap_target_reached", "no_refinable_interval"]
+  },
+  "coverage_provenance": {
+    "max_adjacent_sampling_gap_ms_initial": 2666.667,
+    "max_adjacent_sampling_gap_ms_final": 1333.334,
+    "coverage_gap_target_ms": 1500.0,
+    "underobserved_intervals": [],
+    "arbitrary_short_event_detection_guaranteed": false,
+    "events_shorter_than_max_sampling_gap_may_be_missed": true,
+    "note": "覆盖储备 4 次中实际使用 3 次；达到覆盖目标（1333.334ms ≤ 1500ms）后确定性停止，剩余 1 次储备未使用属策略内的确定性停止，非失败"
+  },
+  "temporal_evidence": {
+    "first_confirmed_observed_ms": 3666.667,
+    "last_confirmed_observed_ms": 4000.0,
+    "confirmed_sample_count": 2,
+    "class_counts": {"confirmed": 2, "not_found": 9, "abstained": 0, "low_confidence": 0, "failed": 0},
+    "state_transitions": [
+      {"left_ms": 3333.333, "right_ms": 3666.667, "from_class": "not_found", "to_class": "confirmed", "uncertainty_width_ms": 333.334},
+      {"left_ms": 4000.0, "right_ms": 4333.333, "from_class": "confirmed", "to_class": "not_found", "uncertainty_width_ms": 333.333}
+    ],
+    "boundary_uncertainty": {"target_ms": 500.0, "max_ms": 333.334, "min_ms": 333.333, "target_precision_reached": true, "residual_uncertainty_ms": 333.334},
+    "overall_status": "completed"
+  },
+  "limitations": [
+    "不保证发现任意短事件：宽度小于最大相邻采样间隔（1333.334ms）的事件可能被漏检。",
+    "本报告的时序结论是采样证据支持的时序结论，不是连续跟踪真值：first/last confirmed 是采样观察时间，不等于目标真实进入/离开时间；两个 confirmed 采样点之间未断言连续存在。",
+    "technical_fixture（合成技术 fixture）不代表真实仓储/真实行业视频的准确率，不得外推。",
+    "本任务不做跨帧身份一致性、不做跨摄像头实例关联、不输出物体运动路径；不是 ReID、不是目标跟踪器、不是实时跟踪。"
+  ],
+  "artifacts": {
+    "task_spec": "task-spec.json",
+    "source_media_check": "01-source-media-check.json",
+    "spec_validation": "02-spec-validation.json",
+    "temporal_evidence": "temporal-evidence.json",
+    "final_report": "final-report.json",
+    "raw_model_returns_dir": "raw-model-returns/（11 份 *.raw.json，与 11 次真实调用一一对应）",
+    "frames_dir": "frames/（11 个真实抽取帧 PNG，时间线可回溯）",
+    "run_log": "03-trace-temporal-run.log",
+    "report_log": "04-report-generation.log"
+  }
+}

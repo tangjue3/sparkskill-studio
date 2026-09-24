@@ -1,0 +1,16 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "metrics": {
+      "correct_decisive": {
+        "passed": 1,
+        "total": 3
+      },
+      "abstention_on_determinate": {
+        "passed": 2,
+        "total": 3
+      }
+    }
+  }
+}

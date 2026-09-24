@@ -1,0 +1,15 @@
+{
+  "mode": "score",
+  "expect": {
+    "exit_code": 0,
+    "boundaries": {
+      "gt_boundaries_total": 1,
+      "matched_boundaries": 1,
+      "within_tolerance_boundaries": 0,
+      "boundary_error_stats": {
+        "matched_count": 1,
+        "max_ms": 450.0
+      }
+    }
+  }
+}

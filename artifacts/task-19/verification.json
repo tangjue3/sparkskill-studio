@@ -1,0 +1,137 @@
+{
+  "task": "task-19b-verification",
+  "generated_at": null,
+  "total": 21,
+  "passed": 21,
+  "failed": 0,
+  "all_passed": true,
+  "engineering_status": "BASELINE_COMPLETE",
+  "checks": [
+    {
+      "id": "V1-phase-a-commit-order",
+      "name": "阶段 A 预注册提交早于运行提交",
+      "passed": true,
+      "detail": "阶段 A 提交 e3ef01e 存在且为 HEAD (b76a08a) 的祖先（预注册先于运行）"
+    },
+    {
+      "id": "V2-preregistration-hashes-unchanged",
+      "name": "预注册/摄验/GT/设计文档/冻结 scorer 哈希运行后零变更",
+      "passed": true,
+      "detail": "frozen-hashes.json 31 条目重算一致=True；阶段 A blob 一致=True"
+    },
+    {
+      "id": "V3-task19-new-tests",
+      "name": "任务 19 新测试 22/22",
+      "passed": true,
+      "detail": "[测试结果] 22/22 通过（结果: artifacts/task-19/test-results.json）"
+    },
+    {
+      "id": "V4-task18-tests",
+      "name": "任务 18 规则测试 36/36",
+      "passed": true,
+      "detail": "小计：36/36 通过（输入性质：构造证据回放/规则测试/真实 fixture 视频抽取；除 C30 复用 replay 产物外无任何模型调用）"
+    },
+    {
+      "id": "V5-task17-gt-tests",
+      "name": "任务 17 Ground Truth 测试 38/38",
+      "passed": true,
+      "detail": "RESULT: 38/38"
+    },
+    {
+      "id": "V6-task16-temporal-tests",
+      "name": "任务 16 temporal evidence 测试 27/27",
+      "passed": true,
+      "detail": "小计：27/27 通过（输入性质：构造证据回放/规则测试/真实 fixture 视频抽取，无真实 Qwen 调用）"
+    },
+    {
+      "id": "V7-task04-video-tests",
+      "name": "任务 04 视频规则测试 16/16",
+      "passed": true,
+      "detail": "小计：16/16 通过"
+    },
+    {
+      "id": "V8-task06-multivideo-tests",
+      "name": "任务 06 多视频规则测试 32/32",
+      "passed": true,
+      "detail": "小计：32/32 通过"
+    },
+    {
+      "id": "V9-media-contract-tests",
+      "name": "M1–M8 媒体来源契约 10/10",
+      "passed": true,
+      "detail": "小计：10/10 通过"
+    },
+    {
+      "id": "V10-tier3-v2-regression",
+      "name": "v2 Tier-3 评分器回归 17/17",
+      "passed": true,
+      "detail": "小计：17/17 通过"
+    },
+    {
+      "id": "V11-workbench-static-tests",
+      "name": "工作台静态测试 26/26",
+      "passed": true,
+      "detail": "小计：26/26 通过"
+    },
+    {
+      "id": "V12-nine-samples-three-arms",
+      "name": "九样本三臂运行完整（27/27）",
+      "passed": true,
+      "detail": "27/27 个 (样本,臂) 产物齐全"
+    },
+    {
+      "id": "V13-fairness-gates",
+      "name": "公平门（generated 十条件全过；逐样本 27 门全过；多查询/多预算范围口径正确）",
+      "passed": true,
+      "detail": "逐样本 27 个公平门全部通过；范围门口径正确"
+    },
+    {
+      "id": "V14-verdicts-valid",
+      "name": "verdict 合法且附 reason codes（不手写预设）",
+      "passed": true,
+      "detail": "12 个 verdict 全部合法且由冻结规则计算"
+    },
+    {
+      "id": "V15-failures-preserved",
+      "name": "失败与超时计入结果（不删除失败样本）",
+      "passed": true,
+      "detail": "运行 27/27；失败 0 个（失败原样保存于 run-metadata.json 与对应 artifacts_dir）"
+    },
+    {
+      "id": "V16-frozen-scorer-adapter",
+      "name": "评分使用任务 17 冻结 scorer + 任务 18 适配层（零改动）",
+      "passed": true,
+      "detail": "scorer/adapter 与 ef9f329 逐字节一致；三范围比较文档 scorer/adapter 字段正确"
+    },
+    {
+      "id": "V17-frozen-data-unchanged",
+      "name": "冻结数据零改动（任务 07/08/09/16/17/18、Tier-3、app/）",
+      "passed": true,
+      "detail": "目录级 diff 空=True；单文件零改动"
+    },
+    {
+      "id": "V18-security-hygiene",
+      "name": "敏感信息扫描与新脚本无越权网络调用",
+      "passed": true,
+      "detail": "扫描 779 个 artifact 文本文件；0 命中"
+    },
+    {
+      "id": "V19-resource-gate-recorded",
+      "name": "资源门槛如实记录（all_passed 与运行一致性）",
+      "passed": true,
+      "detail": "8 项资源门槛全部通过并记录（mem=[115.84, 115.83, 115.83]）"
+    },
+    {
+      "id": "V20-engineering-status",
+      "name": "工程状态独立于算法 verdict",
+      "passed": true,
+      "detail": "engineering_status=BASELINE_COMPLETE（九样本三臂 + 评分 + DSH 会话完整）；算法 verdict 见各范围 three-arm-comparison.json"
+    },
+    {
+      "id": "V21-workspace-scope",
+      "name": "工作区只含本任务允许的修改 + git diff --check clean",
+      "passed": true,
+      "detail": "非预期修改 无；diff --check 干净"
+    }
+  ]
+}

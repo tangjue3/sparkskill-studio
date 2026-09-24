@@ -1,0 +1,13 @@
+{
+  "mode": "compare",
+  "expect": {
+    "exit_code": 0,
+    "verdict": "IMPROVEMENT",
+    "strict_improvements": [
+      "smaller_max_boundary_error",
+      "smaller_mean_boundary_error",
+      "more_boundaries_within_tolerance"
+    ],
+    "regressions": []
+  }
+}

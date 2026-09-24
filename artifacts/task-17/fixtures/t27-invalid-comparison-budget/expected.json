@@ -1,0 +1,8 @@
+{
+  "mode": "compare",
+  "expect": {
+    "exit_code": 0,
+    "verdict": "INVALID_COMPARISON",
+    "fairness_failed": "same_call_budget"
+  }
+}

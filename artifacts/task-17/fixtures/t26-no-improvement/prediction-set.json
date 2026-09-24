@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t26-no-improvement",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t26-no-improvement",
+          "evidence": "evidence-a.json"
+        }
+      ]
+    },
+    {
+      "arm_id": "adaptive",
+      "samples": [
+        {
+          "sample_id": "t26-no-improvement",
+          "evidence": "evidence-b.json"
+        }
+      ]
+    }
+  ]
+}

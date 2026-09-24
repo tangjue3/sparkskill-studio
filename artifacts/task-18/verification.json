@@ -1,0 +1,153 @@
+{
+  "task": "task-18-verification",
+  "generated_at": "2026-09-22T14:05:00+00:00",
+  "passed": 24,
+  "total": 24,
+  "all_passed": true,
+  "results": [
+    {
+      "id": "V1-phase-a-commit-order",
+      "name": "阶段 A 预注册提交早于实现提交",
+      "passed": true,
+      "detail": "阶段 A 提交 dcaf324 存在且为 HEAD (b10b80d) 的祖先（预注册先于实现）"
+    },
+    {
+      "id": "V2-preregistration-hashes-unchanged",
+      "name": "预注册文件、fixture、Ground Truth 哈希实现后零变更",
+      "passed": true,
+      "detail": "frozen-hashes.json 41 条目重算一致=True；7 份声明文件与阶段 A 提交 dcaf324 逐字节一致=True；fixture 冻结复核=FROZEN_OK（本轮真实运行前后各复核一次均通过）"
+    },
+    {
+      "id": "V3-task18-new-tests",
+      "name": "任务 18 新测试 36/36",
+      "passed": true,
+      "detail": "小计：36/36 通过（输入性质：构造证据回放/规则测试/真实 fixture 视频抽取；除 C30 复用 replay 产物外无任何模型调用）"
+    },
+    {
+      "id": "V4-task17-gt-tests",
+      "name": "任务 17 Ground Truth 测试 38/38",
+      "passed": true,
+      "detail": "RESULT: 38/38"
+    },
+    {
+      "id": "V5-task16-temporal-tests",
+      "name": "任务 16 temporal evidence 测试 27/27",
+      "passed": true,
+      "detail": "小计：27/27 通过（输入性质：构造证据回放/规则测试/真实 fixture 视频抽取，无真实 Qwen 调用）"
+    },
+    {
+      "id": "V6-task04-video-tests",
+      "name": "任务 04 视频规则测试 16/16",
+      "passed": true,
+      "detail": "小计：16/16 通过"
+    },
+    {
+      "id": "V7-task06-multivideo-tests",
+      "name": "任务 06 多视频规则测试 32/32",
+      "passed": true,
+      "detail": "小计：32/32 通过"
+    },
+    {
+      "id": "V8-media-contract-tests",
+      "name": "M1–M8 媒体来源契约 10/10",
+      "passed": true,
+      "detail": "小计：10/10 通过"
+    },
+    {
+      "id": "V9-tier3-v2-regression",
+      "name": "v2 Tier-3 评分器回归 17/17",
+      "passed": true,
+      "detail": "小计：17/17 通过"
+    },
+    {
+      "id": "V10-workbench-static-tests",
+      "name": "工作台静态测试 26/26",
+      "passed": true,
+      "detail": "小计：26/26 通过"
+    },
+    {
+      "id": "V11-fairness-gates-pass",
+      "name": "三臂公平门成立（10 条件 × 3 对，replay 与 real 各自成立）",
+      "passed": true,
+      "detail": "deterministic replay 与 real-qwen 两种模式各自 3 对比较 fairness gate 全部 10/10 通过"
+    },
+    {
+      "id": "V12-verdict-legal-and-recomputed",
+      "name": "verdict 合法且由冻结规则复算一致（replay 与 real 分别）",
+      "passed": true,
+      "detail": "replay pack=TRADEOFF（复算一致=True）；real pack=TRADEOFF（复算一致=True）；两种模式各自 pairwise 3 对由冻结 compute_verdict 复算一致=True"
+    },
+    {
+      "id": "V13-real-results-and-failures-preserved",
+      "name": "真实结果、失败与阻塞历史完整保存",
+      "passed": true,
+      "detail": "real-qwen：287 次真实调用、每次原始返回存档（raw/ 目录 287 份）、零失败零超时零无效输出；twin-short-events 真实漏检如实记录（uniform=0, adaptive=2, coverage=2，见 real-qwen/scores）；两轮资源阻塞记录保留于 resource-gate-rerun.json 历史块（未删除、未改写为当时有停服权限）；无虚构产物"
+    },
+    {
+      "id": "V14-frozen-data-untouched",
+      "name": "冻结数据零改动",
+      "passed": true,
+      "detail": "17 个冻结路径 + Tier-3 v1/v2 评分器哈希 + 任务 17 评分器（相对 9293143）全部零改动；实现文件（schema/adaptive_sampler/trace_temporal/validate_task_spec/generate_report/runner/adapter）相对 b10b80d 零改动"
+    },
+    {
+      "id": "V15-sensitive-scan",
+      "name": "敏感信息扫描（凭据/绝对用户路径）",
+      "passed": true,
+      "detail": "新增/修改产物凭据标记扫描 0 命中；本人为记录文件中的绝对用户路径已 sanitize 为 ~；DSH 会话产物中的媒体绝对路径按任务 16 惯例保留（合法路径契约）；git diff --check clean"
+    },
+    {
+      "id": "V16-design-doc-complete",
+      "name": "设计文档覆盖 18 个必答问题",
+      "passed": true,
+      "detail": "18/18 个章节锚点命中"
+    },
+    {
+      "id": "V17-new-scripts-no-unauthorized-calls",
+      "name": "新脚本无越权模型/网络调用",
+      "passed": true,
+      "detail": "评分适配层/组装/测试脚本不含 requests/urllib/ollama/cv2；真实 Qwen subprocess 调用仅位于 runner real 模式分支（本轮已按授权在门槛通过后执行）"
+    },
+    {
+      "id": "V18-resource-gate-honestly-recorded",
+      "name": "资源门槛如实记录（两轮阻塞 + 授权停服后通过）",
+      "passed": true,
+      "detail": "历史：12:08 与 12:42 两轮 all_passed=false（用户 MiniMax-H3 活跃，失败条件 2-3 项，记录保留于 resource-gate-rerun.json 历史块）；本轮用户授权后经安全门 8 项核验，纯 SIGTERM 优雅停止 H3 服务族 7 个进程（h3-shutdown-record.json），停服后十项门槛全部通过（13:19 复检 + runner 内置门槛 all_passed=True，mem 115.84 GiB×3）；未虚构任何模型结果"
+    },
+    {
+      "id": "V19-docs-no-overclaim",
+      "name": "文档没有过度声明",
+      "passed": true,
+      "detail": "任务 18 文档明确区分：工程实现 PASS / replay pack TRADEOFF / real Qwen pack TRADEOFF；保留'任意短事件不保证发现''technical fixture 不等于真实仓储准确率''用户 dev/holdout 尚未接入''StepFun 不读图片''H3 是用户生成素材服务且已按授权停止'等声明"
+    },
+    {
+      "id": "V20-workspace-scope",
+      "name": "工作区只包含本任务允许的变更",
+      "passed": true,
+      "detail": "变更全部位于允许范围：artifacts/task-18/（real-qwen/、dsh-session/、h3-shutdown-record.json、resource-gate-rerun.json、resource-gate.json（runner 按已提交行为重生成为通过态）、verdict.json、verification.json、run-summary.md、known-limitations.md 及 README/BENCHMARK/DEVELOPMENT_STATUS/OPTIMIZATION_NOTES/Skill BENCHMARK 文档）；无实现代码/schema/fixture/GT/预注册/Task17 scorer/Tier3/工作台改动"
+    },
+    {
+      "id": "V21-real-qwen-run-completed",
+      "name": "真实 Qwen 三臂评测完整执行（预注册协议）",
+      "passed": true,
+      "detail": "python3 scripts/run_task18_comparison.py --mode real（未覆盖 --budget/--timeout）；11 场景 × 3 臂按预注册顺序 uniform→adaptive→coverage；同一 Qwen 模型/后端/超时/输出格式；287 次真实调用（uniform 120 + adaptive 54 + coverage 95），与 replay 计划逐臂一致；产物 real-qwen/（777 文件：spec/evidence/report/frames/raw/scores/comparison），deterministic/ 零改动"
+    },
+    {
+      "id": "V22-dsh-session-completed",
+      "name": "DSH headless 自主会话成功且离线评分通过",
+      "passed": true,
+      "detail": "dsh --profile headless 全新会话 13:55:46→14:00:22 exit=0；Agent 自主发现并加载三 Skill、source media 硬门 accepted(user_provided)、StepFun 生成 coverage_aware_adaptive 规格 RESULT: VALID、本地 Qwen Vision 真实调用 11/12、原始返回全存档、报告器独立复算；会话后由冻结评分器离线评分：correct_decisive 11/11、事件覆盖 1/1、边界 2/2 容差内（mean 33.333ms）、overclaim 0"
+    },
+    {
+      "id": "V23-h3-shutdown-authorized-graceful",
+      "name": "H3 停服经用户授权、优雅且可恢复",
+      "passed": true,
+      "detail": "停服前安全门 8 项通过（队列 3 次为空、最近完成 11:28:57、无活动连接、输出无增长）；纯 SIGTERM 停止 7 个经事实核验归属 ~/minimax-h3 的进程（API 899899、WebUI 树 930052/930053/930055/930056、tab_test 1414863/1414864、1459544/1459545、1461721/1461723、coexistence-keeper 1873185/2253534），全部 1-5 秒自行退出；无 kill -9、无误停 DSH/Ollama/SSH、未删用户文件；恢复方式已记录；任务结束后 H3 保持停止"
+    },
+    {
+      "id": "V24-real-replay-separation",
+      "name": "replay 与 real Qwen 严格分离",
+      "passed": true,
+      "detail": "两模式产物分目录（deterministic/ vs real-qwen/）；分别评分（各自 scores/）、分别给 verdict（verdict.json 双块）；指标不混合平均；关键差异如实记录：coverage-vs-adaptive replay=IMPROVEMENT vs real=TRADEOFF（真实 Qwen 对 uncertain 过度断言：coverage 4/uniform 2/adaptive 0），差异源于视觉模型语义而非采样策略"
+    }
+  ]
+}

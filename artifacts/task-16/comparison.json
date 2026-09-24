@@ -1,0 +1,1053 @@
+{
+  "task": "task-16-uniform-vs-adaptive-comparison",
+  "generated_at": "2026-09-22T08:53:56.456426+00:00",
+  "input_nature": "real_qwen_model_output_on_synthetic_technical_fixture",
+  "rebuild_note": "本文件由 --from-artifacts 从已保存的真实运行产物重建（未重新调用任何模型；wall_time_s 取产物内 pipeline total_ms）",
+  "fairness": {
+    "same_video": true,
+    "same_target_query": "红色正方形",
+    "same_model": "modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest（本地 Ollama）",
+    "same_resource_window": "真实运行见 artifacts/task-16/resource-gate.json",
+    "same_status_rules": "同一 trace_temporal.py 代码路径与 frame_class 分类规则",
+    "same_max_model_calls": 12,
+    "exception": "BUDGET_SCENARIOS 中的 reappear-adaptive-budget-6 为显式的“更少调用”预算耗尽场景，不参与同预算主对照",
+    "same_timeout_s": 300,
+    "no_single_side_retry": true,
+    "no_sample_removal": true,
+    "ground_truth_not_modified_after_results": true,
+    "tier3_untouched": true
+  },
+  "fixture_manifest_sha256_verified": true,
+  "scenarios": {
+    "same-budget-present-throughout": {
+      "fixture": "present-throughout",
+      "video": "fixture-present-throughout.mp4",
+      "purpose": "持续正向 + 无状态变化（目标全程清晰存在；adaptive 应 0 次细化）",
+      "budget": 12,
+      "arms": {
+        "uniform": {
+          "artifacts_dir": "artifacts/task-16/comparison/present-throughout/uniform",
+          "metrics": {
+            "strategy": "uniform",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 7708.333,
+            "confirmed_sample_count": 12,
+            "state_transition_count": 0,
+            "state_transitions": [],
+            "max_uncertainty_width_ms": null,
+            "target_precision_reached": null,
+            "class_counts": {
+              "confirmed": 12,
+              "not_found": 0,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 12,
+            "configured_budget": 12,
+            "budget_exhausted": true,
+            "wall_time_s": 255.312,
+            "pipeline_total_ms": 255312.416,
+            "per_call_ms": 21264.7,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 12,
+              "gt_transitions_total": 0,
+              "gt_transitions_covered": 0,
+              "gt_transition_details": []
+            }
+          }
+        },
+        "adaptive": {
+          "artifacts_dir": "artifacts/task-16/comparison/present-throughout/adaptive",
+          "metrics": {
+            "strategy": "adaptive_coarse_to_fine",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 7958.333,
+            "confirmed_sample_count": 4,
+            "state_transition_count": 0,
+            "state_transitions": [],
+            "max_uncertainty_width_ms": null,
+            "target_precision_reached": true,
+            "class_counts": {
+              "confirmed": 4,
+              "not_found": 0,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 4,
+            "configured_budget": 12,
+            "budget_exhausted": false,
+            "wall_time_s": 80.664,
+            "pipeline_total_ms": 80663.813,
+            "per_call_ms": 20138.8,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 4,
+              "gt_transitions_total": 0,
+              "gt_transitions_covered": 0,
+              "gt_transition_details": []
+            }
+          }
+        }
+      }
+    },
+    "same-budget-appear-midway": {
+      "fixture": "appear-midway",
+      "video": "fixture-appear-midway.mp4",
+      "purpose": "中途出现（目标在 3200 ms 进入画面）",
+      "budget": 12,
+      "arms": {
+        "uniform": {
+          "artifacts_dir": "artifacts/task-16/comparison/appear-midway/uniform",
+          "metrics": {
+            "strategy": "uniform",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 3500.0,
+            "last_confirmed_observed_ms": 7708.333,
+            "confirmed_sample_count": 7,
+            "state_transition_count": 1,
+            "state_transitions": [
+              {
+                "left_ms": 2791.667,
+                "right_ms": 3500.0,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 708.333
+              }
+            ],
+            "max_uncertainty_width_ms": 708.333,
+            "target_precision_reached": null,
+            "class_counts": {
+              "confirmed": 7,
+              "not_found": 5,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 12,
+            "configured_budget": 12,
+            "budget_exhausted": true,
+            "wall_time_s": 222.914,
+            "pipeline_total_ms": 222913.944,
+            "per_call_ms": 18563.2,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [
+              "帧 0.0ms: 目标未被确认存在",
+              "帧 708.333ms: 目标未被确认存在",
+              "帧 1416.667ms: 目标未被确认存在",
+              "帧 2083.333ms: 目标未被确认存在",
+              "帧 2791.667ms: 目标未被确认存在"
+            ],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 7,
+              "gt_transitions_total": 1,
+              "gt_transitions_covered": 1,
+              "gt_transition_details": [
+                {
+                  "gt_at_ms": 3200,
+                  "gt_from": "absent",
+                  "gt_to": "present",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 2791.667,
+                      "right_ms": 3500.0,
+                      "from_class": "not_found",
+                      "to_class": "confirmed",
+                      "uncertainty_width_ms": 708.333
+                    }
+                  ]
+                }
+              ],
+              "gt_boundary_max_width_ms": 708.333
+            }
+          }
+        },
+        "adaptive": {
+          "artifacts_dir": "artifacts/task-16/comparison/appear-midway/adaptive",
+          "metrics": {
+            "strategy": "adaptive_coarse_to_fine",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 3333.333,
+            "last_confirmed_observed_ms": 7958.333,
+            "confirmed_sample_count": 4,
+            "state_transition_count": 1,
+            "state_transitions": [
+              {
+                "left_ms": 3000.0,
+                "right_ms": 3333.333,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 333.333
+              }
+            ],
+            "max_uncertainty_width_ms": 333.333,
+            "target_precision_reached": true,
+            "class_counts": {
+              "confirmed": 4,
+              "not_found": 3,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 7,
+            "configured_budget": 12,
+            "budget_exhausted": false,
+            "wall_time_s": 129.669,
+            "pipeline_total_ms": 129668.834,
+            "per_call_ms": 18499.4,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [
+              "帧 0.0ms: 目标未被确认存在",
+              "帧 2666.667ms: 目标未被确认存在",
+              "帧 3000.0ms: 目标未被确认存在"
+            ],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 4,
+              "gt_transitions_total": 1,
+              "gt_transitions_covered": 1,
+              "gt_transition_details": [
+                {
+                  "gt_at_ms": 3200,
+                  "gt_from": "absent",
+                  "gt_to": "present",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 3000.0,
+                      "right_ms": 3333.333,
+                      "from_class": "not_found",
+                      "to_class": "confirmed",
+                      "uncertainty_width_ms": 333.333
+                    }
+                  ]
+                }
+              ],
+              "gt_boundary_max_width_ms": 333.333
+            }
+          }
+        }
+      }
+    },
+    "same-budget-disappear-midway": {
+      "fixture": "disappear-midway",
+      "video": "fixture-disappear-midway.mp4",
+      "purpose": "中途消失（目标在 4800 ms 离开画面）",
+      "budget": 12,
+      "arms": {
+        "uniform": {
+          "artifacts_dir": "artifacts/task-16/comparison/disappear-midway/uniform",
+          "metrics": {
+            "strategy": "uniform",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 4208.333,
+            "confirmed_sample_count": 7,
+            "state_transition_count": 1,
+            "state_transitions": [
+              {
+                "left_ms": 4208.333,
+                "right_ms": 4916.667,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 708.334
+              }
+            ],
+            "max_uncertainty_width_ms": 708.334,
+            "target_precision_reached": null,
+            "class_counts": {
+              "confirmed": 7,
+              "not_found": 5,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 12,
+            "configured_budget": 12,
+            "budget_exhausted": true,
+            "wall_time_s": 225.458,
+            "pipeline_total_ms": 225457.57,
+            "per_call_ms": 18777.1,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [
+              "帧 4916.667ms: 目标未被确认存在",
+              "帧 5583.333ms: 目标未被确认存在",
+              "帧 6291.667ms: 目标未被确认存在",
+              "帧 7000.0ms: 目标未被确认存在",
+              "帧 7708.333ms: 目标未被确认存在"
+            ],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 7,
+              "gt_transitions_total": 1,
+              "gt_transitions_covered": 1,
+              "gt_transition_details": [
+                {
+                  "gt_at_ms": 4800,
+                  "gt_from": "present",
+                  "gt_to": "absent",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 4208.333,
+                      "right_ms": 4916.667,
+                      "from_class": "confirmed",
+                      "to_class": "not_found",
+                      "uncertainty_width_ms": 708.334
+                    }
+                  ]
+                }
+              ],
+              "gt_boundary_max_width_ms": 708.334
+            }
+          }
+        },
+        "adaptive": {
+          "artifacts_dir": "artifacts/task-16/comparison/disappear-midway/adaptive",
+          "metrics": {
+            "strategy": "adaptive_coarse_to_fine",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 4666.667,
+            "confirmed_sample_count": 4,
+            "state_transition_count": 1,
+            "state_transitions": [
+              {
+                "left_ms": 4666.667,
+                "right_ms": 5000.0,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 333.333
+              }
+            ],
+            "max_uncertainty_width_ms": 333.333,
+            "target_precision_reached": true,
+            "class_counts": {
+              "confirmed": 4,
+              "not_found": 3,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 7,
+            "configured_budget": 12,
+            "budget_exhausted": false,
+            "wall_time_s": 130.776,
+            "pipeline_total_ms": 130775.721,
+            "per_call_ms": 18656.2,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [
+              "帧 5000.0ms: 目标未被确认存在",
+              "帧 5333.333ms: 目标未被确认存在",
+              "帧 7958.333ms: 目标未被确认存在"
+            ],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 4,
+              "gt_transitions_total": 1,
+              "gt_transitions_covered": 1,
+              "gt_transition_details": [
+                {
+                  "gt_at_ms": 4800,
+                  "gt_from": "present",
+                  "gt_to": "absent",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 4666.667,
+                      "right_ms": 5000.0,
+                      "from_class": "confirmed",
+                      "to_class": "not_found",
+                      "uncertainty_width_ms": 333.333
+                    }
+                  ]
+                }
+              ],
+              "gt_boundary_max_width_ms": 333.333
+            }
+          }
+        }
+      }
+    },
+    "same-budget-reappear": {
+      "fixture": "reappear",
+      "video": "fixture-reappear.mp4",
+      "purpose": "出现、消失、再次出现（两次进入 + 两次离开）",
+      "budget": 12,
+      "arms": {
+        "uniform": {
+          "artifacts_dir": "artifacts/task-16/comparison/reappear/uniform",
+          "metrics": {
+            "strategy": "uniform",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 5583.333,
+            "confirmed_sample_count": 6,
+            "state_transition_count": 3,
+            "state_transitions": [
+              {
+                "left_ms": 1416.667,
+                "right_ms": 2083.333,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 666.666
+              },
+              {
+                "left_ms": 3500.0,
+                "right_ms": 4208.333,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 708.333
+              },
+              {
+                "left_ms": 5583.333,
+                "right_ms": 6291.667,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 708.334
+              }
+            ],
+            "max_uncertainty_width_ms": 708.334,
+            "target_precision_reached": null,
+            "class_counts": {
+              "confirmed": 6,
+              "not_found": 6,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 12,
+            "configured_budget": 12,
+            "budget_exhausted": true,
+            "wall_time_s": 217.134,
+            "pipeline_total_ms": 217134.467,
+            "per_call_ms": 18084.5,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [
+              "帧 2083.333ms: 目标未被确认存在",
+              "帧 2791.667ms: 目标未被确认存在",
+              "帧 3500.0ms: 目标未被确认存在",
+              "帧 6291.667ms: 目标未被确认存在",
+              "帧 7000.0ms: 目标未被确认存在",
+              "帧 7708.333ms: 目标未被确认存在"
+            ],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 6,
+              "gt_transitions_total": 3,
+              "gt_transitions_covered": 3,
+              "gt_transition_details": [
+                {
+                  "gt_at_ms": 2000,
+                  "gt_from": "present",
+                  "gt_to": "absent",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 1416.667,
+                      "right_ms": 2083.333,
+                      "from_class": "confirmed",
+                      "to_class": "not_found",
+                      "uncertainty_width_ms": 666.666
+                    }
+                  ]
+                },
+                {
+                  "gt_at_ms": 4000,
+                  "gt_from": "absent",
+                  "gt_to": "present",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 3500.0,
+                      "right_ms": 4208.333,
+                      "from_class": "not_found",
+                      "to_class": "confirmed",
+                      "uncertainty_width_ms": 708.333
+                    }
+                  ]
+                },
+                {
+                  "gt_at_ms": 6000,
+                  "gt_from": "present",
+                  "gt_to": "absent",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 5583.333,
+                      "right_ms": 6291.667,
+                      "from_class": "confirmed",
+                      "to_class": "not_found",
+                      "uncertainty_width_ms": 708.334
+                    }
+                  ]
+                }
+              ],
+              "gt_boundary_max_width_ms": 708.334
+            }
+          }
+        },
+        "adaptive": {
+          "artifacts_dir": "artifacts/task-16/comparison/reappear/adaptive",
+          "metrics": {
+            "strategy": "adaptive_coarse_to_fine",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 5958.333,
+            "confirmed_sample_count": 6,
+            "state_transition_count": 3,
+            "state_transitions": [
+              {
+                "left_ms": 1666.667,
+                "right_ms": 2000.0,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 333.333
+              },
+              {
+                "left_ms": 3666.667,
+                "right_ms": 4000.0,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 333.333
+              },
+              {
+                "left_ms": 5958.333,
+                "right_ms": 6625.0,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 666.667
+              }
+            ],
+            "max_uncertainty_width_ms": 666.667,
+            "target_precision_reached": false,
+            "class_counts": {
+              "confirmed": 6,
+              "not_found": 6,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 12,
+            "configured_budget": 12,
+            "budget_exhausted": true,
+            "wall_time_s": 222.918,
+            "pipeline_total_ms": 222917.906,
+            "per_call_ms": 18554.4,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [
+              "帧 2000.0ms: 目标未被确认存在",
+              "帧 2666.667ms: 目标未被确认存在",
+              "帧 3333.333ms: 目标未被确认存在",
+              "帧 3666.667ms: 目标未被确认存在",
+              "帧 6625.0ms: 目标未被确认存在",
+              "帧 7958.333ms: 目标未被确认存在"
+            ],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 6,
+              "gt_transitions_total": 3,
+              "gt_transitions_covered": 3,
+              "gt_transition_details": [
+                {
+                  "gt_at_ms": 2000,
+                  "gt_from": "present",
+                  "gt_to": "absent",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 1666.667,
+                      "right_ms": 2000.0,
+                      "from_class": "confirmed",
+                      "to_class": "not_found",
+                      "uncertainty_width_ms": 333.333
+                    }
+                  ]
+                },
+                {
+                  "gt_at_ms": 4000,
+                  "gt_from": "absent",
+                  "gt_to": "present",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 3666.667,
+                      "right_ms": 4000.0,
+                      "from_class": "not_found",
+                      "to_class": "confirmed",
+                      "uncertainty_width_ms": 333.333
+                    }
+                  ]
+                },
+                {
+                  "gt_at_ms": 6000,
+                  "gt_from": "present",
+                  "gt_to": "absent",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 5958.333,
+                      "right_ms": 6625.0,
+                      "from_class": "confirmed",
+                      "to_class": "not_found",
+                      "uncertainty_width_ms": 666.667
+                    }
+                  ]
+                }
+              ],
+              "gt_boundary_max_width_ms": 666.667
+            }
+          }
+        }
+      }
+    },
+    "same-budget-abstain-zone": {
+      "fixture": "abstain-zone",
+      "video": "fixture-abstain-zone.mp4",
+      "purpose": "abstained / low-confidence 区间（3000–5000 ms 目标低对比度，难以可靠确认）",
+      "budget": 12,
+      "arms": {
+        "uniform": {
+          "artifacts_dir": "artifacts/task-16/comparison/abstain-zone/uniform",
+          "metrics": {
+            "strategy": "uniform",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 7708.333,
+            "confirmed_sample_count": 9,
+            "state_transition_count": 2,
+            "state_transitions": [
+              {
+                "left_ms": 2791.667,
+                "right_ms": 3500.0,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 708.333
+              },
+              {
+                "left_ms": 4916.667,
+                "right_ms": 5583.333,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 666.666
+              }
+            ],
+            "max_uncertainty_width_ms": 708.333,
+            "target_precision_reached": null,
+            "class_counts": {
+              "confirmed": 9,
+              "not_found": 3,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 12,
+            "configured_budget": 12,
+            "budget_exhausted": true,
+            "wall_time_s": 234.048,
+            "pipeline_total_ms": 234048.177,
+            "per_call_ms": 19492.5,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [
+              "帧 3500.0ms: 目标未被确认存在",
+              "帧 4208.333ms: 目标未被确认存在",
+              "帧 4916.667ms: 目标未被确认存在"
+            ],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 9,
+              "gt_transitions_total": 0,
+              "gt_transitions_covered": 0,
+              "gt_transition_details": []
+            }
+          }
+        },
+        "adaptive": {
+          "artifacts_dir": "artifacts/task-16/comparison/abstain-zone/adaptive",
+          "metrics": {
+            "strategy": "adaptive_coarse_to_fine",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 7958.333,
+            "confirmed_sample_count": 4,
+            "state_transition_count": 0,
+            "state_transitions": [],
+            "max_uncertainty_width_ms": null,
+            "target_precision_reached": true,
+            "class_counts": {
+              "confirmed": 4,
+              "not_found": 0,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 4,
+            "configured_budget": 12,
+            "budget_exhausted": false,
+            "wall_time_s": 79.84,
+            "pipeline_total_ms": 79839.969,
+            "per_call_ms": 19930.4,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 4,
+              "gt_transitions_total": 0,
+              "gt_transitions_covered": 0,
+              "gt_transition_details": []
+            }
+          }
+        }
+      }
+    },
+    "reappear-adaptive-budget-6": {
+      "fixture": "reappear",
+      "purpose": "预算耗尽场景（显式少于主对照预算，验证停止细化与如实报告）",
+      "budget": 6,
+      "arms": {
+        "adaptive": {
+          "artifacts_dir": "artifacts/task-16/comparison/reappear-adaptive-budget-6/adaptive",
+          "metrics": {
+            "strategy": "adaptive_coarse_to_fine",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 5333.333,
+            "confirmed_sample_count": 4,
+            "state_transition_count": 3,
+            "state_transitions": [
+              {
+                "left_ms": 1333.333,
+                "right_ms": 2666.667,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 1333.334
+              },
+              {
+                "left_ms": 2666.667,
+                "right_ms": 4000.0,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 1333.333
+              },
+              {
+                "left_ms": 5333.333,
+                "right_ms": 7958.333,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 2625.0
+              }
+            ],
+            "max_uncertainty_width_ms": 2625.0,
+            "target_precision_reached": false,
+            "class_counts": {
+              "confirmed": 4,
+              "not_found": 2,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 6,
+            "configured_budget": 6,
+            "budget_exhausted": true,
+            "wall_time_s": 111.994,
+            "pipeline_total_ms": 111994.281,
+            "per_call_ms": 18635.1,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": [
+              "帧 2666.667ms: 目标未被确认存在",
+              "帧 7958.333ms: 目标未被确认存在"
+            ],
+            "ground_truth_checks": {
+              "target_presence_correct": true,
+              "confirmed_sample_count": 4,
+              "gt_transitions_total": 3,
+              "gt_transitions_covered": 3,
+              "gt_transition_details": [
+                {
+                  "gt_at_ms": 2000,
+                  "gt_from": "present",
+                  "gt_to": "absent",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 1333.333,
+                      "right_ms": 2666.667,
+                      "from_class": "confirmed",
+                      "to_class": "not_found",
+                      "uncertainty_width_ms": 1333.334
+                    }
+                  ]
+                },
+                {
+                  "gt_at_ms": 4000,
+                  "gt_from": "absent",
+                  "gt_to": "present",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 2666.667,
+                      "right_ms": 4000.0,
+                      "from_class": "not_found",
+                      "to_class": "confirmed",
+                      "uncertainty_width_ms": 1333.333
+                    }
+                  ]
+                },
+                {
+                  "gt_at_ms": 6000,
+                  "gt_from": "present",
+                  "gt_to": "absent",
+                  "covered": true,
+                  "observed": [
+                    {
+                      "left_ms": 5333.333,
+                      "right_ms": 7958.333,
+                      "from_class": "confirmed",
+                      "to_class": "not_found",
+                      "uncertainty_width_ms": 2625.0
+                    }
+                  ]
+                }
+              ],
+              "gt_boundary_max_width_ms": 2625.0
+            }
+          }
+        }
+      }
+    },
+    "multi-source-pair": {
+      "fixture": [
+        "appear-midway",
+        "disappear-midway"
+      ],
+      "purpose": "多来源输入（共享预算；验证 source_id/原时间戳保留与全局时序证据）",
+      "budget": 24,
+      "arms": {
+        "adaptive": {
+          "artifacts_dir": "artifacts/task-16/comparison/multi-source-pair/adaptive",
+          "metrics": {
+            "strategy": "adaptive_coarse_to_fine",
+            "final_status": "completed",
+            "first_confirmed_observed_ms": 0.0,
+            "last_confirmed_observed_ms": 7958.333,
+            "confirmed_sample_count": 8,
+            "state_transition_count": 10,
+            "state_transitions": [
+              {
+                "left_ms": 0.0,
+                "right_ms": 0.0,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 0.0
+              },
+              {
+                "left_ms": 0.0,
+                "right_ms": 2666.667,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 2666.667
+              },
+              {
+                "left_ms": 2666.667,
+                "right_ms": 2666.667,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 0.0
+              },
+              {
+                "left_ms": 2666.667,
+                "right_ms": 3000.0,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 333.333
+              },
+              {
+                "left_ms": 3000.0,
+                "right_ms": 3333.333,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 333.333
+              },
+              {
+                "left_ms": 4666.667,
+                "right_ms": 5000.0,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 333.333
+              },
+              {
+                "left_ms": 5000.0,
+                "right_ms": 5333.333,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 333.333
+              },
+              {
+                "left_ms": 5333.333,
+                "right_ms": 5333.333,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 0.0
+              },
+              {
+                "left_ms": 5333.333,
+                "right_ms": 7958.333,
+                "from_class": "not_found",
+                "to_class": "confirmed",
+                "uncertainty_width_ms": 2625.0
+              },
+              {
+                "left_ms": 7958.333,
+                "right_ms": 7958.333,
+                "from_class": "confirmed",
+                "to_class": "not_found",
+                "uncertainty_width_ms": 0.0
+              }
+            ],
+            "max_uncertainty_width_ms": 2666.667,
+            "target_precision_reached": false,
+            "class_counts": {
+              "confirmed": 8,
+              "not_found": 6,
+              "abstained": 0,
+              "low_confidence": 0,
+              "failed": 0
+            },
+            "actual_model_calls": 14,
+            "configured_budget": 24,
+            "budget_exhausted": false,
+            "wall_time_s": null,
+            "pipeline_total_ms": null,
+            "per_call_ms": null,
+            "evidence_nature": "real_model_output",
+            "report_has_temporal_disclaimer": true,
+            "suspicious_continuity_phrases": [],
+            "resource_blocked": false,
+            "warnings": []
+          }
+        }
+      }
+    }
+  },
+  "verdict_inputs": {},
+  "verdict": {
+    "verdict": "IMPROVEMENT",
+    "reason": "同预算主对照 5 个场景：两臂最终状态均正确；adaptive 边界定位不劣于 uniform（最大边界宽度均不高于 uniform），且调用数不高于 uniform 或达到目标边界精度；详细逐项数据见 scenarios",
+    "scenarios_compared": 5,
+    "both_arms_correct_all": true,
+    "adaptive_boundary_not_worse_all": true,
+    "adaptive_calls_not_more_all": true,
+    "adaptive_precision_reached_count": 4,
+    "small_sample_caveat": "技术 fixture 小样本；结果不得外推为真实仓储准确率；单次运行，Agent/模型行为非确定性",
+    "items": [
+      {
+        "scenario": "same-budget-present-throughout",
+        "uniform_correct": true,
+        "adaptive_correct": true,
+        "uniform_calls": 12,
+        "adaptive_calls": 4,
+        "uniform_gt_covered": 0,
+        "adaptive_gt_covered": 0,
+        "uniform_max_width": null,
+        "adaptive_max_width": null,
+        "uniform_precision_reached": null,
+        "adaptive_precision_reached": true
+      },
+      {
+        "scenario": "same-budget-appear-midway",
+        "uniform_correct": true,
+        "adaptive_correct": true,
+        "uniform_calls": 12,
+        "adaptive_calls": 7,
+        "uniform_gt_covered": 1,
+        "adaptive_gt_covered": 1,
+        "uniform_max_width": 708.333,
+        "adaptive_max_width": 333.333,
+        "uniform_precision_reached": null,
+        "adaptive_precision_reached": true
+      },
+      {
+        "scenario": "same-budget-disappear-midway",
+        "uniform_correct": true,
+        "adaptive_correct": true,
+        "uniform_calls": 12,
+        "adaptive_calls": 7,
+        "uniform_gt_covered": 1,
+        "adaptive_gt_covered": 1,
+        "uniform_max_width": 708.334,
+        "adaptive_max_width": 333.333,
+        "uniform_precision_reached": null,
+        "adaptive_precision_reached": true
+      },
+      {
+        "scenario": "same-budget-reappear",
+        "uniform_correct": true,
+        "adaptive_correct": true,
+        "uniform_calls": 12,
+        "adaptive_calls": 12,
+        "uniform_gt_covered": 3,
+        "adaptive_gt_covered": 3,
+        "uniform_max_width": 708.334,
+        "adaptive_max_width": 666.667,
+        "uniform_precision_reached": null,
+        "adaptive_precision_reached": false
+      },
+      {
+        "scenario": "same-budget-abstain-zone",
+        "uniform_correct": true,
+        "adaptive_correct": true,
+        "uniform_calls": 12,
+        "adaptive_calls": 4,
+        "uniform_gt_covered": 0,
+        "adaptive_gt_covered": 0,
+        "uniform_max_width": null,
+        "adaptive_max_width": null,
+        "uniform_precision_reached": null,
+        "adaptive_precision_reached": true
+      }
+    ]
+  }
+}

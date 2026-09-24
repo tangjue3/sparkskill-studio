@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t20-sample-id-mismatch",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "unknown-sample",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

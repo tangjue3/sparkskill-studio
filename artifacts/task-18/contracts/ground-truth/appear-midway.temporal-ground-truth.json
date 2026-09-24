@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "sample_id": "appear-midway",
+  "media_sha256": "37147666284b3481c9a4ea7b0236014e880fc96f74eadd168d1910ee9e94721f",
+  "media_duration_ms": 8000,
+  "target_query": "红色正方形",
+  "annotation_version": "1.0.0",
+  "annotated_at": "2026-09-22T08:00:27.356200+00:00",
+  "annotator_id": "task18-fixture-freeze",
+  "boundary_tolerance_ms": 250,
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 3200,
+      "state": "not_found"
+    },
+    {
+      "start_ms": 3200,
+      "end_ms": 8000,
+      "state": "confirmed"
+    }
+  ],
+  "label_frozen": {
+    "frozen": true,
+    "frozen_at": "2026-09-22T08:00:27.356200+00:00",
+    "derived_from": "由 artifacts/task-16/fixtures/ground-truth.json（冻结 manifest + ground truth）按固定映射派生：present->confirmed，absent->not_found，present_low_contrast->uncertain；boundary_tolerance_ms=250（覆盖 24fps 帧量化与百毫秒标注取整，对应任务 16 目标边界精度 500ms 的一半）；未修改任何源标签",
+    "freeze_note": "任务 18 三臂评测 fixture ground truth；technical fixture，不得外推为真实素材结论"
+  },
+  "revision_history": [],
+  "notes": "中途出现；中途出现（目标在 3200 ms 进入画面）"
+}

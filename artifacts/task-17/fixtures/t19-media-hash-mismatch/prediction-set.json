@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "task17-fixture-t19-media-hash-mismatch",
+  "arms": [
+    {
+      "arm_id": "uniform",
+      "samples": [
+        {
+          "sample_id": "t19-media-hash-mismatch",
+          "evidence": "evidence.json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "task": "task-16-temporal-evidence-adaptive-sampling",
+  "generated_at": "2026-09-22T09:04:49.804873+00:00",
+  "passed": 24,
+  "total": 24,
+  "all_passed": true,
+  "checks": [
+    {
+      "id": "V1-task16-new-tests-pass",
+      "name": "任务 16 新增测试全部通过",
+      "passed": true,
+      "detail": "任务 16 新测试: 27/27"
+    },
+    {
+      "id": "V2-task04-regression",
+      "name": "任务 04 视频规则回归通过",
+      "passed": true,
+      "detail": "任务 04: 16/16"
+    },
+    {
+      "id": "V3-task06-regression",
+      "name": "任务 06 多视频规则回归通过",
+      "passed": true,
+      "detail": "任务 06: 32/32"
+    },
+    {
+      "id": "V4-media-contract-regression",
+      "name": "M1–M8 媒体来源契约回归通过（重跑）",
+      "passed": true,
+      "detail": "exit=0，输出含 10/10=True"
+    },
+    {
+      "id": "V5-scorer-v2-regression",
+      "name": "v2 评分器回归通过（重跑）",
+      "passed": true,
+      "detail": "exit=0，输出含 17/17=True"
+    },
+    {
+      "id": "V6-fixtures-frozen",
+      "name": "technical fixture 冻结完整（manifest/hash/ground truth 一致）",
+      "passed": true,
+      "detail": "exit=0；RESULT: FROZEN_OK（5 个 fixture 的 SHA-256 与元数据均与冻结值一致）"
+    },
+    {
+      "id": "V7-fixture-sha256-match-manifest",
+      "name": "每个 fixture 的 SHA-256 与冻结 manifest 一致",
+      "passed": true,
+      "detail": "5 个 fixture 全部一致"
+    },
+    {
+      "id": "V8-fixture-ground-truth-present",
+      "name": "fixture ground truth 存在且覆盖全部 fixture",
+      "passed": true,
+      "detail": "ground truth fixtures=5，生成参数冻结=True"
+    },
+    {
+      "id": "V9-fixture-marked-synthetic",
+      "name": "fixture 明确标注 synthetic technical fixture",
+      "passed": true,
+      "detail": "manifest.nature='synthetic technical fixture（合成技术测试输入；非真实行业素材；不得外推）'"
+    },
+    {
+      "id": "V10-comparison-fairness-fields",
+      "name": "对照公平性字段完整",
+      "passed": true,
+      "detail": "same_budget=12，同规则=True，不删样本=True"
+    },
+    {
+      "id": "V11-comparison-metrics-complete",
+      "name": "对照逐场景指标完整（含五类计数与耗时）",
+      "passed": true,
+      "detail": "5 个同预算场景，双臂指标完整"
+    },
+    {
+      "id": "V12-comparison-verdict-present",
+      "name": "对照 Verdict 存在且取值合法（未预设 PASS）",
+      "passed": true,
+      "detail": "verdict=IMPROVEMENT"
+    },
+    {
+      "id": "V13-comparison-no-fabricated-continuity",
+      "name": "对照结论无虚假连续性断言（每场景均有语义声明）",
+      "passed": true,
+      "detail": "uniform/adaptive 报告均含“不是连续跟踪真值”声明"
+    },
+    {
+      "id": "V14-dsh-session-autonomous",
+      "name": "DSH headless 自主会话证据存在",
+      "passed": true,
+      "detail": "session 2026-09-22T08:54:05.442395+00:00 → 2026-09-22T09:00:44.653614+00:00，exit=0，autonomous=True"
+    },
+    {
+      "id": "V15-dsh-session-real-calls-within-budget",
+      "name": "DSH 会话真实 Qwen 调用数不超过硬预算",
+      "passed": true,
+      "detail": "实际调用=12，预算=12"
+    },
+    {
+      "id": "V16-dsh-session-calls-match-entries",
+      "name": "会话调用计数与时间线条目一致（真实模型输出）",
+      "passed": true,
+      "detail": "provenance=12，timeline 真实证据条目=12"
+    },
+    {
+      "id": "V17-tier3-frozen-assets-untouched",
+      "name": "Tier-3 任务集与 v1/v2 评分器零变化",
+      "passed": true,
+      "detail": "evals.json/v1/v2 均未修改且哈希与文档声明一致"
+    },
+    {
+      "id": "V18-task07-09-artifacts-untouched",
+      "name": "任务 07/08/09 冻结 artifacts 零变化",
+      "passed": true,
+      "detail": "三个目录均无改动"
+    },
+    {
+      "id": "V19-workbench-untouched",
+      "name": "Evidence Workbench 未被修改",
+      "passed": true,
+      "detail": "app/ 与工作台脚本零变化"
+    },
+    {
+      "id": "V20-git-diff-check",
+      "name": "git diff --check 通过（无空白错误）",
+      "passed": true,
+      "detail": "clean"
+    },
+    {
+      "id": "V21-sensitive-scan",
+      "name": "artifacts/task-16 敏感信息扫描零命中",
+      "passed": true,
+      "detail": "0 命中（凭据/长令牌/私钥）"
+    },
+    {
+      "id": "V22-provenance-no-credentials",
+      "name": "对照产物 provenance 不含凭据",
+      "passed": true,
+      "detail": "0 命中"
+    },
+    {
+      "id": "V23-design-doc-complete",
+      "name": "设计文档存在且覆盖必需要素",
+      "passed": true,
+      "detail": "12 类必需要素齐全"
+    },
+    {
+      "id": "V24-no-holdout-content",
+      "name": "任务 16 产物不含 holdout 内容",
+      "passed": true,
+      "detail": "0 命中"
+    }
+  ]
+}

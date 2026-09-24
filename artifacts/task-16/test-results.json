@@ -1,0 +1,199 @@
+{
+  "suite": "task-16-temporal-evidence-adaptive-sampling",
+  "generated_at": "2026-09-22T09:05:19.624019+00:00",
+  "passed": 27,
+  "total": 27,
+  "all_passed": true,
+  "no_real_model_calls": true,
+  "results": [
+    {
+      "id": "T1-legacy-spec-still-valid",
+      "name": "旧 VisualTaskSpec（无采样策略）继续有效",
+      "passed": true,
+      "detail": "exit=0（任务 03 真实规格原样校验）",
+      "input_nature": "任务 03 真实产物（artifacts/task-03/task-spec.json）"
+    },
+    {
+      "id": "T2-uniform-strategy-valid",
+      "name": "uniform 采样策略合法",
+      "passed": true,
+      "detail": "exit=0（strategy=uniform + max_model_calls=12）",
+      "input_nature": "构造输入（合法 uniform 策略规格）"
+    },
+    {
+      "id": "T3-adaptive-strategy-valid",
+      "name": "adaptive_coarse_to_fine 策略合法",
+      "passed": true,
+      "detail": "exit=0（预算/初始覆盖/精度/轮数/触发器齐全）",
+      "input_nature": "构造输入（合法 adaptive 策略规格）"
+    },
+    {
+      "id": "T4-unknown-strategy-rejected",
+      "name": "未知采样策略被拒绝",
+      "passed": true,
+      "detail": "exit=1（期望 1）",
+      "input_nature": "构造输入（strategy=magic_sampling）"
+    },
+    {
+      "id": "T5-illegal-budget-rejected",
+      "name": "非法调用预算被拒绝（0/负数/非整数）",
+      "passed": true,
+      "detail": "zero: exit=1；negative: exit=1；non-integer: exit=1；string: exit=1",
+      "input_nature": "构造输入（max_model_calls=0/-3/12.5/'12'）"
+    },
+    {
+      "id": "T6-negative-precision-rejected",
+      "name": "负/零时间边界精度被拒绝",
+      "passed": true,
+      "detail": "负精度 exit=1；零精度 exit=1（期望均 1）",
+      "input_nature": "构造输入（target_boundary_precision_ms=-500 / 0）"
+    },
+    {
+      "id": "T6b-uniform-refinement-combo-rejected",
+      "name": "uniform + 细化参数（不支持组合）被拒绝",
+      "passed": true,
+      "detail": "exit=1（期望 1）",
+      "input_nature": "构造输入（uniform 策略带 initial_coverage_samples）"
+    },
+    {
+      "id": "T6c-adaptive-missing-required-rejected",
+      "name": "adaptive 缺少 max_model_calls（必填）被拒绝",
+      "passed": true,
+      "detail": "exit=1（期望 1）",
+      "input_nature": "构造输入（adaptive 缺硬预算字段）"
+    },
+    {
+      "id": "T7-actual-calls-within-budget",
+      "name": "实际调用数不超过硬预算",
+      "passed": true,
+      "detail": "adaptive 实际=8≤8；uniform 实际=5≤5",
+      "input_nature": "构造证据回放（真实 fixture 视频抽取 + 脚本化证据，非模型输出）"
+    },
+    {
+      "id": "T8-duplicate-timestamp-no-recall",
+      "name": "重复时间戳不重复调用模型",
+      "passed": true,
+      "detail": "实际调用=10，唯一时间戳=10，跳过重复=1，停止原因=['refinement_converged_no_new_sample']",
+      "input_nature": "构造证据回放（目标精度 1ms 迫使中点命中已有帧）"
+    },
+    {
+      "id": "T9-timestamps-strictly-increasing",
+      "name": "时间戳严格递增",
+      "passed": true,
+      "detail": "时间戳=[0.0, 2666.667, 3000.0, 3166.667, 3208.333, 3250.0, 3333.333, 4000.0, 5333.333, 7958.333]",
+      "input_nature": "构造证据回放（T8 运行产物）"
+    },
+    {
+      "id": "T10-initial-vs-refinement-distinguishable",
+      "name": "初始采样与细化采样可区分",
+      "passed": true,
+      "detail": "初始=4，细化=6，轮数=7",
+      "input_nature": "构造证据回放（T8 运行产物）"
+    },
+    {
+      "id": "T11-state-change-boundaries",
+      "name": "状态变化生成左右时间边界",
+      "passed": true,
+      "detail": "转换=[(3000.0, 3333.333, 'not_found', 'confirmed')]（ground truth 边界 3200 ms 落在区间内）",
+      "input_nature": "构造证据回放（fixture-appear-midway，ground truth 来自冻结 fixture）"
+    },
+    {
+      "id": "T12-boundary-uncertainty-width-correct",
+      "name": "边界不确定宽度正确",
+      "passed": true,
+      "detail": "宽度=[333.333]，max=333.333，目标=500，达到=True",
+      "input_nature": "构造证据回放（T11 运行产物）"
+    },
+    {
+      "id": "T13-budget-exhaustion-stops-refinement",
+      "name": "预算耗尽时停止细化并如实报告",
+      "passed": true,
+      "detail": "实际=5，耗尽=True，停止原因=['budget_exhausted']，未解析转换数=3",
+      "input_nature": "构造证据回放（fixture-reappear，预算 5 < 所需细化）"
+    },
+    {
+      "id": "T14-abstained-not-collapsed-to-not-found",
+      "name": "abstained 不退化为 not_found",
+      "passed": true,
+      "detail": "abstained=5，not_found=0，无法确认片段=6",
+      "input_nature": "构造证据回放（fixture-abstain-zone，低对比度区间构造为 abstained）"
+    },
+    {
+      "id": "T15-failed-not-collapsed-to-not-found",
+      "name": "failed 不退化为 not_found",
+      "passed": true,
+      "detail": "failed=1，not_found=2（ground truth 复算=2），confirmed=4（复算=4），warnings 含失败记录=True",
+      "input_nature": "构造证据回放（3000ms 单帧注入后端异常，规则级 fixture）"
+    },
+    {
+      "id": "T16-no-pointless-refinement",
+      "name": "没有状态变化时不进行无意义细化",
+      "passed": true,
+      "detail": "细化轮数=0，实际调用=4（=初始覆盖 4），停止原因=['no_refinable_interval']",
+      "input_nature": "构造证据回放（fixture-present-throughout，全程 confirmed）"
+    },
+    {
+      "id": "T17-same-classification-rules",
+      "name": "uniform 与 adaptive 使用相同分类规则",
+      "passed": true,
+      "detail": "extractor=['confirmed', 'low_confidence', 'not_found', 'abstained', 'failed']；sampler=['confirmed', 'low_confidence', 'not_found', 'abstained', 'failed']；reporter=['confirmed', 'low_confidence', 'not_found', 'abstained', 'failed']；uniform 公式一致=True（[0.0, 1600.0, 3200.0, 4800.0, 6400.0, 8000.0]）",
+      "input_nature": "构造输入（5 类帧状态矩阵 + 规划公式比对，非模型输出）"
+    },
+    {
+      "id": "T18-report-independent-recompute",
+      "name": "报告引擎独立复算时序证据",
+      "passed": true,
+      "detail": "报告 confirmed=4，首/末确认=3333.333/7958.333",
+      "input_nature": "构造证据回放（报告复算与手工复算比对）"
+    },
+    {
+      "id": "T19-upstream-mismatch-warns",
+      "name": "上下游不一致产生 warning 且以复算为准",
+      "passed": true,
+      "detail": "warnings 含“交叉校验不一致”=True；复算首确认=3333.333（未被上游 -999 污染）",
+      "input_nature": "构造输入（注入错误上游摘要；复算纠正是规则行为）"
+    },
+    {
+      "id": "T19b-budget-overrun-warns",
+      "name": "实际调用超过配置预算时报告 warning",
+      "passed": true,
+      "detail": "warnings=['调用预算异常：实际视觉调用 999 超过配置预算 16（硬性预算被突破，以复算记录为准）']",
+      "input_nature": "构造输入（注入超预算计数）"
+    },
+    {
+      "id": "T20-multi-source-ids-and-timestamps",
+      "name": "多来源保持 source_id 和原视频时间戳",
+      "passed": true,
+      "detail": "来源=['video-a', 'video-b']，原时间戳范围保持=True，global=local+offset=True，排序非降=True，条目数=14",
+      "input_nature": "构造证据回放（两段 fixture + time_offset_ms=5000，非模型输出）"
+    },
+    {
+      "id": "T21-no-cross-video-identity-assertion",
+      "name": "不产生跨视频身份断言",
+      "passed": true,
+      "detail": "禁用措辞命中=[]；cross_video_identity_asserted=False；允许措辞齐全=True",
+      "input_nature": "构造证据回放（多来源报告结论扫描）"
+    },
+    {
+      "id": "T22-resource-guard-zero-qwen-calls",
+      "name": "资源守卫阻塞时零真实 Qwen 调用",
+      "passed": true,
+      "detail": "实际调用=0，全部帧 failed=True，资源阻塞=True",
+      "input_nature": "真实 fixture 视频抽取 + 资源守卫阈值 1e9 GiB（未调用任何模型）"
+    },
+    {
+      "id": "T23-provenance-no-credentials",
+      "name": "采样 provenance 不含凭据",
+      "passed": true,
+      "detail": "provenance 凭据扫描命中=[]；整文档凭据标记命中=[]",
+      "input_nature": "构造证据回放（T11 同配置运行产物 + 全文扫描）"
+    },
+    {
+      "id": "T24-fixture-vs-model-output-distinguished",
+      "name": "technical fixture 与真实模型输出明确区分",
+      "passed": true,
+      "detail": "doc.evidence_nature=constructed_fixture_evidence，report.input_nature=technical_fixture（构造证据不计为 Qwen 调用）",
+      "input_nature": "构造证据回放（脚本化证据 → evidence_nature 标记 → 报告透传）"
+    }
+  ]
+}

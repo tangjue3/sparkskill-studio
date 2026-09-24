@@ -1,0 +1,13 @@
+{
+  "mode": "compare",
+  "expect": {
+    "exit_code": 0,
+    "verdict": "TRADEOFF",
+    "strict_improvements": [
+      "fewer_model_calls"
+    ],
+    "regressions": [
+      "more_unreached_uncertain_segments"
+    ]
+  }
+}

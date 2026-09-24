@@ -1,0 +1,373 @@
+{
+  "schema_version": "1.0.0",
+  "scorer": "score_temporal_ground_truth.py",
+  "scorer_version": "1.0.0",
+  "comparison_id": "task16-uniform-vs-adaptive-rescored",
+  "pack_id": "task16-technical-fixtures",
+  "sample_ids": [
+    "present-throughout",
+    "appear-midway",
+    "disappear-midway",
+    "reappear",
+    "abstain-zone"
+  ],
+  "arms": {
+    "baseline": {
+      "arm_id": "uniform",
+      "role": "baseline"
+    },
+    "candidate": {
+      "arm_id": "adaptive",
+      "role": "candidate"
+    }
+  },
+  "fairness_gate": {
+    "conditions": [
+      {
+        "id": "same_sample_ids",
+        "passed": true,
+        "detail": "两臂样本集合与比较规格一致（5 个）"
+      },
+      {
+        "id": "same_media_hash",
+        "passed": true,
+        "detail": "两臂媒体文件与 manifest 一致"
+      },
+      {
+        "id": "same_target_query",
+        "passed": true,
+        "detail": "两臂 target_query 一致: ['红色正方形']"
+      },
+      {
+        "id": "same_ground_truth_version",
+        "passed": true,
+        "detail": "Ground Truth annotation_version 一致: ['1.0.0']"
+      },
+      {
+        "id": "same_model_and_backend",
+        "passed": true,
+        "detail": "模型/后端一致: ['modelscope.cn/unsloth/Qwen3.8-27B-GGUF:latest'] / ['ollama']"
+      },
+      {
+        "id": "same_call_budget",
+        "passed": true,
+        "detail": "两臂 configured_budget 一致: [12]"
+      },
+      {
+        "id": "no_single_side_retry_or_extra_context",
+        "passed": true,
+        "detail": "调用方声明（不可从产物观测）: no_single_side_retry=True, no_extra_context=True; 依据: artifacts/task-16/comparison.json fairness 块：same_video/same_target_query/same_model/same_max_model_calls=12/no_single_side_retry=true/no_sample_removal=true/ground_truth_not_modified_after_results=true；两臂均为真实 Qwen 模型输出（evidence_nature=real_model_output），同一资源窗口"
+      },
+      {
+        "id": "prediction_input_complete",
+        "passed": true,
+        "detail": "两臂全部样本的预测输入完整且硬门通过"
+      },
+      {
+        "id": "same_evidence_nature",
+        "passed": true,
+        "detail": "两臂 evidence_nature 一致: ['real_model_output']"
+      },
+      {
+        "id": "ground_truth_not_revised_after_run",
+        "passed": true,
+        "detail": "全部样本 GT 无模型运行后修订"
+      }
+    ],
+    "all_passed": true
+  },
+  "metrics": {
+    "uniform": {
+      "aggregate": {
+        "correct_decisive": 57,
+        "incorrect_decisive": 0,
+        "abstention_on_determinate": 0,
+        "failed_on_determinate": 0,
+        "appropriate_abstention": 0,
+        "overclaim_on_uncertain": 3,
+        "failed_on_uncertain": 0,
+        "denominator_analyzed_samples": 60,
+        "gt_confirmed_segments": 7,
+        "covered_confirmed_events": 7,
+        "missed_confirmed_events": 0,
+        "gt_boundaries_total": 7,
+        "matched_boundaries": 5,
+        "missed_gt_boundaries": 2,
+        "unmatched_predicted_transitions": 2,
+        "within_tolerance_boundaries": 5,
+        "unreached_uncertain_segments": 0,
+        "actual_model_calls": 60,
+        "boundary_error_stats": {
+          "matched_count": 5,
+          "max_ms": 250.0,
+          "min_ms": 54.167,
+          "median_ms": 145.834,
+          "mean_ms": 150.0
+        }
+      }
+    },
+    "adaptive": {
+      "aggregate": {
+        "correct_decisive": 34,
+        "incorrect_decisive": 0,
+        "abstention_on_determinate": 0,
+        "failed_on_determinate": 0,
+        "appropriate_abstention": 0,
+        "overclaim_on_uncertain": 0,
+        "failed_on_uncertain": 0,
+        "denominator_analyzed_samples": 34,
+        "gt_confirmed_segments": 7,
+        "covered_confirmed_events": 7,
+        "missed_confirmed_events": 0,
+        "gt_boundaries_total": 7,
+        "matched_boundaries": 5,
+        "missed_gt_boundaries": 2,
+        "unmatched_predicted_transitions": 0,
+        "within_tolerance_boundaries": 4,
+        "unreached_uncertain_segments": 1,
+        "actual_model_calls": 34,
+        "boundary_error_stats": {
+          "matched_count": 5,
+          "max_ms": 291.666,
+          "min_ms": 33.333,
+          "median_ms": 166.667,
+          "mean_ms": 138.333
+        }
+      }
+    }
+  },
+  "differences": {
+    "correct_decisive": {
+      "uniform": 57,
+      "adaptive": 34,
+      "delta_adaptive_minus_uniform": -23
+    },
+    "incorrect_decisive": {
+      "uniform": 0,
+      "adaptive": 0,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "abstention_on_determinate": {
+      "uniform": 0,
+      "adaptive": 0,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "failed_on_determinate": {
+      "uniform": 0,
+      "adaptive": 0,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "appropriate_abstention": {
+      "uniform": 0,
+      "adaptive": 0,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "overclaim_on_uncertain": {
+      "uniform": 3,
+      "adaptive": 0,
+      "delta_adaptive_minus_uniform": -3
+    },
+    "failed_on_uncertain": {
+      "uniform": 0,
+      "adaptive": 0,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "denominator_analyzed_samples": {
+      "uniform": 60,
+      "adaptive": 34,
+      "delta_adaptive_minus_uniform": -26
+    },
+    "gt_confirmed_segments": {
+      "uniform": 7,
+      "adaptive": 7,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "covered_confirmed_events": {
+      "uniform": 7,
+      "adaptive": 7,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "missed_confirmed_events": {
+      "uniform": 0,
+      "adaptive": 0,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "gt_boundaries_total": {
+      "uniform": 7,
+      "adaptive": 7,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "matched_boundaries": {
+      "uniform": 5,
+      "adaptive": 5,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "missed_gt_boundaries": {
+      "uniform": 2,
+      "adaptive": 2,
+      "delta_adaptive_minus_uniform": 0
+    },
+    "unmatched_predicted_transitions": {
+      "uniform": 2,
+      "adaptive": 0,
+      "delta_adaptive_minus_uniform": -2
+    },
+    "within_tolerance_boundaries": {
+      "uniform": 5,
+      "adaptive": 4,
+      "delta_adaptive_minus_uniform": -1
+    },
+    "unreached_uncertain_segments": {
+      "uniform": 0,
+      "adaptive": 1,
+      "delta_adaptive_minus_uniform": 1
+    },
+    "actual_model_calls": {
+      "uniform": 60,
+      "adaptive": 34,
+      "delta_adaptive_minus_uniform": -26
+    },
+    "boundary_error_max_ms": {
+      "uniform": 250.0,
+      "adaptive": 291.666,
+      "delta_adaptive_minus_uniform": 41.666
+    },
+    "boundary_error_min_ms": {
+      "uniform": 54.167,
+      "adaptive": 33.333,
+      "delta_adaptive_minus_uniform": -20.834
+    },
+    "boundary_error_median_ms": {
+      "uniform": 145.834,
+      "adaptive": 166.667,
+      "delta_adaptive_minus_uniform": 20.833
+    },
+    "boundary_error_mean_ms": {
+      "uniform": 150.0,
+      "adaptive": 138.333,
+      "delta_adaptive_minus_uniform": -11.667
+    },
+    "boundary_error_matched_count": {
+      "uniform": 5,
+      "adaptive": 5,
+      "delta_adaptive_minus_uniform": 0.0
+    }
+  },
+  "verdict": {
+    "verdict": "TRADEOFF",
+    "reason": "有严格改进（['fewer_model_calls', 'smaller_mean_boundary_error']）但非回归条件被违反（['more_unreached_uncertain_segments']）：省调用/缩边界的同时增加了漏检、过度断言或未触达 uncertain",
+    "reason_codes": [
+      "fewer_model_calls",
+      "smaller_mean_boundary_error",
+      "more_unreached_uncertain_segments"
+    ],
+    "strict_improvements": [
+      "fewer_model_calls",
+      "smaller_mean_boundary_error"
+    ],
+    "regressions": [
+      "more_unreached_uncertain_segments"
+    ],
+    "non_regression_conditions": {
+      "incorrect_decisive_not_worse": true,
+      "overclaim_on_uncertain_not_worse": true,
+      "missed_confirmed_events_not_worse": true,
+      "missed_gt_boundaries_not_worse": true,
+      "unreached_uncertain_not_worse": false
+    }
+  },
+  "per_sample_table": [
+    {
+      "sample_id": "present-throughout",
+      "uniform_correct_decisive": 12,
+      "adaptive_correct_decisive": 4,
+      "uniform_overclaim_on_uncertain": 0,
+      "adaptive_overclaim_on_uncertain": 0,
+      "uniform_calls": 12,
+      "adaptive_calls": 4,
+      "uniform_missed_gt_boundaries": 0,
+      "adaptive_missed_gt_boundaries": 0,
+      "uniform_unreached_uncertain": 0,
+      "adaptive_unreached_uncertain": 0
+    },
+    {
+      "sample_id": "appear-midway",
+      "uniform_correct_decisive": 12,
+      "adaptive_correct_decisive": 7,
+      "uniform_overclaim_on_uncertain": 0,
+      "adaptive_overclaim_on_uncertain": 0,
+      "uniform_calls": 12,
+      "adaptive_calls": 7,
+      "uniform_missed_gt_boundaries": 0,
+      "adaptive_missed_gt_boundaries": 0,
+      "uniform_unreached_uncertain": 0,
+      "adaptive_unreached_uncertain": 0
+    },
+    {
+      "sample_id": "disappear-midway",
+      "uniform_correct_decisive": 12,
+      "adaptive_correct_decisive": 7,
+      "uniform_overclaim_on_uncertain": 0,
+      "adaptive_overclaim_on_uncertain": 0,
+      "uniform_calls": 12,
+      "adaptive_calls": 7,
+      "uniform_missed_gt_boundaries": 0,
+      "adaptive_missed_gt_boundaries": 0,
+      "uniform_unreached_uncertain": 0,
+      "adaptive_unreached_uncertain": 0
+    },
+    {
+      "sample_id": "reappear",
+      "uniform_correct_decisive": 12,
+      "adaptive_correct_decisive": 12,
+      "uniform_overclaim_on_uncertain": 0,
+      "adaptive_overclaim_on_uncertain": 0,
+      "uniform_calls": 12,
+      "adaptive_calls": 12,
+      "uniform_missed_gt_boundaries": 0,
+      "adaptive_missed_gt_boundaries": 0,
+      "uniform_unreached_uncertain": 0,
+      "adaptive_unreached_uncertain": 0
+    },
+    {
+      "sample_id": "abstain-zone",
+      "uniform_correct_decisive": 9,
+      "adaptive_correct_decisive": 4,
+      "uniform_overclaim_on_uncertain": 3,
+      "adaptive_overclaim_on_uncertain": 0,
+      "uniform_calls": 12,
+      "adaptive_calls": 4,
+      "uniform_missed_gt_boundaries": 2,
+      "adaptive_missed_gt_boundaries": 2,
+      "uniform_unreached_uncertain": 0,
+      "adaptive_unreached_uncertain": 1
+    }
+  ],
+  "no_extrapolation_statement": "技术 fixture 小样本 + 单次运行：不构成统计显著性，不得外推为真实仓储/园区准确率；verdict 只反映本次冻结产物在严格 ground truth 口径下的对照结果",
+  "fairness_attestation": {
+    "no_single_side_retry": true,
+    "no_extra_context": true,
+    "attested_by": "task-17 rescore（依据任务 16 冻结对照产物）",
+    "attestation_basis": "artifacts/task-16/comparison.json fairness 块：same_video/same_target_query/same_model/same_max_model_calls=12/no_single_side_retry=true/no_sample_removal=true/ground_truth_not_modified_after_results=true；两臂均为真实 Qwen 模型输出（evidence_nature=real_model_output），同一资源窗口"
+  },
+  "input_hashes": {
+    "manifest": {
+      "path": "artifacts/task-17/contracts/task16-fixture-evidence-pack-manifest.json",
+      "sha256": "f66ab0fd8b5120c2976fa17ff93f1e10fe517c68a9b011892a661d98d325dd9e"
+    },
+    "prediction_set": {
+      "path": "artifacts/task-17/rescored-task16/prediction-set.json",
+      "sha256": "7b28847e71f1eba018c01b2bb7143181569016ca9fff0a6cc4e6e9aac713dbb9"
+    },
+    "comparison_spec": {
+      "path": "artifacts/task-17/rescored-task16/comparison-spec.json",
+      "sha256": "621ea6534d9a2370fdbbf2b2ec9c8e8d08db1e0de8f7f0db826be6f9630c6a27"
+    },
+    "evidence_uniform": {
+      "sha256": "8167df22e9d8d2eb48031b816de210c62716ad0f59f8b5e6c4c3827dfc6e5497"
+    },
+    "evidence_adaptive": {
+      "sha256": "16173e19f585fa3b064a6f4b147b258453d14fd557596aff84c77b2ebb893ad9"
+    }
+  }
+}

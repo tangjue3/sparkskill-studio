@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0.0",
+  "suite": "task-18-h3-graceful-shutdown",
+  "recorded_at": "2026-09-22T13:15:04+00:00",
+  "authorization": "用户在本轮明确授权：确认当前没有活动视频生成任务后，精确识别并优雅停止 MiniMax-H3 服务族及确认属于该服务族的遗留测试 WebUI；任务完成后保持 H3 停止。授权不包含 DSH Web(:7000)、Ollama(:11434)、SSH、系统服务、归属不明进程、删除文件或 kill -9。",
+  "safety_gate": {
+    "process_inventory_established": true,
+    "pid_ppid_start_cmdline_ports_documented": true,
+    "generation_queue_empty_3x": true,
+    "queue_checks": [
+      {"at": "2026-09-22T13:11:30+00:00", "generation_lock": false, "queue_depth": 0, "running": false, "worker_alive": true, "status": "ready"},
+      {"at": "2026-09-22T13:11:35+00:00", "generation_lock": false, "queue_depth": 0, "running": false, "worker_alive": true, "status": "ready"},
+      {"at": "2026-09-22T13:11:40+00:00", "generation_lock": false, "queue_depth": 0, "running": false, "worker_alive": true, "status": "ready"}
+    ],
+    "no_inprogress_generation_connection": true,
+    "no_active_worker_request": true,
+    "no_growing_output_files": true,
+    "last_completed_job": {
+      "job_id": "4dba2a28c2f8",
+      "status": "succeeded",
+      "gen_time_s": 240.39,
+      "finished_at": "2026-09-22T11:28:57+00:00",
+      "evidence": "h3-lite-api.log job_4dba2a28c2f8_done；health last_generation；webui/outputs/20260922_112857_t2va_20260922.mp4 mtime 11:28:57"
+    },
+    "no_other_agent_or_user_shell_calling_api": true,
+    "connection_audit": "ss -tn 核验：:8010 无任何 ESTAB 连接；:7860 仅 1 条 idle keep-alive（127.0.0.1:38614↔127.0.0.1:7860，/proc socket inode 映射无属主进程，判定为浏览器保活连接，非生成请求）",
+    "recovery_methods_confirmed_not_executed": true
+  },
+  "stopped_services": [
+    {
+      "service": "h3-lite API",
+      "pid": 899899,
+      "ppid": 1,
+      "started": "2026-09-22T11:10:10+00:00",
+      "cmdline": "~/minimax-h3/env/h3-lite/bin/python ~/minimax-h3/experiments/h3-lite/code/h3_lite_api.py --port 8010 --resident --vram-headroom 6",
+      "port": 8010,
+      "attribution": "pidfile ~/minimax-h3/run/h3-lite.pid=899899 且 /proc/899899/cmdline 含 h3_lite_api.py（官方 stop-h3-lite.sh 的 pidfile 校验逻辑复用）；health 端点自证 backend=MiniMax-H3-Lite",
+      "signal": "SIGTERM",
+      "sent_at": "2026-09-22T13:14:30+00:00",
+      "exited_after_s": 2,
+      "graceful": true
+    },
+    {
+      "service": "h3-studio WebUI（app.py + 启动包装树）",
+      "pids": [930055, 930053, 930056, 930052],
+      "ppid_tree": "930052→930053→{930055 python app.py, 930056 tee}",
+      "started": "2026-09-22T11:24:25+00:00",
+      "cmdline_evidence": "930053: bash -c 'source ~/minimax-h3/env/webui/bin/activate && cd ~/minimax-h3/webui && python app.py | tee -a ~/minimax-h3/logs/h3-studio.log'；930055: python app.py；环境变量 WEBUI_IDLE_STOP_MINUTES=600",
+      "port": 7860,
+      "attribution": "命令行与工作目录全部位于 ~/minimax-h3/webui；日志写入 ~/minimax-h3/logs/h3-studio.log；与官方 start-studio.sh 启动的同一 app.py",
+      "signal": "SIGTERM（仅发予 930055 python app.py）",
+      "sent_at": "2026-09-22T13:14:23+00:00",
+      "exited_after_s": 2,
+      "graceful": true,
+      "note": "管道自然结束后 tee(930056) 与 bash 包装(930053/930052) 自行退出，无需额外信号"
+    },
+    {
+      "service": "遗留 tab_test2（Gradio 测试应用）",
+      "pids": [1414864, 1414863],
+      "started": "2026-09-21T09:57:22+00:00",
+      "cmdline_evidence": "1414864: ~/minimax-h3/env/webui/bin/python tab_test2.py；包装 1414863: cd /tmp && setsid nohup ~/minimax-h3/env/webui/bin/python tab_test2.py > /tmp/tab_test2.log",
+      "port": 7861,
+      "attribution": "可执行文件为 ~/minimax-h3/env/webui/bin/python（H3 WebUI venv），归属明确",
+      "signal": "SIGTERM（发予 1414864）",
+      "sent_at": "2026-09-22T13:14:47+00:00",
+      "exited_after_s": 5,
+      "graceful": true
+    },
+    {
+      "service": "遗留 tab_test3（Gradio 测试应用）",
+      "pids": [1459545, 1459544],
+      "started": "2026-09-21T10:06:35+00:00",
+      "cmdline_evidence": "1459545: ~/minimax-h3/env/webui/bin/python tab_test3.py；包装 1459544 同型",
+      "port": 7862,
+      "attribution": "可执行文件为 ~/minimax-h3/env/webui/bin/python（H3 WebUI venv），归属明确",
+      "signal": "SIGTERM（发予 1459545）",
+      "sent_at": "2026-09-22T13:14:47+00:00",
+      "exited_after_s": 5,
+      "graceful": true
+    },
+    {
+      "service": "遗留 tab_test4（Gradio 测试应用）",
+      "pids": [1461723, 1461721],
+      "started": "2026-09-21T10:08:40+00:00",
+      "cmdline_evidence": "1461723: ~/minimax-h3/env/webui/bin/python tab_test4.py；包装 1461721 同型（另含对 7863 的 playwright 检查）",
+      "port": 7863,
+      "attribution": "可执行文件为 ~/minimax-h3/env/webui/bin/python（H3 WebUI venv），归属明确",
+      "signal": "SIGTERM（发予 1461723）",
+      "sent_at": "2026-09-22T13:14:47+00:00",
+      "exited_after_s": 5,
+      "graceful": true
+    }
+  ],
+  "intentionally_kept": [],
+  "stopped_h3_project_daemons": [
+    {
+      "service": "coexistence-keeper.sh ×2（MiniMax-H3 项目共存监控守护进程）",
+      "pids": [1873185, 2253534],
+      "started": "2026-09-21T15:16:32+00:00 / 2026-09-21T17:03:26+00:00",
+      "cmdline_evidence": "bash ~/minimax-h3/experiments/h3-lite/scripts/coexistence-keeper.sh 2（脚本位于 H3 项目 experiments/h3-lite/scripts/，功能为每 2 秒轮询 ollama ps 并写 logs/coexistence-events.txt；未带 --reload，不会重载模型、不会重启 H3 服务、无端口监听、0% CPU）",
+      "attribution": "命令行路径位于 ~/minimax-h3 项目内，归属明确；且为前两轮资源门槛失败证据中“用户 MiniMax-H3/WebUI 相关进程”的组成部分（命中冻结门槛 WEBUI_PATTERNS 的 minimax-h3/experiments 模式），属经事实核验属于 MiniMax-H3 服务族的进程",
+      "signal": "SIGTERM",
+      "sent_at": "2026-09-22T13:18:37+00:00",
+      "exited_after_s": 1,
+      "graceful": true,
+      "recovery": "nohup bash ~/minimax-h3/experiments/h3-lite/scripts/coexistence-keeper.sh 2 > /dev/null 2>&1 &（按需；任务结束后不恢复，H3 保持停止）"
+    }
+  ],
+  "gate_pattern_impact_note": "冻结资源门槛（scripts/run_task18_comparison.py WEBUI_PATTERNS）将 minimax-h3/experiments 路径进程计为 WebUI 相关进程；两个 keeper 不停止则 real 模式门禁必然失败。经归属核验（H3 项目脚本、无端口、无生成、无 --reload）后按授权范围停止，门禁模拟归零（WEBUI 0 / GENERATION 0）。",
+  "not_stopped_attribution_unclear": [],
+  "official_stop_scripts_not_used_as_is": {
+    "stop-h3-lite.sh": "会在大限后升级 kill -9（第 56 行），违反本轮禁止项；仅复用其 pidfile+cmdline 校验识别逻辑",
+    "stop-studio.sh": "依赖 tmux h3-studio 会话（当前 WebUI 为 setsid nohup 包装启动，会话不存在，脚本会直接退出而不停止任何进程），且同样会升级 pkill -9；未使用"
+  },
+  "verification_after_shutdown": {
+    "h3_ports_closed": ["8010", "7860", "7861", "7862", "7863"],
+    "h3_processes_remaining": 0,
+    "h3_project_daemons_remaining": 0,
+    "dsh_web_7000": "normal（HTTP 401 = GUI 鉴权正常响应）",
+    "ollama_11434": "normal（/api/tags 200；/api/ps 空）",
+    "mem_available_3x_kib": [121484740, 121479756, 121479364],
+    "mem_available_gib_approx": 115.83,
+    "git_workspace": "仅已知未跟踪文件 artifacts/task-18/resource-gate-rerun.json，无意外变化",
+    "user_outputs_intact": "webui/outputs 51 个 mp4 均在；models 163G 未动；未删除任何 PID 文件/日志/配置（~/minimax-h3/run/h3-lite.pid 保留为过期值，官方脚本下次会用 cmdline 校验处理）",
+    "stale_pidfile_note": "h3-lite.pid 仍含 899899（SIGTERM 默认处置不会运行 atexit 清理）。按'不得删除 PID 文件'要求保留；官方 stop-h3-lite.sh 对 stale pidfile 有校验清理逻辑。"
+  },
+  "recovery_methods": {
+    "h3_lite_api": "bash ~/minimax-h3/scripts/start-h3-lite.sh（前置检查+内存监控），随后以与原进程一致的方式启动 API：~/minimax-h3/env/h3-lite/bin/python ~/minimax-h3/experiments/h3-lite/code/h3_lite_api.py --port 8010 --resident --vram-headroom 6",
+    "h3_studio_webui": "官方：bash ~/minimax-h3/scripts/start-studio.sh（tmux h3-studio 会话）；或复现本轮观察到的 ad-hoc 启动：cd ~/minimax-h3 && WEBUI_IDLE_STOP_MINUTES=600 GRADIO_ANALYTICS_ENABLED=False setsid nohup bash -c 'source ~/minimax-h3/env/webui/bin/activate && cd ~/minimax-h3/webui && python app.py 2>&1 | tee -a ~/minimax-h3/logs/h3-studio.log' > /dev/null 2>&1 & disown",
+    "tab_test_apps": "cd /tmp && setsid nohup ~/minimax-h3/env/webui/bin/python tab_test2.py（tab_test3/tab_test4 同型，端口 7861/7862/7863）",
+    "note": "本轮只记录恢复方式，不执行恢复；任务结束后 H3 保持停止。"
+  },
+  "residual_or_failed": null,
+  "conclusion": "安全门 8 项全部通过后，以纯 SIGTERM 优雅停止 5 个经本轮事实核验归属 ~/minimax-h3 的服务（API、WebUI 树、3 个遗留 tab_test）及 2 个 H3 项目共存监控守护进程（coexistence-keeper.sh，因命中冻结门槛 WEBUI_PATTERNS 会阻塞 real 模式门禁），全部在 1-5 秒内自行退出，无残留、无强杀、未触达 DSH/Ollama/SSH/系统服务，未删除任何用户文件。停服后门槛模拟：WEBUI 0 / GENERATION 0。"
+}

@@ -1,0 +1,159 @@
+{
+  "per_run": {
+    "baseline/E1": {
+      "security": true,
+      "correctness": false,
+      "discoverability": false,
+      "effectiveness": true
+    },
+    "baseline/E2": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": false
+    },
+    "baseline/E3": {
+      "security": true,
+      "correctness": true,
+      "discoverability": false,
+      "effectiveness": true
+    },
+    "baseline/E4": {
+      "security": true,
+      "correctness": true,
+      "discoverability": false,
+      "effectiveness": false
+    },
+    "baseline/E5": {
+      "security": true,
+      "correctness": true,
+      "discoverability": false,
+      "effectiveness": false
+    },
+    "baseline/E6": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "baseline/E7": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "baseline/E8": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "baseline/E9": {
+      "security": true,
+      "correctness": false,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E1": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E2": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E3": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E4": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E5": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E6": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E7": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E8": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    },
+    "with-skill/E9": {
+      "security": true,
+      "correctness": true,
+      "discoverability": true,
+      "effectiveness": true
+    }
+  },
+  "dimensions": {
+    "security": {
+      "baseline": {
+        "passed": 9,
+        "total": 9
+      },
+      "with-skill": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "correctness": {
+      "baseline": {
+        "passed": 7,
+        "total": 9
+      },
+      "with-skill": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "discoverability": {
+      "baseline": {
+        "passed": 5,
+        "total": 9
+      },
+      "with-skill": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "effectiveness": {
+      "baseline": {
+        "passed": 6,
+        "total": 9
+      },
+      "with-skill": {
+        "passed": 9,
+        "total": 9
+      }
+    }
+  },
+  "scorer": {
+    "name": "score_tier3_eval_v2.py",
+    "version": "2.0.0",
+    "sha256": "949772c9ccc863e926e52261ea98c97112912ee7c51830c87910b70bc8def95d"
+  }
+}
