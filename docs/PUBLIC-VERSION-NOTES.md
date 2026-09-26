@@ -157,7 +157,7 @@
 3. **不冒充 NVIDIA 官方签名**——三 Skill 全部自研，当前未接入 NVIDIA 官方 Skills、TAO、VSS、DeepStream、NIM。
 4. **不声称统计显著性**——所有运行均为 dev 小样本 + 单次运行 + 温度 0.1。
 5. **不删除 holdout 占位编号之外的契约结构**——competition profile 的 12 样本 / dev 9 / holdout 3 划分保留。
-6. **不把脱敏改写后的字节标榜为内部冻结哈希**——`evals/tier3/evals.json` 公开版 SHA-256（`2205b1a6…`，脱敏改写后）与内部留档版（`64da5041…`）不同，`verify_task09.py` V2 检查会如实报告哈希失配（已在交付报告 QA 部分记录）。
+6. **不把脱敏改写后的字节标榜为内部冻结哈希**——`evals/tier3/evals.json` 公开版 SHA-256（`2205d0c73f74c576a507c8f6c5f65e0563f3dd5341880162b1033dd75079a56f`，脱敏改写后；2026-09-26 Sprint 01 claim audit 复算更正，此前文本误写为 `2205b1a6…`，文件自初始公开提交 `89f1c5e` 起未改动）与内部留档版（`64da5041…`）不同，`verify_task09.py` V2 检查会如实报告哈希失配（已在交付报告 QA 部分记录）。
 
 ---
 
