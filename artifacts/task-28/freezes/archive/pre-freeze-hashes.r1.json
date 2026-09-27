@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "freeze_name": "task28-state-expressiveness-gate-pre-freeze",
+  "frozen_at": "2026-09-24T16:06:17Z",
+  "scope": "预注册 FINAL + 实现脚本；**先于任何 dev 数据 replay**",
+  "model_calls_at_freeze": 0,
+  "files": [
+    {
+      "path": "docs/plans/2026-09-25-state-expressiveness-gate.md",
+      "role": "预注册（FINAL，含 R1 修订记录）",
+      "bytes": 9913,
+      "sha256": "fab8da6d09ba5b856152095d161aada16fa361cee7264c0f3253c2debbf5f1d0"
+    },
+    {
+      "path": ".dsh/skills/visual-evidence-extractor/scripts/state_resolver.py",
+      "role": "三态 + UncertaintyReason 解析器",
+      "bytes": 17627,
+      "sha256": "1f54438a3459093414869fef02cee435a25bb556a8275058a3d7a39875865b3a"
+    },
+    {
+      "path": "scripts/score_state_replay.py",
+      "role": "replay 评分器（archived_replay / G7r）",
+      "bytes": 31275,
+      "sha256": "2325fc9c5a841cb57af392eac93a5fb2e2bbf9876518e4408d90b64664125d0c"
+    },
+    {
+      "path": "scripts/test_state_expressiveness_gate.py",
+      "role": "Gate 确定性测试",
+      "bytes": 32202,
+      "sha256": "e1f344a4a5403b40bceca8a0e947e45927ee6ba6b363d5d31f707384b1868520"
+    }
+  ],
+  "guarded_anchors": [
+    {
+      "path": "scripts/score_temporal_ground_truth.py",
+      "anchor": "G7-provenance-self-consistency",
+      "present": true
+    },
+    {
+      "path": ".dsh/skills/visual-evidence-extractor/scripts/analyze_image.py",
+      "anchor": "PROMPT_TEMPLATE",
+      "present": true
+    }
+  ],
+  "notes": [
+    "冻结后修改实现须重跑本脚本；旧冻结文件不得覆盖。",
+    "本冻结不触及 dev 模型输出、GT、holdout。",
+    "primary denominator = 8 unique GT boundary times（三臂 24 暴露为 secondary）。"
+  ]
+}
